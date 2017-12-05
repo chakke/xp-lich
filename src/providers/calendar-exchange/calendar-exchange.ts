@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DDMMYYDays } from '../class/day';
 import { ZODIACTIME } from './zodiactimestorage';
@@ -33,15 +32,17 @@ export class CalendarExchangeModule {
 
   day_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-  constructor(public http: HttpClient) {
+  constructor() {
 
   }
-  convertDDMMYYToJulius(solarDay: number, solarMonth: number, solarYear: number) {
+  public convertDDMMYYToJulius(solarDay: number, solarMonth: number, solarYear: number) {
+    
     // Tính số này Julius
     var monthDistance, yearJulius, monthJulius;
     var juliusDate = 0;
 
     monthDistance = Math.floor((14 - solarMonth) / 12);
+    
     yearJulius = solarYear + 4800 - monthDistance;
     monthJulius = solarMonth + 12 * monthDistance - 3;
 
@@ -56,7 +57,7 @@ export class CalendarExchangeModule {
     return juliusDate;
   }
 
-  convertJuliusToDDMMYY(juliusDate: number): DDMMYYDays {
+  public convertJuliusToDDMMYY(juliusDate: number): DDMMYYDays {
     var aNumber, bNumber, cNumber, dNumber, eNumber, mNumber;
     let result = new DDMMYYDays();
 
@@ -77,13 +78,14 @@ export class CalendarExchangeModule {
     var day = eNumber - Math.floor((153 * mNumber + 2) / 5) + 1;
     var month = mNumber + 3 - 12 * Math.floor(mNumber / 10);
     var year = bNumber * 100 + dNumber - 4800 + Math.floor(mNumber / 10);
+    
     result.setDay(day, month, year);
 
     return result;
 
   }
 
-  getNewMoonDay(k: number, timeZone?: number): number {
+  public getNewMoonDay(k: number, timeZone?: number): number {
     // Tính ngày đầu tháng âm lịch chứa ngày N
 
     let T, T2, T3, dr, Jd1, M, Mpr, F, C1, deltat, JdNew;
@@ -119,7 +121,7 @@ export class CalendarExchangeModule {
     return Math.floor((JdNew + 0.5 + GMT / 24));
   }
 
-  getSunLongitude(jdn: number, timeZone?: number): number {
+  public getSunLongitude(jdn: number, timeZone?: number): number {
     // Tính tọa độ mặt trời
 
     var GMT: number = this.GMT;
@@ -137,11 +139,11 @@ export class CalendarExchangeModule {
     DL = DL + (0.019993 - 0.000101 * T) * Math.sin(dr * 2 * M) + 0.000290 * Math.sin(dr * 3 * M);
     L = L0 + DL; // true longitude, degree
     L = L * dr;
-    L = L - Math.PI * 2 * (Math.floor((L / (Math.PI * 2)))); // Normalize to (0, 2*PI)
+    L = L - Math.PI * 2 * (Math.floor(L / (Math.PI * 2))); // Normalize to (0, 2*PI)
     return Math.floor((L / Math.PI * 6));
   }
 
-  getLunarMonth11(yy: number, timeZone?: number): number {
+  public getLunarMonth11(yy: number, timeZone?: number): number {
     // Tính ngày bắt đầu tháng 11 âm lịch
 
     var GMT: number = this.GMT;
@@ -152,7 +154,7 @@ export class CalendarExchangeModule {
     var k, off, sunLong;
     var nm: number = 0;
     off = this.convertDDMMYYToJulius(31, 12, yy) - 2415021;
-    k = Math.floor((off / 29.530588853));
+    k = Math.floor(off / 29.530588853);
     nm = this.getNewMoonDay(k, GMT);
     sunLong = this.getSunLongitude(nm, GMT); // sun longitude at local midnight
     if (sunLong >= 9) {
@@ -162,7 +164,7 @@ export class CalendarExchangeModule {
     return nm;
   }
 
-  getLeapMonthOffset(a11: number, timeZone?: number): number {
+  public getLeapMonthOffset(a11: number, timeZone?: number): number {
     // Xác định tháng nhuận
     var GMT: number = this.GMT;
     if (timeZone) {
@@ -170,7 +172,7 @@ export class CalendarExchangeModule {
     }
 
     var k, last, arc, i;
-    k = Math.floor(((a11 - 2415021.076998695) / 29.530588853 + 0.5));
+    k = Math.floor((a11 - 2415021.076998695) / 29.530588853 + 0.5);
     last = 0;
     i = 1; // We start with the month following lunar month 11
     arc = this.getSunLongitude(this.getNewMoonDay(k + i, GMT), GMT);
@@ -186,7 +188,7 @@ export class CalendarExchangeModule {
 
   public convertSolarToLunar(dd: number, mm: number, yy: number, timeZone?: number): DDMMYYDays {
     // Chuyển ngày dương sang âm lịch
-
+    
     var GMT: number = this.GMT;
     if (timeZone) {
       GMT = timeZone;
@@ -235,7 +237,7 @@ export class CalendarExchangeModule {
     return dayResult;
   }
 
-  convertLunar2Solar(lunarDay: number, lunarMonth: number, lunarYear: number, timeZone?: number): DDMMYYDays {
+  public convertLunarToSolar(lunarDay: number, lunarMonth: number, lunarYear: number, timeZone?: number): DDMMYYDays {
     // Chuyển ngày âm sang dương lịch
     var GMT: number = this.GMT;
     if (timeZone) {
@@ -269,7 +271,7 @@ export class CalendarExchangeModule {
   }
 
   //Tính Can Chi Theo Năm (đầu vào theo dương lịch)
-  getSexagesimalCycleByYear(date: number, month: number, year: number): CanChi {
+  public getSexagesimalCycleByYear(date: number, month: number, year: number): CanChi {
     let result: CanChi;
     let x: DDMMYYDays = this.convertSolarToLunar(date, month, year);
     let canIndex: number = Math.floor(((x.year + 6) % 10));
@@ -280,7 +282,7 @@ export class CalendarExchangeModule {
   }
 
   //tính can chi theo tháng (đầu vào theo dương lịch)
-  getSexagesimalCycleByMonth(dd: any, mm: any, yy: any) : CanChi {
+  public getSexagesimalCycleByMonth(dd: any, mm: any, yy: any) : CanChi {
     let result: CanChi;
     let chi: string;
     let y: DDMMYYDays = this.convertSolarToLunar(dd, mm, yy);
@@ -361,7 +363,7 @@ export class CalendarExchangeModule {
   }
 
   //Tính Can Chi theo Ngày (đầu vào theo dương lịch)
-  getSexagesimalCycleByDay(date: number, month: number, year: number) : CanChi {
+  public getSexagesimalCycleByDay(date: number, month: number, year: number) : CanChi {
     let can: string;
     let chi: string;
     let result: CanChi;
@@ -439,7 +441,7 @@ export class CalendarExchangeModule {
   }
 
   //Tính ngày hoàng đạo, hắc đạo
-  getZodiacDay(date: number, month: number, year: number) : number {
+  public getZodiacDay(date: number, month: number, year: number) : number {
     let lunarmonth = this.convertSolarToLunar(date, month, year).month;
     let temp: CanChi = this.getSexagesimalCycleByDay(date, month, year);
     let can = temp.can;
@@ -505,7 +507,7 @@ export class CalendarExchangeModule {
     }
   }
   //tính can của ngày
-  getCanDay(date: number, month: number, year: number): string {
+  public getCanDay(date: number, month: number, year: number): string {
     let result: string;
     let N: number = Math.floor( this.convertDDMMYYToJulius(date, month, year) );
     let tempCalculation: number = Math.floor(((N + 9) % 10));
@@ -547,7 +549,7 @@ export class CalendarExchangeModule {
   }
 
   //quy đổi giờ sang 12 canh
-  exchangetoZodiacTime(hour: number): string {
+  public exchangetoZodiacTime(hour: number): string {
     let result: string;
     if (hour >= 1 && hour < 3) {
       result = "Sửu"
@@ -580,7 +582,7 @@ export class CalendarExchangeModule {
   }
 
   //lấy dữ liệu từ bảng dữ liệu can của giờ
-  getDataFromZodiacTime(can: String, canh: String): string {
+  public getDataFromZodiacTime(can: String, canh: String): string {
     let result: string;
     for (let x of ZODIACTIME) {
       for (let y of x.can) {
@@ -617,7 +619,7 @@ export class CalendarExchangeModule {
   }
 
   //tính can chi cho giờ 
-  getSexagesimalCycleByTime(dd: any, mm: any, yy: any, hour: number): string {
+  public getSexagesimalCycleByTime(dd: any, mm: any, yy: any, hour: number): string {
     let result: string;
     let can: string = this.getCanDay(dd, mm, yy);
     let canh: string = this.exchangetoZodiacTime(hour);
@@ -626,14 +628,15 @@ export class CalendarExchangeModule {
   }
 
   //Tính năm nhuận. Trả về số ngày nhuận
-  isLeap(year) {
+  public isLeap(year) {
     if ((year % 4) || ((year % 100 === 0) && (year % 400))) return 0;
     else return 1;
   }
 
   //Tính số ngày của một tháng
-  daysInMonth(month, year) {
+  public daysInMonth(month, year) {
     return (month === 2) ? (28 + this.isLeap(year)) : 31 - (month - 1) % 7 % 2;
   }
 
+  
 }

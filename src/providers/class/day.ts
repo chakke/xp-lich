@@ -4,7 +4,7 @@ export class DDMMYYDays {
     year: number;
 
     constructor(data?: any) {
-        this.day = 1;
+        this.day = 12;
         this.month = 1;
         this.year = 1900;
         if (data) {
