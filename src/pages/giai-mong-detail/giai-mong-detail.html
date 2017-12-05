@@ -1,0 +1,28 @@
+
+<ion-header>
+    <div class="padding-statusbar"></div>
+    <div class="a3-container a3-items-center a1-relative">
+  
+      <div class="header-button" tappable (click)="closeView()">
+        <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+      </div>
+  
+      <div class="header-title a3-flex-1">
+          Giải Mộng
+      </div>
+      <div class="header-button"></div>
+    </div>
+  </ion-header>
+
+  
+
+<ion-content>
+  <div margin-top class="mong-content">
+    <div class="a1-relative mong-content-container">
+      <div class="mong-content-header a3-container a3-items-center">
+        <span>Điềm : {{data.mong_name}}</span>
+      </div>
+      <p>{{data.mong_content}}</p>
+    </div>
+  </div>
+</ion-content>

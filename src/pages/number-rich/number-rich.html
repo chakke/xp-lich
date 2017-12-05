@@ -1,0 +1,29 @@
+
+<ion-header>
+    <div class="padding-statusbar"></div>
+    <div class="a3-container a3-items-center a1-relative">
+      <div class="header-button" tappable (click)="closeView()">
+        <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+      </div>
+  
+      <div class="header-title a3-flex-1">
+          Chọn số làm giàu
+      </div>
+      <div class="header-button"></div>
+    </div>
+  </ion-header>
+
+  
+
+<ion-content>
+  <div class="a1-container">
+    <div margin-top class="pageNumber-container a1-relative" text-center>
+      <div class="input">
+        <ion-input #input type="text" placeholder="Nhập tên"></ion-input>
+      </div>
+      <div class="view-button" tappable (click)="viewDescription()" text-center>
+        <span>Xem</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

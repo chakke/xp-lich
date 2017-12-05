@@ -1,0 +1,100 @@
+<ion-header class="a-header-background">
+    <div class="padding-statusbar"></div>
+    <div class="a3-container a3-items-center a1-relative">
+        <div class="header-button touch-scale" tappable (click)="pickSolarDate()">
+            <ion-icon name="departure-c-calendar"></ion-icon>
+        </div>
+
+        <div class="header-title a3-flex-1 a3-container a3-items-center a3-justify-center" text-center>
+
+            <ion-icon margin-right name="ios-arrow-back"></ion-icon>
+            Tháng {{calendar.month + 1}}/{{calendar.year}}
+            <ion-icon margin-left name="ios-arrow-forward"></ion-icon>
+
+        </div>
+        <div class="header-button touch-scale" tappable (click)="onClickToDay()">
+            <ion-icon name="departure-c-today"></ion-icon>
+        </div>
+    </div>
+    <ion-row class="calendar-th">
+        <ion-col *ngFor="let day of dayOfWeek">
+            <span nowrap>{{day}}</span>
+        </ion-col>
+    </ion-row>
+</ion-header>
+
+
+
+
+
+<ion-content no-bounce>
+    <div class="padding-statusbar"></div>
+
+    <div class="dp-content">
+        <ion-slides initialSlide="1" speed="200" (ionSlideNextEnd)="next()" (ionSlidePrevEnd)="prev()">
+            <ion-slide>
+                <ion-grid class="calendar-block">
+                    <ion-row #calendarContent class="calendar-day animated">
+                        <ion-col [style.height]="col_height" tappable (click)="selectDeparture(departure)" *ngFor="let departure of departureData1; let i = index">
+                            <div *ngIf="departure" class="day-box a1-relative" text-center [class.today]="departure && departure.dateString == currentDate.dateString" [class.selected]="departure &&  departure.dateString == selectedDate.dateString">
+                                <div class="solar-date " [class.color-sunday]="i==0 || i%7==0" [class.color-saturday]="i%7==6" [class.color-default]="i%7==1 || i%7==2 || i%7==3 || i%7==4 || i%7==5">{{getDate(departure.date)}}</div>
+                                <div class="a3-container-center a1-relative" nowrap>
+                                    <span [style.height]="dotSize" [style.width]="dotSize" class="status-day status-{{departure.zodiacStatus}}"></span>
+                                    <span class="lunar-date" *ngIf="departure.lunarDate != 1">{{departure.lunarDate}} </span>
+                                    <span class="lunar-date" *ngIf="departure.lunarDate == 1">{{departure.lunarDate+'/'+departure.lunarMonth}}</span>
+                                </div>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-slide>
+            <ion-slide>
+                <ion-grid class="calendar-block">
+                    <ion-row #calendarContent class="calendar-day animated">
+                        <ion-col [style.height]="col_height" tappable (click)="selectDeparture(departure)" *ngFor="let departure of departureDays; let i = index">
+                            <div *ngIf="departure" class="day-box a1-relative" text-center [class.today]="departure && departure.dateString == currentDate.dateString" [class.selected]="departure &&  departure.dateString == selectedDate.dateString">
+                                <div class="solar-date " [class.color-sunday]="i==0 || i%7==0" [class.color-saturday]="i%7==6" [class.color-default]="i%7==1 || i%7==2 || i%7==3 || i%7==4 || i%7==5">{{getDate(departure.date)}}</div>
+                                <div class="a3-container-center a1-relative" nowrap>
+                                    <span [style.height]="dotSize" [style.width]="dotSize" class="status-day status-{{departure.zodiacStatus}}"></span>
+                                    <span class="lunar-date" *ngIf="departure.lunarDate != 1">{{departure.lunarDate}} </span>
+                                    <span class="lunar-date" *ngIf="departure.lunarDate == 1">{{departure.lunarDate+'/'+departure.lunarMonth}}</span>
+                                </div>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-slide>
+            <ion-slide>
+                <ion-grid class="calendar-block">
+                    <ion-row #calendarContent class="calendar-day animated">
+                        <ion-col [style.height]="col_height" class="a3-container-center" tappable (click)="selectDeparture(departure)" *ngFor="let departure of departureData2; let i = index">
+                            <div *ngIf="departure" class="day-box a1-relative" text-center [class.today]="departure && departure.dateString == currentDate.dateString" [class.selected]="departure &&  departure.dateString == selectedDate.dateString">
+                                <div class="solar-date " [class.color-sunday]="i==0 || i%7==0" [class.color-saturday]="i%7==6" [class.color-default]="i%7==1 || i%7==2 || i%7==3 || i%7==4 || i%7==5">{{getDate(departure.date)}}</div>
+                                <div class="a3-container-center a1-relative" nowrap>
+                                    <span [style.height]="dotSize" [style.width]="dotSize" class="status-day status-{{departure.zodiacStatus}}"></span>
+                                    <span class="lunar-date" *ngIf="departure.lunarDate != 1">{{departure.lunarDate}} </span>
+                                    <span class="lunar-date" *ngIf="departure.lunarDate == 1">{{departure.lunarDate+'/'+departure.lunarMonth}}</span>
+                                </div>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-slide>
+        </ion-slides>
+        <div class="zodiac-block a3-container a3-justify-center">
+            <div class="positive a3-container a3-items-center" nowrap>
+                <div [class.ipad-dot]="isIpadDevices" class="status status-zodiac status-1"></div>
+                <div class="font-zodiac">Hoàng Đạo</div>
+            </div>
+            <div class="negative a3-container a3-items-center" nowrap>
+                <div [class.ipad-dot]="isIpadDevices" class=" status status-zodiac status-2"></div>
+                <div class="font-zodiac">Hắc Đạo</div>
+            </div>
+        </div>
+        <div class="zodiac-comment">
+            <span class="day-name" nowrap>Ngày {{selectedDate.nameOfDay}} ({{selectedDate.dateString}}) </span>
+            <span class="day-comment" *ngIf="selectedDate.comment">" {{selectedDate.comment}} "</span>
+        </div>
+    </div>
+
+</ion-content>

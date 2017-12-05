@@ -1,0 +1,19 @@
+page-test {
+  $item-width: 40px;
+  $item-height: 40px;
+  .container {
+    width: $item-width;
+    height: 3*$item-height;
+    overflow: hidden;
+    overflow-y: auto;
+    display: inline-block;
+    border: solid 1px black;
+  }
+  .item {
+    width: $item-width;
+    height: $item-height;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,42 @@
+page-zodiac {
+    $background: linear-gradient(to right, #007991, #78ffd6);
+    ion-content {
+        background: $background;
+    }
+    // .header-md::after {
+    //     height: 0;
+    // }
+    .background-header {
+        background: rgba(black, 0.4);
+    }
+    .col {
+        margin-bottom: 10px;
+    }
+    .zodiac-container {
+        width: 94%;
+        margin: auto;
+        background: rgba(black, 0.2);
+        border-radius: 5px;
+        color: white;
+        .zodiac-symbol {
+            padding: 2px;
+            img {
+                padding-top: 4px;
+                height: 3em;
+            }
+        }
+        .zodiac-name {
+            span {
+                font-weight: bolder;
+                white-space: nowrap;
+                font-size: $font-titleContent;
+            }
+        }
+        .zodiac-date {
+            span {
+                font-size: $font-content;
+                white-space: nowrap;
+            }
+        }
+    }
+}

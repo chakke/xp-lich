@@ -1,0 +1,49 @@
+page-number-rich {
+    $background: linear-gradient(to right, #007991, #78ffd6);
+    ion-content {
+        background: $background;
+    }
+    .pageNumber-container {
+        margin: auto;
+        width: 50%;
+        text-align: center;
+    }
+    .view-button {
+        border: 1px solid white;
+        border-radius: 6px;
+        padding: 6px 20px;
+        margin-top: 32px;
+        display: inline-block;
+        span {
+            color: white;
+            font-size: $font-button;
+        }
+    }
+    .text-input-md {
+        color: white;
+        width: 100%;
+        margin: 0;
+        margin-top: 13px;
+        margin-bottom: 5px;
+        // padding-bottom: 3px;
+    }
+    .text-input {
+        font-size: $font-content !important;
+    }
+    ion-input {
+        border-bottom: 1px solid white;
+    }
+    .text-input-ios {
+        color: white;
+    }
+    .text-input::-moz-placeholder {
+        color: white;
+    }
+    .text-input:-ms-input-placeholder {
+        color: white;
+    }
+    .text-input::-webkit-input-placeholder {
+        text-indent: 0;
+        color: white;
+    }
+}

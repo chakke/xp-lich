@@ -1,0 +1,174 @@
+page-departure-changedate {
+    ion-content {
+        // background-image: url('../assets/departure/background/background-home.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        .scroll-content {
+            // background-color: rgba(17, 34, 51, 0.5);
+            overflow-y: hidden;
+        }
+    }
+    $heiderHeight: 60px;
+    $titleHeight: 30px;
+    $rowHeight: 6vh;
+    $background: linear-gradient(to right, #17cce9, #34a1ca);
+    .height-56 {
+        height: 56px;
+    }
+    .a-header-background {
+        background: $background;
+    }
+    .today {
+        font-size: .9em;
+        color: #FFF;
+        border: solid 1px #FFF;
+        border-radius: 10px;
+        padding: 0 8px;
+        margin-right: 4px;
+        text-transform: none;
+        font-weight: normal;
+        white-space: nowrap;
+    }
+    .date-today {
+        font-size: 1em;
+    }
+    .a-header-button {
+        cursor: pointer;
+        img {
+            height: 3em;
+        }
+    }
+    .a-header-title {
+        text-align: center;
+        color: white;
+        white-space: nowrap;
+    }
+    .a-center-center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .a-right-center {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 16px;
+    }
+    .a-left-center {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 16px;
+    }
+    .width-40 {
+        width: 40%;
+    }
+    .width-10 {
+        width: 10%;
+    }
+    .change-date-body {
+        .header {
+            background: $background;
+            padding: 6px 0px;
+            font-size: $font-button;
+            text-align: center;
+            color: #FFF;
+            border-radius: 20px;
+        }
+        .content {
+            position: relative;
+            height: $rowHeight * 3;
+            .bg-active {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 100%;
+                transform: translateY(-50%);
+                height: 6vh;
+                z-index: -1;
+                background: #f2f2f2;
+                border-radius: 20px;
+                opacity: 0.3; // color: red;
+            }
+            .border {
+                height: 80%;
+                width: 1px;
+                background-color: #ccc;
+                opacity: 0.5;
+            }
+            .change-date-col {
+                width: 33%;
+                float: left;
+                overflow: hidden;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                .item {
+                    width: 100%;
+                    color: #717171;
+                    text-align: center;
+                    span {
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                        white-space: nowrap;
+                        font-size: $font-content;
+                    }
+                }
+                .day-active {
+                    color: #fbd025;
+                    font-weight: bold;
+                }
+                .month-active {
+                    color: #ef679c;
+                    font-weight: bold;
+                }
+                .year-active {
+                    color: #fc882a;
+                    font-weight: bold;
+                }
+            }
+        }
+        .icon {
+            margin-top: 32px;
+            padding: 8px;
+        }
+    }
+    .zodiac-block {
+        margin-top: 20px;
+        width: 100%;
+        filter: brightness(100%);
+        transition: 200ms;
+        .date-detail {
+            width: 90%;
+            border-radius: 20px;
+            background: $background;
+            color: #fff;
+            white-space: nowrap;
+            font-size: $font-button;
+            padding: 6px 0px;
+        }
+    }
+    .zodiac-block:active {
+        filter: brightness(120%);
+    }
+    .zodiac-comment {
+        padding: 5%;
+        .day-name {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+            font-size: $font-dayName;
+            color: #34a1ca;
+            white-space: nowrap;
+        }
+        .day-comment {
+            font-size: $font-dayContent;
+        }
+    }
+    .color-gray {
+        color: gray;
+        visibility: hidden;
+    }
+}

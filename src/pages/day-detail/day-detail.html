@@ -1,0 +1,220 @@
+<ion-header *ngIf="!isLoading" class="day-detail-header">
+    <div class="background-header">
+        <div class="padding-statusbar"></div>
+        <div class="a3-container a3-justify-between a3-items-center height-56 ">
+
+            <div class="header-button a-back-button touch-scale" tappable (click)="close()">
+
+                <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+
+            </div>
+
+            <div class="a1-relative a3-flex-1" text-center tappable (click)="pickDate()">
+                <div class="dayDetail-dayofweek">
+                    <span>{{dayDetail.day_of_week}}</span>
+                </div>
+                <div class="dayDetail-info">
+                    <span>{{dayDetail.dd}}/{{dayDetail.mm}}/{{dayDetail.yy}}</span>
+                </div>
+            </div>
+
+            <div class="header-button touch-scale" tappable (click)="goToDay()">
+                <ion-icon name="departure-c-today"></ion-icon>
+            </div>
+        </div>
+    </div>
+
+    <div style="height:20px"></div>
+    <div class="lunar-container a3-container a3-justify-between a3-items-center">
+        <div class="item-container a1-relative" text-center style="border-top-left-radius:10px ">
+            <div class="item-title background" style="border-top-left-radius:10px ">
+                <span>Giờ</span>
+            </div>
+            <div class="box-container">
+                <div class="item-number">
+                    <span>{{nowtime | date: "HH:mm"}}</span>
+                </div>
+                <div class="item-footer">
+                    <span>{{dayDetail.sexagesimalCycleTime}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="line a1-absolute" style="left: 25%"></div>
+        <div class="item-container a1-relative" text-center>
+            <div class="item-title background">
+                <span>Ngày</span>
+            </div>
+            <div class="box-container">
+                <div class="item-number">
+                    <span>{{dayDetail.lunarDate}}</span>
+                </div>
+                <div class="item-footer">
+                    <span>{{dayDetail.sexagesimalCycleDate}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="line a1-absolute" style="left: 50%"></div>
+        <div class="item-container a1-relative" text-center>
+            <div class="item-title background">
+                <span>Tháng</span>
+            </div>
+            <div class="box-container">
+                <div class="item-number">
+                    <span>{{dayDetail.lunarMonth}}</span>
+                </div>
+                <div class="item-footer">
+                    <span>{{dayDetail.sexagesimalCycleMonth }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="line a1-absolute" style="left: 75%"></div>
+        <div class="item-container a1-relative" text-center style="border-top-right-radius:10px ">
+            <div class="item-title background" style="border-top-right-radius:10px ">
+                <span>Năm</span>
+            </div>
+            <div class="box-container">
+                <div class="item-number">
+                    <span>{{dayDetail.lunarYear}}</span>
+                </div>
+                <div class="item-footer">
+                    <span>{{dayDetail.sexagesimalCycleYear}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-header>
+
+<ion-content>
+
+    <ion-slides initialSlide="1" speed="200" (ionSlideNextEnd)="next()" (ionSlidePrevEnd)="prev()">
+        <ion-slide *ngFor="let mdayDetail of array">
+            <div *ngIf="!isLoading" class="app-content animated" #detail id="detail">
+                <div style="height: 20px"></div>
+                <div *ngIf="mdayDetail.special_name.length>0 && !mdayDetail.special_info" class="a3-container-center item-background special">
+                    <div *ngFor="let item of mdayDetail.special_name" text-center class="font-content">
+                        <span>{{item}}</span>
+                    </div>
+                </div>
+                <div *ngIf="mdayDetail.special_info" class="a3-container-center item-background special">
+                    <div text-center class="line-height font-content">
+                        <p>{{mdayDetail.special_info}}</p>
+                    </div>
+                </div>
+                <div style="height: 1px"></div>
+                <div class="a3-container a3-justify-between a1-relative">
+                    <div class="item-haft">
+                        <div class="item">
+                            <span class="item-title">Hành:</span>
+                            <span>{{mdayDetail.TNBINFO.nguhanh_id}}</span>
+                        </div>
+                    </div>
+                    <div class="line a1-absolute" style="left: 50%"></div>
+                    <div class="item-haft">
+                        <div class="item">
+                            <span class="item-title">Trực:</span>
+                            <span>{{mdayDetail.trucDay}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 1px"></div>
+                <div class="a3-container a3-justify-between a1-relative">
+                    <div class="item-haft">
+                        <div class="item">
+                            <span class="item-title">Sao: </span>
+                            <span>{{mdayDetail.TNBINFO.thapnhibat_ten}}</span>
+                        </div>
+                    </div>
+                    <div class="line a1-absolute" style="left: 50%"></div>
+                    <div class="item-haft">
+                        <div class="item ">
+                            <span class="item-title">Tiết: </span>
+                            <span>{{mdayDetail.tietDay}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 1px"></div>
+                <div class="item-background">
+                    <div class="item-title-color font-titleContent">
+                        <span>Kiêng</span>
+                    </div>
+                    <div class="line-height font-content" style="padding-left: 10px">{{mdayDetail.TNBINFO.kieng_ky}}</div>
+                </div>
+                <div style="height: 1px"></div>
+                <div class="item-background">
+                    <div class="item-title-color font-titleContent">
+                        <span>Nên</span>
+                    </div>
+                    <div class="line-height  font-content" style="padding-left: 10px">{{mdayDetail.TNBINFO.nen_lam}}</div>
+                </div>
+                <div style="height: 1px"></div>
+                <div class="item-background">
+                    <div class="item-title-color font-titleContent">
+                        <span>Giờ tốt</span>
+                    </div>
+                    <div style="padding-left: 10px">
+                        <span class="line-height" *ngFor="let hour of mdayDetail.hour_better">{{hour}}</span>
+                    </div>
+                </div>
+                <div style="height: 1px"></div>
+                <div class="item-background">
+                    <div class="item-title-color font-titleContent ">
+                        <span>Giờ xấu</span>
+                    </div>
+                    <div style="padding-left: 10px">
+                        <span class="line-height  font-content" *ngFor="let member of mdayDetail.hour_bad">{{member}}</span>
+                    </div>
+                </div>
+                <div style="height: 1px"></div>
+                <div class="item-background">
+                    <div class="item-title-color font-titleContent">
+                        <span>Hướng xuất hành</span>
+                    </div>
+                    <div style="padding-left: 10px" class=" font-content" *ngFor="let item of mdayDetail.huong_xuat_hanh">
+                        <span>
+              {{item.huong_name}} : {{item.huong_id}}
+            </span>
+                    </div>
+                </div>
+                <div style="height: 1px"></div>
+                <div class="item-background">
+                    <div class="item-title-color font-titleContent">
+                        <span>Tuổi xung khắc</span>
+                    </div>
+                    <div style="padding-left: 10px" class=" font-content">
+                        <span>{{mdayDetail.tuoi_xung_khac}}</span>
+                    </div>
+                </div>
+                <div style="height: 1px"></div>
+                <div class="item-background">
+                    <div class="item-title-color font-titleContent">
+                        <span>Sao tốt</span>
+                    </div>
+                    <div style="padding-left: 10px" class=" font-content">
+                        <span *ngFor="let temp of mdayDetail.sao_tot; let i = index">{{temp}}
+              <span *ngIf="i<mdayDetail.sao_tot.length-1">, </span>
+                        </span>
+                    </div>
+                </div>
+                <div style="height: 1px"></div>
+                <div class="item-background">
+                    <div class="item-title-color font-titleContent">
+                        <span>Sao xấu</span>
+                    </div>
+                    <div style="padding-left: 10px" class=" font-content">
+                        <span *ngFor="let tem of mdayDetail.sao_xau; let i = index">
+              {{tem}}
+              <span *ngIf="i<mdayDetail.sao_xau.length-1">,</span>
+                        </span>
+                    </div>
+                </div>
+                <div style="height:1px"></div>
+                <div class="item-background">
+                    <div style="padding-left: 10px" text-center class=" font-content">
+                        <p style="white-space:pre-wrap; line-height: 1.5em">{{mdayDetail.TNBINFO.thapnhibat_tho}}</p>
+                    </div>
+                </div>
+                <div style="height:10px"></div>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

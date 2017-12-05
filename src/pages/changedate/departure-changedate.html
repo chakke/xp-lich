@@ -1,0 +1,103 @@
+<ion-header class="a-header-background">
+    <div class="padding-statusbar"></div>
+    <div class="a3-container a3-items-center a1-relative">
+        <div class="header-button  touch-scale" tappable (click)="onClickPickDate()">
+            <ion-icon name="departure-c-calendar"></ion-icon>
+        </div>
+        <div class="header-title a3-flex-1">
+            Đổi ngày
+        </div>
+        <!-- <div class="a-header-title a3-flex-1">
+      <div text-center style="font-size: 1.2em;padding-bottom:5px;font-weight:bold">Đổi ngày</div>
+      <div text-center tappable (click)="onClickToday()" style="padding-bottom:8px">
+        <span class="today">Hôm nay</span>
+        <span class="date-today" nowrap>{{mTodayString}}</span>
+      </div>
+
+    </div> -->
+        <div class="header-button touch-scale" tappable (click)="onClickToday()">
+            <ion-icon name="departure-c-today"></ion-icon>
+        </div>
+    </div>
+
+</ion-header>
+
+<ion-content no-bounce>
+    <div margin-top class="change-date-body a3-container-center">
+        <div class="solar-date width-40 ">
+            <div class="header a3-container-center">
+                <span>Dương lịch</span>
+            </div>
+            <div id="solar-date" class="content a3-container-center">
+                <div class="bg-active"></div>
+                <div [style.height]="rowContainer" class="change-date-col solar-col" index="0" id="solarDay">
+                    <div [style.height]="rowHeight" class="item"></div>
+                    <div [style.height]="rowHeight" class="item " *ngFor="let date of mDayDatas;let i = index" [class.day-active]=" i==mCenterIndexs[0]">
+                        <span [style.height]="rowHeight" [style.lineHeight]="rowHeight" [class.color-gray]="date>mMaxSolarDay">{{date}}</span>
+                    </div>
+                    <div [style.height]="rowHeight" class="item"></div>
+                </div>
+                <div class="border"></div>
+                <div [style.height]="rowContainer" class="change-date-col solar-col" index="1" id="solarMonth">
+                    <div [style.height]="rowHeight" class="item"></div>
+                    <div [style.height]="rowHeight" class="item" *ngFor="let month of mMonthDatas;let i = index" [class.month-active]=" i==mCenterIndexs[1]">
+                        <span [style.height]="rowHeight" [style.lineHeight]="rowHeight">{{month}}</span>
+                    </div>
+                    <div [style.height]="rowHeight" class="item"></div>
+                </div>
+                <div class="border"></div>
+                <div [style.height]="rowContainer" class="change-date-col solar-col" index="2" id="solarYear">
+                    <div [style.height]="rowHeight" class="item"></div>
+                    <div [style.height]="rowHeight" class="item" *ngFor="let year of mYearDatas;let i = index" [class.year-active]="i==mCenterIndexs[2]">
+                        <span [style.height]="rowHeight" [style.lineHeight]="rowHeight">{{year}}</span>
+                    </div>
+                    <div [style.height]="rowHeight" class="item"></div>
+                </div>
+            </div>
+        </div>
+        <div class="icon width-10">
+            <img src="assets/departure/icon/icon_arrow.png" alt="">
+        </div>
+        <div class="lunar-date width-40">
+            <div class="header a3-container-center">
+                <span> Âm lịch </span>
+            </div>
+            <div class="content a3-container-center">
+                <div class="bg-active"></div>
+                <div [style.height]="rowContainer" class="change-date-col lunar-col" index="3" id="lunarDay">
+                    <div [style.height]="rowHeight" class="item"></div>
+                    <div [style.height]="rowHeight" class="item" *ngFor="let date of mDayDatas;let i = index" [class.day-active]="i==mCenterIndexs[3]">
+                        <span [style.height]="rowHeight" [style.lineHeight]="rowHeight" [class.color-gray]="date>mMaxLunarDay">{{date}}</span>
+                    </div>
+                    <div [style.height]="rowHeight" class="item"></div>
+                </div>
+                <div class="border"></div>
+
+                <div [style.height]="rowContainer" class="change-date-col lunar-col" index="4" id="lunarMonth">
+                    <div [style.height]="rowHeight" class="item"></div>
+                    <div [style.height]="rowHeight" class="item" *ngFor="let month of mMonthDatas;let i = index" [class.month-active]="i==mCenterIndexs[4] ">
+                        <span [style.height]="rowHeight" [style.lineHeight]="rowHeight">{{month}}</span>
+                    </div>
+                    <div [style.height]="rowHeight" class="item"></div>
+                </div>
+                <div class="border"></div>
+
+                <div [style.height]="rowContainer" class="change-date-col lunar-col" index="5" id="lunarYear">
+                    <div [style.height]="rowHeight" class="item"></div>
+                    <div [style.height]="rowHeight" class="item" *ngFor="let year of mYearDatas;let i = index" [class.year-active]="i==mCenterIndexs[5]">
+                        <span [style.height]="rowHeight" [style.lineHeight]="rowHeight">{{year}}</span>
+                    </div>
+                    <div [style.height]="rowHeight" class="item"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="zodiac-block a3-container-center">
+        <div class="date-detail a3-container-center" tappable (click)="onClickViewDetail()">Chi tiết ngày</div>
+    </div>
+    <div class="zodiac-comment">
+        <span class="day-name">Ngày {{mDepartureObject.nameOfDay}} - {{mDepartureObject.dateString}} </span>
+        <span class="day-comment" *ngIf="mDepartureObject.comment">" {{mDepartureObject.comment}} "</span>
+    </div>
+</ion-content>

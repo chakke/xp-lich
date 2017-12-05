@@ -1,0 +1,30 @@
+<ion-header>
+    <div class="padding-statusbar"></div>
+
+    <div class="a3-container a3-items-center a1-relative" *ngIf="!isClickSearch">
+        <div class="header-button" tappable (click)="closeView()">
+            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+        </div>
+
+        <div class="header-title a3-flex-1">
+            Văn Khấn
+        </div>
+        <div class="header-button" tappable (click)="search()">
+            <ion-icon name="ios-search-outline"></ion-icon>
+        </div>
+    </div>
+
+    <ion-searchbar *ngIf="isClickSearch" #searchBar class="a-search searchBar animated slideInDown" [animated]="true" [showCancelButton]="true" (ionInput)="getItems($event)" (ionCancel)="cancel()"></ion-searchbar>
+</ion-header>
+<ion-content>
+    <div class="list-container">
+        <div [style.height]="item_height" class="div-item a3-container-center" *ngFor="let item of data" (click)="viewItem(item)">
+            <div class="item-content">
+                <span>{{item.TenLoai}}</span>
+            </div>
+            <div class="item-end">
+                <ion-icon name="arrow-forward"></ion-icon>
+            </div>
+        </div>
+    </div>
+</ion-content>

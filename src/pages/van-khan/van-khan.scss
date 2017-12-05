@@ -1,0 +1,46 @@
+page-van-khan {
+    $background: linear-gradient(to right, #007991, #78ffd6);
+    // .header-md::after {
+    //     height: 0;
+    // }
+    .content-md {
+        background: $background;
+    }
+    .content-ios {
+        background: $background;
+    }
+    .background-header {
+        background: rgba(black, 0.4);
+    }
+    .a-search {
+        animation-duration: 200ms;
+    }
+    .button-clear-ios {
+        color: white;
+    }
+    .list-container {
+        padding-top: 16px;
+        overflow: auto;
+        .div-item {
+            width: 90%;
+            margin: auto;
+            padding-left: 16px;
+            margin-bottom: 10px;
+            color: white;
+            background: rgba(black, 0.2);
+            .item-content {
+                width: 90%;
+                span {
+                    font-size: $font-option;
+                }
+            }
+            .item-end {
+                width: 10%;
+                text-align: center;
+                ion-icon {
+                    font-size: $font-icon;
+                }
+            }
+        }
+    }
+}

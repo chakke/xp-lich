@@ -1,0 +1,39 @@
+<ion-content>
+    <div class="a1-relative animated slideInDown" style="animation-duration:400ms">
+        <div margin-bottom class="change-date-content">
+            <div class="change-date-header a3-container-center">
+                <div class="title">Chọn ngày</div>
+                <div class="close-button a3-container-center" tappable (click)="closeSolarDate()">
+                    <ion-icon name="close"></ion-icon>
+                </div>
+            </div>
+            <div class="change-date-col-container" [class.ipad-container]="isIpadDevices">
+                <div class="bg-active" [class.ipad-row-height]="isIpadDevices"></div>
+                <div class="col-date " [class.ipad-container]="isIpadDevices" id="div1">
+                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
+                    <div class="item " [class.ipad-row-height]="isIpadDevices" *ngFor="let date of day_in_month">
+                        <span [class.ipad-row-height]="isIpadDevices" [class.ipad-line-height]="isIpadDevices">{{date}}</span>
+                    </div>
+                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
+                </div>
+                <div class="col-date " [class.ipad-container]="isIpadDevices" id="div2">
+                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
+                    <div class="item" [class.ipad-row-height]="isIpadDevices" *ngFor="let month of datas[1]">
+                        <span [class.ipad-row-height]="isIpadDevices" [class.ipad-line-height]="isIpadDevices">{{month}}</span>
+                    </div>
+                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
+                </div>
+                <div class="col-date" [class.ipad-container]="isIpadDevices" id="div3">
+                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
+                    <div class="item" [class.ipad-row-height]="isIpadDevices" *ngFor="let year of datas[2]">
+                        <span [class.ipad-row-height]="isIpadDevices" [class.ipad-line-height]="isIpadDevices">{{year}}</span>
+                    </div>
+                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
+                </div>
+            </div>
+        </div>
+        <div class="button-bottom" tappable (click)="getSolarDate() ">Đồng ý</div>
+
+    </div>
+
+</ion-content>

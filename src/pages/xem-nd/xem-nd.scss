@@ -1,0 +1,26 @@
+page-xem-nd {
+    $background: linear-gradient(to right, #007991, #78ffd6);
+    ion-content {
+        background: $background;
+    }
+    .item-container {
+        background: rgba(black, 0.2);
+        border-radius: 5px;
+        min-height: 13em;
+    }
+    .logo {
+        padding-top: 10px;
+        img {
+            height: 8em;
+            width: 6em;
+        }
+    }
+    .name {
+        text-align: center;
+        padding: 10px 10px 5px 10px;
+        span {
+            color: white;
+            font-size: $font-titleContent;
+        }
+    }
+}

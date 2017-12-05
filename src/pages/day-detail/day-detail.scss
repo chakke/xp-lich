@@ -1,0 +1,146 @@
+page-day-detail {
+    $background: linear-gradient(to right, #007991, #78ffd6);
+    $line-height: 1.5em;
+    .header-md::after {
+        height: 0;
+    }
+    .content-ios {
+        background: $background;
+    }
+    .content-md {
+        background: $background;
+    }
+    .special {
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    .today-button {
+        border-radius: 100px;
+        padding: 4px 8px;
+        border: 1px solid white;
+        font-size: .8em;
+    }
+    .background-header {
+        background: rgba(black, 0.2);
+        color: white;
+    }
+    .background {
+        background: rgba(black, 0.2);
+        color: white;
+    }
+    .height-30 {
+        height: 30px;
+    }
+    .height-56 {
+        height: 56px;
+    }
+    .dayDetail-dayofweek {
+        span {
+            font-size: $font-titleheader;
+        }
+    }
+    .dayDetail-info {
+        span {
+            font-size: $font-timeNumber;
+        }
+    }
+    .day-detail-header {
+        left: 0;
+        width: 100%;
+        ion-icon {
+            color: white;
+            line-height: unset;
+            display: inline-block;
+        }
+    }
+    .line-height {
+        line-height: $line-height;
+        font-size: $font-content;
+    }
+    .lunar-container {
+        padding-right: 10px;
+        padding-left: 10px;
+        // height: 75px;
+        position: relative;
+        width: 100%;
+        .item-container {
+            // height: 75px;
+            width: 25%;
+        }
+        .item-number {
+            span {
+                font-size: $font-timeNumber;
+            }
+        }
+        .item-footer {
+            margin-top: 3px;
+            span {
+                white-space: nowrap;
+                font-size: $font-timeSexy;
+            }
+        }
+    }
+    .line {
+        width: 1px;
+        background: #18bb94;
+        opacity: 0.5;
+        height: 100%;
+        z-index: 10;
+    }
+    .box-container {
+        padding: 5px;
+        background: rgba(black, 0.2);
+        color: white;
+    }
+    .item {
+        padding: 5px;
+        span {
+            font-size: $font-content;
+        }
+    }
+    .item-title {
+        color: white;
+        padding: 5px;
+        font-size: $font-titleContent!important;
+    }
+    .item-title-color {
+        color: #EEEE80;
+        font-weight: bold;
+        padding: 5px;
+        span {
+            padding: 5px;
+        }
+    }
+    .swiper-slide {
+        text-align: left;
+        overflow: hidden;
+        font-size: unset;
+        .slide-zoom {
+            text-align: left;
+            height: 100%;
+        }
+    }
+    .app-content {
+        padding-left: 10px;
+        padding-right: 10px;
+        position: absolute;
+        height: 100%;
+        top: 0;
+        overflow: auto;
+    }
+    .item-haft {
+        width: 50%;
+        padding: 5px;
+        color: white;
+        background: rgba(black, 0.2);
+    }
+    .item-background {
+        padding: 5px;
+        color: white;
+        background: rgba(black, 0.2);
+        min-height: 60px;
+    }
+    .width-25 {
+        width: 25%;
+    }
+}
