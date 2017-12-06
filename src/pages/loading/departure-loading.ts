@@ -14,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   templateUrl: 'departure-loading.html',
 })
 export class DepartureLoadingPage {
+  
   constructor(
     public mAdmobfree: AdMobFree,
     public mGoogleAnalytics: GoogleAnalytics,
@@ -23,7 +24,7 @@ export class DepartureLoadingPage {
     private mAppModule: DepartureModule,
     public mSplashScreen: SplashScreen
   ) {
-
+   
   }
   ionViewDidLeave() {
     this.mSplashScreen.hide();
@@ -43,7 +44,11 @@ export class DepartureLoadingPage {
       }
     );
 
+    this.mAppModule.loadDanhNgon();
+
   }
+
+  
 
   onLoadedConfig() {
     let admobData = this.mAppModule.getAppConfig().get("admob");

@@ -57,11 +57,11 @@ export class ZodiacPage {
     })
   }
 
-  getDataImage(id: string): string {
-    let index = parseInt(id);
-    if (this.mIcons.length > 0) return this.mIcons[index - 1];
-    return this.mAppModule.getZodiacImage(index);
-  }
+  // getDataImage(id: string): string {
+  //   let index = parseInt(id);
+  //   if (this.mIcons.length > 0) return this.mIcons[index - 1];
+  //   return this.mAppModule.getZodiacImage(index);
+  // }
 
   getItemName(name: string): string {
     return name.split("(")[1].split(")")[0];

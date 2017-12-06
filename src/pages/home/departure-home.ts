@@ -6,6 +6,7 @@ import { DepartureObject } from "../../providers/departure/class/departure-objec
 import { Background } from "../../providers/departure/controller/background-controller";
 import { StatusBar } from '@ionic-native/status-bar';
 import { DepartureUtils } from "../../providers/departure/departure-utils";
+import { DanhNgon } from '../../providers/departure/interface/danhngon';
 // import { AdMobPro } from '@ionic-native/admob-pro';
 @IonicPage()
 @Component({
@@ -57,8 +58,8 @@ export class DepartureHomePage {
   name_of_date: string = "";
   //lời khuyên cho ngày:
   quote_of_date: string = "";
-
-
+  //Danh ngon
+  danhngon: DanhNgon;
   //góc quay cho div ở phần ngày dương
   degree: number = 0;
   //
@@ -82,15 +83,31 @@ export class DepartureHomePage {
     this.solarMonth = this.mToday.getMonth() + 1;
     this.solarYear = this.mToday.getFullYear();
     this.degree = 0;
+    this.danhngon = {
+      caudanhngon: "40 năm đầu của cuộc đời cho chúng ta đề tài và 40 năm sau cho chúng ta sự thuyết minh nó.",
+      tacgia: "Schopenhauer"
+    }
   }
 
   mHasEnter: boolean = false;
   ionViewWillLeave() {
     this.mBackgroundAnimationEnable = false;
   }
+  danhNgondata: any;
+  isLoaddanhNgon : boolean = true;
   ionViewDidEnter() {
     this.mBackgroundAnimationEnable = true;
     this.changeBackGroundStatusBar();
+    if(!this.danhNgondata){
+      this.mAppModule.getDanhNgonDataJSON().then(
+        data=>{
+          this.danhNgondata = data;
+          this.isLoaddanhNgon = false;
+          this.loadDanhNgon();
+        },error=>{}
+      )
+    }
+
     if (!this.mHasEnter) {
       this.mHasEnter = true;
       setTimeout(() => {
@@ -149,9 +166,10 @@ export class DepartureHomePage {
         }, error => { }
       );
     }
+  }
 
-
-
+  loadDanhNgon(){
+    this.danhngon = this.mAppModule.getDanhNgon(this.solarDate,this.solarMonth,this.solarYear);
   }
 
   onClickPreviousDay() {
@@ -172,22 +190,24 @@ export class DepartureHomePage {
     this.getDayOfWeek();
     this.getLunarDateTime();
     this.getSexagesimalCycle();
-    this.getQuoteAndDayName();
+    // this.getQuoteAndDayName();
     this.changeBackgroundImage();
     this.nowtime = new Date();
     this.sexagesimalCycleTime = this.mAppModule.getSexagesimalCycleByTime(this.solarDate, this.solarMonth, this.solarYear, this.nowtime.getHours());
-    this.isLoading = false;
+    
+    this.isLoading = false; 
   }
   onClickToDay() {
     this.solarDate = this.mToday.getDate();
     this.solarMonth = this.mToday.getMonth() + 1;
     this.solarYear = this.mToday.getFullYear();
-
+    this.loadDanhNgon();
     this.getDayOfWeek();
     this.getLunarDateTime();
     this.getSexagesimalCycle();
-    this.getQuoteAndDayName();
+    // this.getQuoteAndDayName();
     this.changeBackgroundImage();
+
     this.nowtime = new Date();
     this.sexagesimalCycleTime = this.mAppModule.getSexagesimalCycleByTime(this.solarDate, this.solarMonth, this.solarYear, this.nowtime.getHours());
     this.isLoading = false;
@@ -253,25 +273,30 @@ export class DepartureHomePage {
     cube.style.transform = "translateZ( -100px) rotateY( " + (this.degree -= 90) + "deg)";
     setTimeout(() => {
       this.forwardNextDate();
+      this.loadDanhNgon();
       this.getDayOfWeek();
       this.getLunarDateTime();
-      this.getQuoteAndDayName();
+      // this.getQuoteAndDayName();
       this.changeBackgroundImage();
       this.getSexagesimalCycle();
+      
     }, 100);
   }
   //quay trái
   rotateLeft() {
+    
     let cube = document.getElementById("cube");
     if (!cube) return;
     cube.style.transform = "translateZ( -100px) rotateY( " + (this.degree += 90) + "deg)";
     setTimeout(() => {
       this.backtoPreviousDate();
+      this.loadDanhNgon();
       this.getDayOfWeek();
       this.getLunarDateTime();
-      this.getQuoteAndDayName();
+      // this.getQuoteAndDayName();
       this.changeBackgroundImage();
       this.getSexagesimalCycle();
+      
     }, 100);
   }
 
@@ -363,6 +388,7 @@ export class DepartureHomePage {
         this.solarDate = data.date.getDate();
         this.solarMonth = data.date.getMonth() + 1;
         this.solarYear = data.date.getFullYear();
+        this.loadDanhNgon();
         this.getDayOfWeek();
         this.getLunarDateTime();
         this.getQuoteAndDayName();

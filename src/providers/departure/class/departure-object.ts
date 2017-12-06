@@ -14,7 +14,6 @@ export class DepartureObject {
     canchiYear: string; //Can chi của năm
     canchiMonth: string; //Can chi của tháng
     canchiDay: string; //Can chi của ngày
-
     // constructor(){
 
     // }

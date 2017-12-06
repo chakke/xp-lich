@@ -6,7 +6,6 @@ page-departure-calendar {
         height: $ipad-dot-size !important;
         width: $ipad-dot-size !important;
         border-radius: 50%;
-        background-color: transparent;
         margin-top: 2px;
         margin-right: 2px;
     }
@@ -162,6 +161,12 @@ page-departure-calendar {
     }
     .color-default {
         color: #717171;
+    }
+    @media (min-width: 767px) {
+        .status-day {
+            height: 12px !important;
+            width: 12px !important;
+        }
     }
     .status-day {
         width: $dot-size;

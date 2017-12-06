@@ -8,7 +8,7 @@ export class Calendar {
         for (let i = 1; i <= 42; i++) {
             this.days.push(null);
         }
-        if (month && year) {
+        if (year) {
             this.setTime(month, year);
         }
     }

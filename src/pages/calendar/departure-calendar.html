@@ -39,7 +39,7 @@
                             <div *ngIf="departure" class="day-box a1-relative" text-center [class.today]="departure && departure.dateString == currentDate.dateString" [class.selected]="departure &&  departure.dateString == selectedDate.dateString">
                                 <div class="solar-date " [class.color-sunday]="i==0 || i%7==0" [class.color-saturday]="i%7==6" [class.color-default]="i%7==1 || i%7==2 || i%7==3 || i%7==4 || i%7==5">{{getDate(departure.date)}}</div>
                                 <div class="a3-container-center a1-relative" nowrap>
-                                    <span [style.height]="dotSize" [style.width]="dotSize" class="status-day status-{{departure.zodiacStatus}}"></span>
+                                    <span [class.ipad-dot]="isIpadDevices" class="status-day status-{{departure.zodiacStatus}}"></span>
                                     <span class="lunar-date" *ngIf="departure.lunarDate != 1">{{departure.lunarDate}} </span>
                                     <span class="lunar-date" *ngIf="departure.lunarDate == 1">{{departure.lunarDate+'/'+departure.lunarMonth}}</span>
                                 </div>
@@ -55,7 +55,7 @@
                             <div *ngIf="departure" class="day-box a1-relative" text-center [class.today]="departure && departure.dateString == currentDate.dateString" [class.selected]="departure &&  departure.dateString == selectedDate.dateString">
                                 <div class="solar-date " [class.color-sunday]="i==0 || i%7==0" [class.color-saturday]="i%7==6" [class.color-default]="i%7==1 || i%7==2 || i%7==3 || i%7==4 || i%7==5">{{getDate(departure.date)}}</div>
                                 <div class="a3-container-center a1-relative" nowrap>
-                                    <span [style.height]="dotSize" [style.width]="dotSize" class="status-day status-{{departure.zodiacStatus}}"></span>
+                                    <span [class.ipad-dot]="isIpadDevices" class="status-day status-{{departure.zodiacStatus}}"></span>
                                     <span class="lunar-date" *ngIf="departure.lunarDate != 1">{{departure.lunarDate}} </span>
                                     <span class="lunar-date" *ngIf="departure.lunarDate == 1">{{departure.lunarDate+'/'+departure.lunarMonth}}</span>
                                 </div>
@@ -71,7 +71,7 @@
                             <div *ngIf="departure" class="day-box a1-relative" text-center [class.today]="departure && departure.dateString == currentDate.dateString" [class.selected]="departure &&  departure.dateString == selectedDate.dateString">
                                 <div class="solar-date " [class.color-sunday]="i==0 || i%7==0" [class.color-saturday]="i%7==6" [class.color-default]="i%7==1 || i%7==2 || i%7==3 || i%7==4 || i%7==5">{{getDate(departure.date)}}</div>
                                 <div class="a3-container-center a1-relative" nowrap>
-                                    <span [style.height]="dotSize" [style.width]="dotSize" class="status-day status-{{departure.zodiacStatus}}"></span>
+                                    <span [class.ipad-dot]="isIpadDevices" class="status-day status-{{departure.zodiacStatus}}"></span>
                                     <span class="lunar-date" *ngIf="departure.lunarDate != 1">{{departure.lunarDate}} </span>
                                     <span class="lunar-date" *ngIf="departure.lunarDate == 1">{{departure.lunarDate+'/'+departure.lunarMonth}}</span>
                                 </div>

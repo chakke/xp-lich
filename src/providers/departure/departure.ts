@@ -11,6 +11,7 @@ import { AnalyticsManager } from "../common/analytics-manager";
 import { DepartureUtils } from "./departure-utils";
 import { Utils } from "../app-utils";
 import { BackgroundController } from "./controller/background-controller";
+import { DanhNgon } from './interface/danhngon';
 
 @Injectable()
 export class DepartureModule {
@@ -29,7 +30,8 @@ export class DepartureModule {
   private cavalVNAL: any;
   private cavalVNDL: any;
   private vankhan_data: any;
-
+  private mVersion: any;
+  private maxData: number = 1000;
 
 
   private mConfig: AppConfig;
@@ -82,6 +84,12 @@ export class DepartureModule {
     });
   }
 
+  public loadDanhNgon(){
+    var mVersion = this.mConfig.getAppVersion();
+    if (mVersion == "1.0") {
+      this.maxData = 1000;
+    }
+  }
 
   public getHttpService() {
     return this.mDepartureHttpService;
@@ -98,6 +106,31 @@ export class DepartureModule {
 
   public update() {
     this.getData();
+  }
+  danhNgonData: any;
+  getDanhNgonDataJSON() {
+    return new Promise((resolve, reject) => {
+      if (this.danhNgonData) resolve(this.danhNgonData);
+      else {
+        this.mDepartureLoadData.getDanhNgonDataFromJSON().subscribe((data) => {
+          this.danhNgonData = data.table;
+          resolve(this.danhNgonData);
+        });
+      }
+    });
+  }
+
+  getDanhNgon(dd: number, mm: number, yy: number, data?:any):DanhNgon{
+    var mDays = (yy - 1900) * 365 + Math.floor((yy - 1900) / 4) + DepartureUtils.getDaysPassInYear(mm, yy) + dd;
+    var indexV = mDays % this.maxData;
+
+    if(this.danhNgonData){
+      var result: DanhNgon = {
+        caudanhngon: this.danhNgonData[indexV].caudanhngon,
+        tacgia: this.danhNgonData[indexV].tacgia
+      }
+      return result;
+    }
   }
 
   getData() {

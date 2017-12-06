@@ -88,7 +88,7 @@
 
     <ion-slides initialSlide="1" speed="200" (ionSlideNextEnd)="next()" (ionSlidePrevEnd)="prev()">
         <ion-slide *ngFor="let mdayDetail of array">
-            <div *ngIf="!isLoading" class="app-content animated" #detail id="detail">
+            <div *ngIf="!isLoading" class="app-content animated" #detail id="app-content">
                 <div style="height: 20px"></div>
                 <div *ngIf="mdayDetail.special_name.length>0 && !mdayDetail.special_info" class="a3-container-center item-background special">
                     <div *ngFor="let item of mdayDetail.special_name" text-center class="font-content">

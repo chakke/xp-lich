@@ -1,9 +1,32 @@
 page-departure-home {
+    @media (min-width: 767px) {
+        .dot-large {
+            width: 18px !important;
+            height: 18px !important;
+        }
+        .dot-small {
+            width: 10px !important;
+            height: 10px !important;
+        }
+    }
     .header-md::after {
         height: 0;
     }
     .scroll-content {
         // margin-bottom: $ !important;
+    }
+    .danhngon {
+        overflow: auto;
+        padding: 10px;
+    }
+    .caudanhngon {
+        text-align: justify;
+        font-size: $font-content;
+    }
+    .tacgia {
+        margin-top: 4px;
+        font-style: italic;
+        font-size: $font-content;
     }
     .font-shadow {
         color: white;

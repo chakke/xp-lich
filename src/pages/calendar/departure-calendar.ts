@@ -49,7 +49,6 @@ export class DepartureCalendarPage {
     this.isPlatform = this.platform._platforms[2];
     if(screen.width> 700){
       this.isIpadDevices =true;
-      console.log("ipad");
       this.dotSize = "10px";
       
     }else{
@@ -58,8 +57,7 @@ export class DepartureCalendarPage {
     this.currentDate = new DepartureObject(new Date());
     this.selectedDate = new DepartureObject(new Date());
     this.calendar = new Calendar(this.currentDate.date.getMonth(), this.currentDate.date.getFullYear());
-    this.getCalendar1();
-    this.getCalendar2();
+    this.getData();
     this.departureDays = this.calendar.days;
     this.col_height = Math.floor(((screen.width - 32) / 7)) + "px";
     this.grid_height = Math.floor(((screen.width - 32)/ 7)*6) + 16 + "px";
@@ -91,7 +89,9 @@ export class DepartureCalendarPage {
 
   }
   next(){
+    
       if(this.slides.getActiveIndex()==2){
+    
         this.onInputChange(this.calendar2.month,this.calendar2.year)
         this.slides.slideTo(1,0);
         this.getData();
@@ -99,6 +99,7 @@ export class DepartureCalendarPage {
   }
   prev(){
       if(this.slides.getActiveIndex()==0){
+    
         this.onInputChange(this.calendar1.month,this.calendar1.year)
         this.slides.slideTo(1,0);
         this.getData()
@@ -107,8 +108,9 @@ export class DepartureCalendarPage {
       }
   }
   getData(){
-    this.getCalendar1();
     this.getCalendar2();
+    
+    this.getCalendar1();
   }
   slideToMidder(){
     // this.slides.slideTo(1,0,false);
@@ -153,6 +155,9 @@ export class DepartureCalendarPage {
       this.mAppModule.updateDepartureInfo(this.departureData2);
       return;
     }
+    
+
+    
     this.calendar2.setTime(month,year);
     this.departureData2 = this.calendar2.days;
     this.mAppModule.updateDepartureInfo(this.departureData2);

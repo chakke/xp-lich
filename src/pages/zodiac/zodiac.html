@@ -1,14 +1,14 @@
 <ion-header>
-  <div class="padding-statusbar"></div>
-  <div class="a3-container a3-items-center a1-relative">
-    <div class="header-button" tappable (click)="closeView()">
-      <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
-    </div>
+    <div class="padding-statusbar"></div>
+    <div class="a3-container a3-items-center a1-relative">
+        <div class="header-button" tappable (click)="closeView()">
+            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+        </div>
 
-    <div class="header-title a3-flex-1" style="text-align:left !important">
-     {{mPageTitle}}
+        <div class="header-title a3-flex-1" style="text-align:left !important">
+            {{mPageTitle}}
+        </div>
     </div>
-  </div>
 </ion-header>
 
 
@@ -16,23 +16,23 @@
 
 
 <ion-content>
-  <div *ngIf="!isLoading" class="pageZodiac-container" margin-top>
-    <ion-row>
-      <ion-col col-4 *ngFor="let item of data" text-center  tappable (click)="viewDetail(item.id)">
-        <div class="zodiac-container a1-relative">
-          <div class="zodiac-symbol a1-height-50">
-            <img [src]="getDataImage(item.id)">
-          </div>
-          <div class="a1-height-50" style="padding: 4px">
-            <div class="zodiac-name">
-              <span>{{getItemName(item.name)}}</span>
-            </div>
-            <div class="zodiac-date">
-              <span>{{item.date}}</span>
-            </div>
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-  </div>
+    <div *ngIf="!isLoading" class="pageZodiac-container" margin-top>
+        <ion-row>
+            <ion-col col-4 *ngFor="let item of data; let i = index" text-center tappable (click)="viewDetail(item.id)">
+                <div class="zodiac-container a1-relative">
+                    <div class="zodiac-symbol a1-height-50">
+                        <img [src]="mIcons[i]">
+                    </div>
+                    <div class="a1-height-50" style="padding: 4px">
+                        <div class="zodiac-name">
+                            <span>{{getItemName(item.name)}}</span>
+                        </div>
+                        <div class="zodiac-date">
+                            <span>{{item.date}}</span>
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </div>
 </ion-content>

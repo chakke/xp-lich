@@ -69,12 +69,20 @@
                 </div>
             </div>
         </div>
-        <div text-left class="a-qoute-day" id="quote-fg" [style.color]="mBackground.mColor">
+        <div class="danhngon a1-height-20">
+            <div class="caudanhngon" id="quote-fg">
+                {{danhngon.caudanhngon}}
+            </div>
+            <div class="tacgia" text-right>
+                - {{danhngon.tacgia}} -
+            </div>
+        </div>
+        <!-- <div text-left class="a-qoute-day" id="quote-fg" [style.color]="mBackground.mColor">
             Ngày {{name_of_date}}
         </div>
         <div text-left class="a-qoute a1-height-10">
             <q>{{quote_of_date}}</q>
-        </div>
+        </div> -->
 
         <div padding-bottom *ngIf="!isLoading" class="a-footer a3-container-center ">
 

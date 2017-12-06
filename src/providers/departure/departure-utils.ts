@@ -2,6 +2,7 @@ import { ZODIACTIME } from '../departure/departure-zodiactimestorage';
 import { Hour } from './departure-hour';
 import { HUONGXUATHANH } from './interface/huong_xuat_hanh';
 import { TNBINFO } from './interface/tnb_Info';
+import { DanhNgon } from './interface/danhngon';
 
 export class DepartureUtils {
     static GMT: number = 7;
@@ -20,7 +21,7 @@ export class DepartureUtils {
     static CANS: Array<string> = ["Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý"];
     static CHIS: Array<string> = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
     static day_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    static day_in_months_nhuan = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    static day_in_months_nhuan = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     /**Trả về số ngày trong 1 tháng của 1 năm. 
      * @argument mm : Kiểu số, tháng cần tính, bắt đầu từ 0 (cho tháng 1).
@@ -35,6 +36,23 @@ export class DepartureUtils {
             return this.day_in_months_nhuan[mm];
         }
         return this.day_in_months[mm];
+    }
+
+    public static getDaysPassInYear(mm: number, yy: number){
+        var sum = 0;
+        if(mm==1){
+            return 0;
+        }
+        if( yy%4 == 0){
+            for(let i = 0 ; i < mm -1; i++){
+                sum+= this.day_in_months_nhuan[i];
+            }
+        }else{
+            for(let i = 0 ; i < mm -1; i++){
+                sum+= this.day_in_months[i];
+            }
+        }
+        return sum;
     }
 
     public static convertDDMMYYToJulius(solarDay: number, solarMonth: number, solarYear: number) {

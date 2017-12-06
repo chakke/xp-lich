@@ -10,6 +10,11 @@ export class DepartureLoadData {
     constructor(private http: Http) {
 
     }
+
+    getDanhNgonDataFromJSON(){
+        return this.http.get("./assets/departure/danhngon.json")
+        .map((res: any) => res.json());
+    }
     getSelectDateFromJSON(){
         return this.http.get("./assets/departure/departure86VU.json")
         .map((res: any) => res.json());
