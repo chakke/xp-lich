@@ -54,7 +54,7 @@ export class DayDetail {
         this.sexagesimalCycleYear = DepartureUtils.getSexagesimalCycleByYear(this.dd, this.mm, this.yy);
     }
     loadLunarDate() {
-        let lunarday = DepartureUtils.convertSolar2Lunar(this.dd, this.mm, this.yy, 7);
+        let lunarday = DepartureUtils.convertSolarToLunar(this.dd, this.mm, this.yy);
         this.lunarDate = lunarday[0];
         this.lunarMonth = lunarday[1];
         this.lunarYear = lunarday[2];

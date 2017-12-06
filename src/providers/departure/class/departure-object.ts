@@ -32,7 +32,7 @@ export class DepartureObject {
         let params = [this.date.getDate(), this.date.getMonth() + 1, this.date.getFullYear()];
         this.dateString = Utils.getViewDate(this.date);
 
-        [this.lunarDate, this.lunarMonth, this.lunarYear] = DepartureUtils.convertSolar2Lunar(this.date.getDate(), this.date.getMonth() + 1, this.date.getFullYear(), 7);
+        [this.lunarDate, this.lunarMonth, this.lunarYear] = DepartureUtils.convertSolarToLunar(this.date.getDate(), this.date.getMonth() + 1, this.date.getFullYear());
 
         this.zodiacStatus = DepartureUtils.getZodiacDay(params[0], params[1], params[2]);
         this.canchiYear = DepartureUtils.getSexagesimalCycleByYear(params[0], params[1], params[2]);

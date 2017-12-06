@@ -4,7 +4,7 @@ import { HUONGXUATHANH } from './interface/huong_xuat_hanh';
 import { TNBINFO } from './interface/tnb_Info';
 
 export class DepartureUtils {
-
+    static GMT: number = 7;
     static JANUARY: number = 1;
     static FEBRUARY: number = 2;
     static MARCH: number = 3;
@@ -36,40 +36,64 @@ export class DepartureUtils {
         }
         return this.day_in_months[mm];
     }
-    public static jdFromDate(dd, mm, yy) {
-        let a, y, m, jd;
-        a = parseInt(((14 - mm) / 12).toString());
-        y = yy + 4800 - a;
-        m = mm + 12 * a - 3;
-        jd = dd + parseInt(((153 * m + 2) / 5).toString()) + 365 * y + parseInt((y / 4).toString()) - parseInt((y / 100).toString()) + parseInt((y / 400).toString()) - 32045;
-        if (jd < 2299161) {
-            jd = dd + parseInt(((153 * m + 2) / 5).toString()) + 365 * y + parseInt((y / 4).toString()) - 32083;
+
+    public static convertDDMMYYToJulius(solarDay: number, solarMonth: number, solarYear: number) {
+
+        // Tính số ngày Julius
+        var monthDistance, yearJulius, monthJulius;
+        var juliusDate = 0;
+
+        monthDistance = Math.floor((14 - solarMonth) / 12);
+
+        yearJulius = solarYear + 4800 - monthDistance;
+        monthJulius = solarMonth + 12 * monthDistance - 3;
+
+        let dayDistance = solarDay + Math.floor((153 * monthJulius + 2) / 5) + 365 * yearJulius + Math.floor(yearJulius / 4);
+
+        juliusDate = dayDistance - Math.floor(yearJulius / 100) + Math.floor(yearJulius / 400) - 32045;
+
+        if (juliusDate < 2299161) {
+            juliusDate = dayDistance - 32083;
         }
-        return jd;
+
+        return juliusDate;
     }
 
-    public static jdToDate(jd) {
-        let a, b, c, d, e, m, day, month, year;
-        if (jd > 2299160) { // After 5/10/1582, Gregorian calendar
-            a = jd + 32044;
-            b = parseInt(((4 * a + 3) / 146097).toString());
-            c = a - parseInt(((b * 146097) / 4).toString());
+    public static convertJuliusToDDMMYY(juliusDate: number){
+        var aNumber, bNumber, cNumber, dNumber, eNumber, mNumber;
+        var day, month, year;
+        if (juliusDate > 2299161) {
+            // Gregorian calendar
+            aNumber = juliusDate + 32044;
+            bNumber = Math.floor((4 * aNumber + 3) / 146097);
+            cNumber = aNumber - Math.floor((bNumber * 146097) / 4);
         } else {
-            b = 0;
-            c = jd + 32082;
+            // Julius calendar
+            bNumber = 0;
+            cNumber = juliusDate + 32082;
         }
-        d = parseInt(((4 * c + 3) / 1461).toString());
-        e = c - parseInt(((1461 * d) / 4).toString());
-        m = parseInt(((5 * e + 2) / 153).toString());
-        day = e - parseInt(((153 * m + 2) / 5).toString()) + 1;
-        month = m + 3 - 12 * parseInt((m / 10).toString());
-        year = b * 100 + d - 4800 + parseInt((m / 10).toString());
-        return new Array(day, month, year);
+
+        dNumber = Math.floor((4 * cNumber + 3) / 1461);
+        eNumber = cNumber - Math.floor((1461 * dNumber) / 4);
+        mNumber = Math.floor((5 * eNumber + 2) / 153);
+        day = eNumber - Math.floor((153 * mNumber + 2) / 5) + 1;
+        month = mNumber + 3 - 12 * Math.floor(mNumber / 10);
+        year = bNumber * 100 + dNumber - 4800 + Math.floor(mNumber / 10);
+        return new Array(day,month,year);
+
     }
 
-    public static getNewMoonDay(k, timeZone) {
+    public static getNewMoonDay(k: number, timeZone?: number): number {
+        // Tính ngày đầu tháng âm lịch chứa ngày N
 
         let T, T2, T3, dr, Jd1, M, Mpr, F, C1, deltat, JdNew;
+        var GMT: number;
+
+        GMT = this.GMT;
+        if (timeZone) {
+            GMT = timeZone;
+        }
+
         T = k / 1236.85; // Time in Julian centuries from 1900 January 0.5
         T2 = T * T;
         T3 = T2 * T;
@@ -92,13 +116,19 @@ export class DepartureUtils {
             deltat = -0.000278 + 0.000265 * T + 0.000262 * T2;
         };
         JdNew = Jd1 + C1 - deltat;
-        return parseInt((JdNew + 0.5 + timeZone / 24).toString())
+        return Math.floor((JdNew + 0.5 + GMT / 24));
     }
 
-    public static getSunLongitude(jdn, timeZone) {
+    public static getSunLongitude(jdn: number, timeZone?: number): number {
+        // Tính tọa độ mặt trời
+
+        var GMT: number = this.GMT;
+        if (timeZone) {
+            GMT = timeZone;
+        }
 
         let T, T2, dr, M, L0, DL, L;
-        T = (jdn - 2451545.5 - timeZone / 24) / 36525; // Time in Julian centuries from 2000-01-01 12:00:00 GMT
+        T = (jdn - 2451545.5 - GMT / 24) / 36525; // Time in Julian centuries from 2000-01-01 12:00:00 GMT
         T2 = T * T;
         dr = Math.PI / 180; // degree to radian
         M = 357.52910 + 35999.05030 * T - 0.0001559 * T2 - 0.00000048 * T * T2; // mean anomaly, degree
@@ -107,62 +137,83 @@ export class DepartureUtils {
         DL = DL + (0.019993 - 0.000101 * T) * Math.sin(dr * 2 * M) + 0.000290 * Math.sin(dr * 3 * M);
         L = L0 + DL; // true longitude, degree
         L = L * dr;
-        L = L - Math.PI * 2 * (parseInt((L / (Math.PI * 2)).toString())); // Normalize to (0, 2*PI)
-        return parseInt((L / Math.PI * 6).toString())
+        L = L - Math.PI * 2 * (Math.floor(L / (Math.PI * 2))); // Normalize to (0, 2*PI)
+        return Math.floor((L / Math.PI * 6));
     }
 
-    public static getLunarMonth11(yy, timeZone) {
+    public static getLunarMonth11(yy: number, timeZone?: number): number {
+        // Tính ngày bắt đầu tháng 11 âm lịch
 
-        var k, off, nm, sunLong;
-        off = this.jdFromDate(31, 12, yy) - 2415021;
-        k = parseInt((off / 29.530588853).toString());
-        nm = this.getNewMoonDay(k, timeZone);
-        sunLong = this.getSunLongitude(nm, timeZone); // sun longitude at local midnight
-        if (sunLong >= 9) {
-            nm = this.getNewMoonDay(k - 1, timeZone);
+        var GMT: number = this.GMT;
+        if (timeZone) {
+            GMT = timeZone;
         }
+
+        var k, off, sunLong;
+        var nm: number = 0;
+        off = this.convertDDMMYYToJulius(31, 12, yy) - 2415021;
+        k = Math.floor(off / 29.530588853);
+        nm = this.getNewMoonDay(k, GMT);
+        sunLong = this.getSunLongitude(nm, GMT); // sun longitude at local midnight
+        if (sunLong >= 9) {
+            nm = this.getNewMoonDay(k - 1, GMT);
+        }
+
         return nm;
     }
 
-    public static getLeapMonthOffset(a11, timeZone) {
+    public static getLeapMonthOffset(a11: number, timeZone?: number): number {
+        // Xác định tháng nhuận
+        var GMT: number = this.GMT;
+        if (timeZone) {
+            GMT = timeZone;
+        }
+
         var k, last, arc, i;
-        k = parseInt(((a11 - 2415021.076998695) / 29.530588853 + 0.5).toString());
+        k = Math.floor((a11 - 2415021.076998695) / 29.530588853 + 0.5);
         last = 0;
         i = 1; // We start with the month following lunar month 11
-        arc = this.getSunLongitude(this.getNewMoonDay(k + i, timeZone), timeZone);
+        arc = this.getSunLongitude(this.getNewMoonDay(k + i, GMT), GMT);
         do {
             last = arc;
             i++;
-            arc = this.getSunLongitude(this.getNewMoonDay(k + i, timeZone), timeZone);
+            arc = this.getSunLongitude(this.getNewMoonDay(k + i, GMT), GMT);
         } while (arc != last && i < 14);
+
         return i - 1;
     }
 
-    //Chuyển ngày dương sang ngày âm
-    public static convertSolar2Lunar(dd, mm, yy, timeZone) {
+
+    public static convertSolarToLunar(dd: number, mm: number, yy: number, timeZone?: number) {
+        // Chuyển ngày dương sang âm lịch
+
+        var GMT: number = this.GMT;
+        if (timeZone) {
+            GMT = timeZone;
+        }
 
         let k, dayNumber, monthStart, a11, b11, lunarDay, lunarMonth, lunarYear, lunarLeap;
-        dayNumber = this.jdFromDate(dd, mm, yy);
-        k = parseInt(((dayNumber - 2415021.076998695) / 29.530588853).toString());
-        monthStart = this.getNewMoonDay(k + 1, timeZone);
+        dayNumber = this.convertDDMMYYToJulius(dd, mm, yy);
+        k = Math.floor(((dayNumber - 2415021.076998695) / 29.530588853));
+        monthStart = this.getNewMoonDay(k + 1, GMT);
         if (monthStart > dayNumber) {
-            monthStart = this.getNewMoonDay(k, timeZone);
+            monthStart = this.getNewMoonDay(k, GMT);
         }
-        a11 = this.getLunarMonth11(yy, timeZone);
+        a11 = this.getLunarMonth11(yy, GMT);
         b11 = a11;
         if (a11 >= monthStart) {
             lunarYear = yy;
-            a11 = this.getLunarMonth11(yy - 1, timeZone);
+            a11 = this.getLunarMonth11(yy - 1, GMT);
         } else {
             lunarYear = yy + 1;
-            b11 = this.getLunarMonth11(yy + 1, timeZone);
+            b11 = this.getLunarMonth11(yy + 1, GMT);
         }
         lunarDay = dayNumber - monthStart + 1;
-        let diff = parseInt(((monthStart - a11) / 29).toString());
+        let diff = Math.floor(((monthStart - a11) / 29));
         lunarLeap = 0;
         lunarMonth = diff + 11;
         if (b11 - a11 > 365) {
-            let leapMonthDiff = this.getLeapMonthOffset(a11, timeZone);
+            let leapMonthDiff = this.getLeapMonthOffset(a11, GMT);
             if (diff >= leapMonthDiff) {
                 lunarMonth = diff + 10;
                 if (diff == leapMonthDiff) {
@@ -176,26 +227,31 @@ export class DepartureUtils {
         if (lunarMonth >= 11 && diff < 4) {
             lunarYear -= 1;
         }
-        return new Array(lunarDay, lunarMonth, lunarYear);
+      
+
+        return new Array(lunarDay,lunarMonth,lunarYear);
     }
 
-    //Chuyển ngày âm sang ngày dương
-    public static convertLunar2Solar(lunarDay, lunarMonth, lunarYear, timeZone) {
-
+    public static convertLunarToSolar(lunarDay: any, lunarMonth: any, lunarYear: any, timeZone?: number) {
+        // Chuyển ngày âm sang dương lịch
+        var GMT: number = this.GMT;
+        if (timeZone) {
+            GMT = timeZone;
+        }
         let k, a11, b11, off, leapOff, leapMonth, monthStart;
         if (lunarMonth < 11) {
-            a11 = this.getLunarMonth11(lunarYear - 1, timeZone);
-            b11 = this.getLunarMonth11(lunarYear, timeZone);
+            a11 = this.getLunarMonth11(lunarYear - 1, GMT);
+            b11 = this.getLunarMonth11(lunarYear, GMT);
         } else {
-            a11 = this.getLunarMonth11(lunarYear, timeZone);
-            b11 = this.getLunarMonth11(lunarYear + 1, timeZone);
+            a11 = this.getLunarMonth11(lunarYear, GMT);
+            b11 = this.getLunarMonth11(lunarYear + 1, GMT);
         }
         off = lunarMonth - 11;
         if (off < 0) {
             off += 12;
         }
         if (b11 - a11 > 365) {
-            leapOff = this.getLeapMonthOffset(a11, timeZone);
+            leapOff = this.getLeapMonthOffset(a11, GMT);
             leapMonth = leapOff - 2;
             if (leapMonth < 0) {
                 leapMonth += 12;
@@ -204,24 +260,24 @@ export class DepartureUtils {
                 off += 1;
             }
         }
-        k = parseInt((0.5 + (a11 - 2415021.076998695) / 29.530588853).toString());
-        monthStart = this.getNewMoonDay(k + off, timeZone);
-        return this.jdToDate(monthStart + lunarDay - 1);
+        k = Math.floor((0.5 + (a11 - 2415021.076998695) / 29.530588853));
+        monthStart = this.getNewMoonDay(k + off, GMT);
+        return this.convertJuliusToDDMMYY(monthStart + lunarDay - 1);
     }
 
     //Tính Can Chi Theo Năm (đầu vào theo dương lịch)
     public static getSexagesimalCycleByYear(date: number, month: number, year: number) {
-        let x: number[] = this.convertSolar2Lunar(date, month, year, 7);
+        let x: number[] = this.convertSolarToLunar(date, month, year);
         let canIndex: number = Math.floor(((x[2] + 6) % 10));
         let chiIndex: number = Math.floor(((x[2] + 8) % 12));
-        return this.CANS[canIndex] + " " + this.CHIS[chiIndex];
+        return this.CANS[canIndex] +" "+ this.CHIS[chiIndex];
     }
 
     //tính can chi theo tháng (đầu vào theo dương lịch)
-    public static getSexagesimalCycleByMonth(dd: any, mm: any, yy: any) {
+    public static getSexagesimalCycleByMonth(dd: any, mm: any, yy: any): string{
         let result: string;
         let chi: string;
-        let y: number[] = this.convertSolar2Lunar(dd, mm, yy, 7);
+        let y: number[] = this.convertSolarToLunar(dd, mm, yy);
         let month: number = y[1];
         if (month == 1) {
             chi = "Dần"
@@ -260,7 +316,7 @@ export class DepartureUtils {
             chi = "Sửu"
         }
 
-        let z: number[] = this.convertSolar2Lunar(dd, mm, yy, 7);
+        let z: number[] = this.convertSolarToLunar(dd, mm, yy);
         let x: number = (z[2] * 12 + z[1] + 3) % 10;
         let can: string;
         if (x == 0) {
@@ -293,97 +349,93 @@ export class DepartureUtils {
         if (x == 9) {
             can = "Quý"
         }
-
-        result = can + " " + chi;
+        result = can+" "+chi;
         return result;
     }
 
     //Tính Can Chi theo Ngày (đầu vào theo dương lịch)
-    public static getSexagesimalCycleByDay(date: any, month: any, year: any) {
+    public static getSexagesimalCycleByDay(date: number, month: number, year: number): string{
         let can: string;
         let chi: string;
         let result: string;
-        let N: number = parseInt(this.jdFromDate(date, month, year).toString());
+        let N: number = Math.floor(this.convertDDMMYYToJulius(date, month, year));
 
-        if (parseInt(((N + 9) % 10).toString()) == 0) {
+        if (Math.floor(((N + 9) % 10)) == 0) {
             can = "Giáp"
         }
-        if (parseInt(((N + 9) % 10).toString()) == 1) {
+        if (Math.floor(((N + 9) % 10)) == 1) {
             can = "Ất"
         }
-        if (parseInt(((N + 9) % 10).toString()) == 2) {
+        if (Math.floor(((N + 9) % 10)) == 2) {
             can = "Bính"
         }
-        if (parseInt(((N + 9) % 10).toString()) == 3) {
+        if (Math.floor(((N + 9) % 10)) == 3) {
             can = "Đinh"
         }
-        if (parseInt(((N + 9) % 10).toString()) == 4) {
+        if (Math.floor(((N + 9) % 10)) == 4) {
             can = "Mậu"
         }
-        if (parseInt(((N + 9) % 10).toString()) == 5) {
+        if (Math.floor(((N + 9) % 10)) == 5) {
             can = "Kỷ"
         }
-        if (parseInt(((N + 9) % 10).toString()) == 6) {
+        if (Math.floor(((N + 9) % 10)) == 6) {
             can = "Canh"
         }
-        if (parseInt(((N + 9) % 10).toString()) == 7) {
+        if (Math.floor(((N + 9) % 10)) == 7) {
             can = "Tân"
         }
-        if (parseInt(((N + 9) % 10).toString()) == 8) {
+        if (Math.floor(((N + 9) % 10)) == 8) {
             can = "Nhâm"
         }
-        if (parseInt(((N + 9) % 10).toString()) == 9) {
+        if (Math.floor(((N + 9) % 10)) == 9) {
             can = "Quý"
         }
-
-
-        if (parseInt(((N + 1) % 12).toString()) == 0) {
+        if (Math.floor(((N + 1) % 12)) == 0) {
             chi = "Tý"
         }
-        if (parseInt(((N + 1) % 12).toString()) == 1) {
+        if (Math.floor(((N + 1) % 12)) == 1) {
             chi = "Sửu"
         }
-        if (parseInt(((N + 1) % 12).toString()) == 2) {
+        if (Math.floor(((N + 1) % 12)) == 2) {
             chi = "Dần"
         }
-        if (parseInt(((N + 1) % 12).toString()) == 3) {
+        if (Math.floor(((N + 1) % 12)) == 3) {
             chi = "Mão"
         }
-        if (parseInt(((N + 1) % 12).toString()) == 4) {
+        if (Math.floor(((N + 1) % 12)) == 4) {
             chi = "Thìn"
         }
-        if (parseInt(((N + 1) % 12).toString()) == 5) {
+        if (Math.floor(((N + 1) % 12)) == 5) {
             chi = "Tỵ"
         }
-        if (parseInt(((N + 1) % 12).toString()) == 6) {
+        if (Math.floor(((N + 1) % 12)) == 6) {
             chi = "Ngọ"
         }
-        if (parseInt(((N + 1) % 12).toString()) == 7) {
+        if (Math.floor(((N + 1) % 12)) == 7) {
             chi = "Mùi"
         }
-        if (parseInt(((N + 1) % 12).toString()) == 8) {
+        if (Math.floor(((N + 1) % 12)) == 8) {
             chi = "Thân"
         }
-        if (parseInt(((N + 1) % 12).toString()) == 9) {
+        if (Math.floor(((N + 1) % 12)) == 9) {
             chi = "Dậu"
         }
-        if (parseInt(((N + 1) % 12).toString()) == 10) {
+        if (Math.floor(((N + 1) % 12)) == 10) {
             chi = "Tuất"
         }
-        if (parseInt(((N + 1) % 12).toString()) == 11) {
+        if (Math.floor(((N + 1) % 12)) == 11) {
             chi = "Hợi"
         }
-
-        result = can + " " + chi;
+        result = can+" "+ chi;
         return result;
     }
 
     //Tính ngày hoàng đạo, hắc đạo
-    public static getZodiacDay(date: any, month: any, year: any) {
-        let lunarmonth = this.convertSolar2Lunar(date, month, year, 7)[1];
-        let temp = this.getSexagesimalCycleByDay(date, month, year).split(" ");
-        let can = temp[0];
-        let chi = temp[1];
+    public static getZodiacDay(date: number, month: number, year: number): number {
+        let lunarmonth: number = this.convertSolarToLunar(date, month, year)[1];
+        let temp: string= this.getSexagesimalCycleByDay(date, month, year);
+        let can = temp.split(" ")[0];
+        let chi = temp.split(" ")[1];
         if (lunarmonth == 1 || lunarmonth == 7) {
             if (chi == "Tý" || chi == "Sửu" || chi == "Tỵ" || chi == "Mùi") {
                 return 1;
@@ -445,10 +497,10 @@ export class DepartureUtils {
         }
     }
     //tính can của ngày
-    public static getCanDay(date: any, month: any, year: any) {
+    public static getCanDay(date: number, month: number, year: number): string {
         let result: string;
-        let N: number = parseInt(this.jdFromDate(date, month, year).toString());
-        let tempCalculation: number = parseInt(((N + 9) % 10).toString());
+        let N: number = Math.floor(this.convertDDMMYYToJulius(date, month, year));
+        let tempCalculation: number = Math.floor(((N + 9) % 10));
         switch (tempCalculation) {
             case 0:
                 result = "Giáp";
@@ -487,40 +539,40 @@ export class DepartureUtils {
     }
 
     //quy đổi giờ sang 12 canh
-    public static exchangetoZodiacTime(hour: number) {
+    public static exchangetoZodiacTime(hour: number): string {
         let result: string;
         if (hour >= 1 && hour < 3) {
-            result = "Sửu";
+            result = "Sửu"
         } else if (hour >= 3 && hour < 5) {
-            result = "Dần";
+            result = "Dần"
         } else if (hour >= 5 && hour < 7) {
-            result = "Mão";
+            result = "Mão"
         } else if (hour >= 7 && hour < 9) {
-            result = "Thìn";
+            result = "Thìn"
         } else if (hour >= 9 && hour < 11) {
-            result = "Tỵ";
+            result = "Tỵ"
         } else if (hour >= 11 && hour < 13) {
-            result = "Ngọ";
+            result = "Ngọ"
         } else if (hour >= 13 && hour < 15) {
-            result = "Mùi";
+            result = "Mùi"
         } else if (hour >= 15 && hour < 17) {
-            result = "Thân";
+            result = "Thân"
         } else if (hour >= 17 && hour < 19) {
-            result = "Dậu";
+            result = "Dậu"
         } else if (hour >= 19 && hour < 21) {
-            result = "Tuất";
+            result = "Tuất"
         } else if (hour >= 21 && hour < 23) {
-            result = "Hợi";
+            result = "Hợi"
         } else if (hour >= 23 && hour <= 24) {
-            result = "Tý";
+            result = "Tý"
         } else if (hour >= 0 && hour < 1) {
-            result = "Tý";
+            result = "Tý"
         }
         return result;
     }
 
     //lấy dữ liệu từ bảng dữ liệu can của giờ
-    public static getDataFromZodiacTime(can: String, canh: String) {
+    public static getDataFromZodiacTime(can: String, canh: String): string {
         let result: string;
         for (let x of ZODIACTIME) {
             for (let y of x.can) {
@@ -557,7 +609,7 @@ export class DepartureUtils {
     }
 
     //tính can chi cho giờ 
-    public static getSexagesimalCycleByTime(dd: any, mm: any, yy: any, hour: number) {
+   public static getSexagesimalCycleByTime(dd: any, mm: any, yy: any, hour: number): string {
         let result: string;
         let can: string = this.getCanDay(dd, mm, yy);
         let canh: string = this.exchangetoZodiacTime(hour);
@@ -566,7 +618,7 @@ export class DepartureUtils {
     }
 
     //Tính năm nhuận. Trả về số ngày nhuận
-    public static isLeap(year) {
+   public static isLeap(year) {
         if ((year % 4) || ((year % 100 === 0) && (year % 400))) return 0;
         else return 1;
     }

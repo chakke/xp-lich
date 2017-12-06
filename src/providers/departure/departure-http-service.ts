@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ParamBuilder, HttpService } from "../http-service";
-import { DepartureCmd } from "./departure-cmd";
-import { DepartureParamsKey } from "./departure-paramskey";
 import { Headers } from '@angular/http';
 
 @Injectable()

@@ -26,7 +26,15 @@ export class XemNdPage {
 
   ionViewDidEnter(){
     if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#274c7c");
-    this.data = this.mAppModule.getXEMND();
+    this.mAppModule.loadConfig().then(
+      () => {
+        let xemNDPageData = this.mAppModule.getAppConfig().get("XenNDPage");
+        
+        if (xemNDPageData) {
+         this.data = xemNDPageData;
+        }
+      }
+    );
     this.isLoading = false;
   }
   closeView(){
@@ -35,7 +43,7 @@ export class XemNdPage {
 
   selectedItem(i : number){
     this.navCtrl.push("XemNdDetailPage",{
-      data: this.data[i]
+      data: this.data.items[i]
     })
   }
 

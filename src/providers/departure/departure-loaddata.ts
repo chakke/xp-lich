@@ -31,7 +31,7 @@ export class DepartureLoadData {
         .map((res: any) => res.json());
     }
     getTrucDataFromJSON(){
-        return this.http.get("./assets/departure/tbl_truc_ngay_thang.json")
+        return this.http.get("./assets/departure/truc.json")
         .map((res: any) => res.json());
     }
     getDataFromJSON() {
@@ -39,11 +39,11 @@ export class DepartureLoadData {
             .map((res: any) => res.json());
     }
     getDayDetailFromJSON(){
-        return this.http.get("./assets/departure/tbl_nhithapbat_tu.json")
+        return this.http.get("./assets/departure/12star.json")
         .map((res: any) => res.json());
     }
     getTaiThanHyThanFromJSON(){
-        return this.http.get("./assets/departure/tbl_huong_taithan_hythan.json")
+        return this.http.get("./assets/departure/taithan_hythan.json")
         .map((res: any) => res.json());
     } 
     getSaoTotSaoXauDataFromJSON(){
@@ -51,15 +51,15 @@ export class DepartureLoadData {
         .map((res: any) => res.json());
     } 
     getSpecialDataFromJSON(){
-        return this.http.get("./assets/departure/tbl_special_date.json")
+        return this.http.get("./assets/departure/special-date.json")
         .map((res: any) => res.json());
     }
     getLeVietNamAmLichDataFromJSON(){
-        return this.http.get("./assets/departure/LeVietNamAmLich.json")
+        return this.http.get("./assets/departure/LeVNAmLich.json")
         .map((res: any) => res.json());
     }
     getLeVietNamDuongLichDataFromJSON(){
-        return this.http.get("./assets/departure/LeVietNamDuongLich.json")
+        return this.http.get("./assets/departure/LeVNDuongLich.json")
         .map((res: any) => res.json());
     }
     getVanKhanDataFromJSON(){
@@ -67,7 +67,7 @@ export class DepartureLoadData {
         .map((res: any) => res.json());
     }
     getGiaiMongDataFromJSON(){
-        return this.http.get("./assets/departure/tbl_giaimong.json")
+        return this.http.get("./assets/departure/giaimong.json")
         .map((res: any) => res.json());
     }
     getTypeOfDay(lunarMonth: any, data: any) {

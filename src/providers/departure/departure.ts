@@ -2,15 +2,12 @@
 import { Injectable } from '@angular/core';
 import { DepartureHttpService } from "./departure-http-service";
 import { HttpService } from "../http-service";
-import { ResponseCode, RequestState, LoginStatus } from '../app-constant';
 import { DepartureLoadData } from './departure-loaddata';
 import { DepartureObject } from './class/departure-object';
 import { AppConfig } from '../app-config';
 import { Http, HttpModule } from '@angular/http';
 import { AdsManager } from "../common/ads-manager";
 import { AnalyticsManager } from "../common/analytics-manager";
-import { ZODIAC } from './zodiac-image';
-import { XEMND } from './departure-XEMND';
 import { DepartureUtils } from "./departure-utils";
 import { Utils } from "../app-utils";
 import { BackgroundController } from "./controller/background-controller";
@@ -91,12 +88,12 @@ export class DepartureModule {
   }
 
   //đổi ngày dương về ngày âm
-  public convertSolarToLunar(dd: any, mm: any, yy: any) {
-    return DepartureUtils.convertSolar2Lunar(dd, mm, yy, 7);
+  public convertSolarToLunar(dd: number, mm: number, yy: number) {
+    return DepartureUtils.convertSolarToLunar(dd, mm, yy);
   }
   //doi ngay am ve ngay duong
-  public convertLunarToSolar(dd: any, mm: any, yy: any) {
-    return DepartureUtils.convertLunar2Solar(dd, mm, yy, 7);
+  public convertLunarToSolar(dd: number, mm: number, yy: number) {
+    return DepartureUtils.convertLunarToSolar(dd, mm, yy);
   }
 
   public update() {
@@ -367,13 +364,9 @@ export class DepartureModule {
     return "background_" + month + ".png";
   }
 
-  public getZodiacImage(index: number): string {
-    return ZODIAC[index - 1];
-  }
-
 
   public getXEMND() {
-    return XEMND;
+    return this.getAppConfig().get("XemNDPage");
   }
 
   public getHourBetterAndBad(chi: string) {
@@ -437,25 +430,6 @@ export class DepartureModule {
       this._count = 0;
     }
   }
-
-  // To track a Screen 
-  trackView() {
-    this.mAnalyticsManager.trackScreen('Page view');
-  }
-  // To track an event
-  tracEvent() {
-    this.mAnalyticsManager.trackEvent('Category', 'Action', 'Label', 1);
-  }
-  // To track timing
-  trackTiming(IntervalInMilliseconds) {
-    this.mAnalyticsManager.trackTiming('Category', IntervalInMilliseconds, 'Variable', 'Label') // where IntervalInMilliseconds is numeric
-  }
-  //to enabling Advertising Features in Google Analytics allows you to take advantage of Remarketing
-  setAllowIDFACollection(value: boolean) {
-    this.mAnalyticsManager.setAllowIDFACollection(value);
-  }
-
-
 }
 
 

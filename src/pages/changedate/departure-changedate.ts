@@ -166,7 +166,7 @@ export class DepartureChangeDatePage {
 
     this.mMaxSolarDay = DepartureUtils.getDaysInMonth(this.mToday.getMonth(), this.mToday.getFullYear());
 
-    let lunar = DepartureUtils.convertSolar2Lunar(this.mToday.getDate(), this.mToday.getMonth() + 1, this.mToday.getFullYear(), 7);
+    let lunar = DepartureUtils.convertSolarToLunar(this.mToday.getDate(), this.mToday.getMonth() + 1, this.mToday.getFullYear());
 
 
 
@@ -205,7 +205,7 @@ export class DepartureChangeDatePage {
     this.mMaxSolarDay = DepartureUtils.getDaysInMonth(mm - 1, yy);
 
     if (dd > this.mMaxSolarDay) dd = this.mMaxSolarDay;
-    let lunar = DepartureUtils.convertSolar2Lunar(dd, mm, yy, 7);
+    let lunar = DepartureUtils.convertSolarToLunar(dd, mm, yy);
 
     let scrollOptions: ScrollOption = {
       alpha: 0.2,
@@ -233,7 +233,7 @@ export class DepartureChangeDatePage {
   }
   setLunarDay(dd: number, mm: number, yy: number) {
     if (dd > this.mMaxLunarDay) dd = this.mMaxLunarDay;
-    let solar = DepartureUtils.convertLunar2Solar(dd, mm, yy, 0);
+    let solar = DepartureUtils.convertLunarToSolar(dd, mm, yy);
 
     let scrollOptions: ScrollOption = {
       alpha: 0.2,

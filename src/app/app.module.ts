@@ -23,7 +23,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     MyApp,
     DepartureTabsPage,
     SpecicalDatePopover,
-    XEMNDPopover
+    XEMNDPopover,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +31,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true,
       pageTransition: "ios-transition"
-    })
+    }),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
