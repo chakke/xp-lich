@@ -88,6 +88,11 @@ $font-button: 4vw;
     }
 }
 
+$background: linear-gradient(to right, #007991, #78ffd6);
+.background-more {
+    background: $background;
+}
+
 // ===========================end===================
 // ===============================Start Pure Layout CSS=======================================
 .a1-container {

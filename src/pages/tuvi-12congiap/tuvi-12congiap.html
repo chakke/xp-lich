@@ -1,0 +1,35 @@
+<ion-header>
+    <div class="padding-statusbar"></div>
+
+    <div class="a3-container a3-items-center a1-relative">
+        <div class="header-button" tappable (click)="closeView()">
+            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+        </div>
+
+        <div class="header-title a3-flex-1" *ngIf="!isLoading">
+            {{page_title}}
+        </div>
+        <div class="header-button">
+
+        </div>
+    </div>
+
+</ion-header>
+
+
+<ion-content class="background-more">
+    <ion-grid *ngIf="!isLoading">
+        <ion-row align-items-center>
+            <ion-col col-4 col-sm-3 *ngFor="let item of mIcons;let i = index" text-center (click)="viewDetail(i)" tappable>
+                <div class="background-item">
+                    <div class="img-top">
+                        <img [src]="item" alt="icon">
+                    </div>
+                    <div class="img-description">
+                        <span>{{data[i].nameTC12CG}}</span>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

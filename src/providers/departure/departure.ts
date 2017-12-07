@@ -107,6 +107,69 @@ export class DepartureModule {
   public update() {
     this.getData();
   }
+
+  tuviTronDoiData: any;
+  loadTuViTronDoiDataJSON(){
+    return new Promise((resolve, reject) => {
+      if (this.tuviTronDoiData) resolve(this.tuviTronDoiData);
+      else {
+        this.mDepartureLoadData.getDataTuViTrongDoiFromJSON().subscribe((data) => {
+          this.tuviTronDoiData = data;
+          resolve(this.tuviTronDoiData);
+        });
+      }
+    });
+  }
+  // gioitinh = 0 nam; gioitinh = 1; nu
+  getDeitailTuViTronDoi(key: string,gioitinh: number){
+    return new Promise((resolve,reject)=>{
+      if(this.tuviTronDoiData){
+        for(let i = 0; i< this.tuviTronDoiData.length; i+=2){
+          if(key==this.tuviTronDoiData[i].Tuoi){
+            resolve(this.tuviTronDoiData[i + gioitinh]);
+          }
+        }
+      }else{
+        this.loadTuViTronDoiDataJSON().then((data: any)=>{
+          for(let i = 0; i< data.length; i+=2){
+            if(key==data.Tuoi){
+              resolve(data[i + gioitinh]);
+            }
+          }
+        }).catch((err)=>{})
+      }
+    })
+  }
+
+  tuvi12ConGiapData: any;
+  loadTuVi12ConGiapDataJSON(){
+    return new Promise((resolve, reject) => {
+      if (this.tuvi12ConGiapData) resolve(this.tuvi12ConGiapData);
+      else {
+        this.mDepartureLoadData.getDataTuVi12ConGiapFromJSON().subscribe((data) => {
+          this.tuvi12ConGiapData = data;
+          resolve(this.tuvi12ConGiapData);
+        });
+      }
+    });
+  }
+
+  getTuViByID(id: number){
+    return new Promise((resolve,reject)=>{
+      if(this.tuvi12ConGiapData){
+        resolve(this.tuvi12ConGiapData[id]);
+      }else{
+        this.loadTuVi12ConGiapDataJSON().then(
+          data=>{
+            resolve(data[id]);
+          }
+        ).catch((error)=>{
+
+        })
+      }
+    })
+  }
+
   danhNgonData: any;
   getDanhNgonDataJSON() {
     return new Promise((resolve, reject) => {

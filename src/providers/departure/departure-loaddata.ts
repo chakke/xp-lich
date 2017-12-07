@@ -11,12 +11,22 @@ export class DepartureLoadData {
 
     }
 
+    getDataTuVi12ConGiapFromJSON(){
+        return this.http.get("./assets/departure/data/TuVi12ConGiap.json")
+        .map((res: any) => res.json());
+    }
+
+    getDataTuViTrongDoiFromJSON(){
+        return this.http.get("./assets/departure/data/TuViTronDoi.json")
+        .map((res: any) => res.json());
+    }
+
     getDanhNgonDataFromJSON(){
-        return this.http.get("./assets/departure/danhngon.json")
+        return this.http.get("./assets/departure/data/danhngon.json")
         .map((res: any) => res.json());
     }
     getSelectDateFromJSON(){
-        return this.http.get("./assets/departure/departure86VU.json")
+        return this.http.get("./assets/departure/data/departure86VU.json")
         .map((res: any) => res.json());
     }
     getXEMNDFromJSON(link : string){
@@ -24,55 +34,55 @@ export class DepartureLoadData {
         .map((res: any) => res.json());
     }
     getNumberRichFromJSON(){
-        return this.http.get("./assets/departure/CSLamGiau.json")
+        return this.http.get("./assets/departure/data/CSLamGiau.json")
         .map((res: any) => res.json());
     }
     getZodiacFromJSON(){
-        return this.http.get("./assets/departure/TC12CungHD.json")
+        return this.http.get("./assets/departure/data/TC12CungHD.json")
         .map((res: any) => res.json());
     }
     getTietDataFromJSON(){
-        return this.http.get("./assets/departure/tiet.json")
+        return this.http.get("./assets/departure/data/tiet.json")
         .map((res: any) => res.json());
     }
     getTrucDataFromJSON(){
-        return this.http.get("./assets/departure/truc.json")
+        return this.http.get("./assets/departure/data/truc.json")
         .map((res: any) => res.json());
     }
     getDataFromJSON() {
-        return this.http.get("./assets/departure/departure.json")
+        return this.http.get("./assets/departure/data/departure.json")
             .map((res: any) => res.json());
     }
     getDayDetailFromJSON(){
-        return this.http.get("./assets/departure/12star.json")
+        return this.http.get("./assets/departure/data/12star.json")
         .map((res: any) => res.json());
     }
     getTaiThanHyThanFromJSON(){
-        return this.http.get("./assets/departure/taithan_hythan.json")
+        return this.http.get("./assets/departure/data/taithan_hythan.json")
         .map((res: any) => res.json());
     } 
     getSaoTotSaoXauDataFromJSON(){
-        return this.http.get("./assets/departure/sao_tot.json")
+        return this.http.get("./assets/departure/data/sao_tot.json")
         .map((res: any) => res.json());
     } 
     getSpecialDataFromJSON(){
-        return this.http.get("./assets/departure/special-date.json")
+        return this.http.get("./assets/departure/data/special-date.json")
         .map((res: any) => res.json());
     }
     getLeVietNamAmLichDataFromJSON(){
-        return this.http.get("./assets/departure/LeVNAmLich.json")
+        return this.http.get("./assets/departure/data/LeVNAmLich.json")
         .map((res: any) => res.json());
     }
     getLeVietNamDuongLichDataFromJSON(){
-        return this.http.get("./assets/departure/LeVNDuongLich.json")
+        return this.http.get("./assets/departure/data/LeVNDuongLich.json")
         .map((res: any) => res.json());
     }
     getVanKhanDataFromJSON(){
-        return this.http.get("./assets/departure/VanKhan.json")
+        return this.http.get("./assets/departure/data/VanKhan.json")
         .map((res: any) => res.json());
     }
     getGiaiMongDataFromJSON(){
-        return this.http.get("./assets/departure/giaimong.json")
+        return this.http.get("./assets/departure/data/giaimong.json")
         .map((res: any) => res.json());
     }
     getTypeOfDay(lunarMonth: any, data: any) {

@@ -1,0 +1,31 @@
+page-tuvi-12congiap-detail {
+    @media (min-width: 768px) {
+        .container {
+            padding: 40px !important;
+        }
+        .description {
+            padding: 20px !important;
+        }
+        .title {
+            margin: 32px 0px !important;
+        }
+    }
+    .container {
+        padding: 10px;
+        color: whitesmoke;
+    }
+    .title {
+        font-size: $font-titleContent;
+        margin: 16px 0px;
+        color: #eeee80 !important;
+        font-weight: bold;
+    }
+    .description {
+        font-size: $font-content;
+        margin-top: 2vh;
+        text-align: justify;
+        background: rgba($color: black, $alpha: .4);
+        border-radius: 10px;
+        padding: 10px;
+    }
+}
