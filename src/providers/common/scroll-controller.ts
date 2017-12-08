@@ -17,6 +17,7 @@ export class ScrollItems {
     mNumberItems: number = 0;
     constructor(id: string) {
         this.mElement = document.getElementById(id);
+        
         if (this.mElement && this.mElement.childElementCount > 0) {
             let node = this.mElement.children.item(0);
             if (node) {

@@ -4,10 +4,10 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header class="background-header">
     <div class="padding-statusbar"></div>
 
-    <div class="a3-container a3-items-center a1-relative">
+    <div class="a3-container a3-items-center a1-relative ">
         <div class="header-button" tappable (click)="closeView()">
             <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
         </div>
@@ -23,6 +23,49 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="a1-relative">
+    <div class="background-content">
+        <div class="bg"></div>
+        <div class="header-scroll a3-container a3-justify-center background-header">
+            <div class="title-gioitinh" text-center><span>Giới tính</span></div>
+            <div class="title-date" text-center><span>Ngày tháng năm sinh</span></div>
+        </div>
+        <div class="container a3-container a3-justify-center">
+            <div class="col-gioitinh">
+                <div class="scroll-container" id="scroll-gioitinh">
+                    <div class="item"></div>
+                    <div class="item"><span>Nam</span></div>
+                    <div class="item"><span>Nữ</span></div>
+                    <div class="item"></div>
+                </div>
+            </div>
+            <div class="col-date ">
+                <div class="scroll-container" id="scroll-date">
+                    <div class="item"></div>
+                    <div class="item" *ngFor="let number of mDayDatas">
+                        <span>{{number}}</span>
+                    </div>
+                    <div class="item"></div>
+                </div>
+                <div class="scroll-container" id="scroll-month">
+                    <div class="item"></div>
+                    <div class="item" *ngFor="let number of mMonthDatas">
+                        <span>{{number}}</span>
+                    </div>
+                    <div class="item"></div>
+                </div>
+                <div class="scroll-container" id="scroll-year">
+                    <div class="item"></div>
+                    <div class="item" *ngFor="let number of mYearDatas">
+                        <span>{{number}}</span>
+                    </div>
+                    <div class="item"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="btn background-header" (click)="viewDetail()" tappable>
+        <span>Xem tử vi</span>
+    </div>
 </ion-content>

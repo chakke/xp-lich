@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DepartureModule } from '../../providers/departure/departure';
 import { AppModule } from '../../providers/app-module';
 import { StatusBar } from '@ionic-native/status-bar';
+import { ScrollOption, ScrollItems } from '../../providers/common/scroll-controller';
+import { Utils } from '../../providers/app-utils';
 
 export interface Letter {
   letter: string;
@@ -19,7 +21,7 @@ export class GiaiMongPage {
   @ViewChild('mongName') mongName: ElementRef;
   @ViewChild('mongContent') mongContent: ElementRef;
   row_height = 40;
-  data: any;
+  data:any;
   selectedIndex = 0;
   letters = new Array<Letter>();
   divID = ['scroll1', 'scroll2'];
@@ -33,6 +35,7 @@ export class GiaiMongPage {
     private mAppModule: DepartureModule,
     public navCtrl: NavController, public navParams: NavParams) {
     this.loadData();
+    
   }
   closeView() {
     this.navCtrl.pop();
@@ -55,121 +58,86 @@ export class GiaiMongPage {
     }
   }
   ionViewDidEnter() {
-    this.loadData();
     if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#274c7c");
-
-    this.addEventListener();
-
+    this.createEventListeners();
   }
 
-  mTimeEnter: number = 0;
-  addEventListener() {
+  mEventsCreated: boolean = false;
+  mScrollItems: Array<ScrollItems> = [];
+  mCenterIndexs: Array<number> = [0, 0];
 
-    if (this.mTimeEnter != 0) return;
 
-    this.mTimeEnter++;
+  getNumberOfScrollingByTouch() {
+    let numberScroll = 0;
+    for (let scroll of this.mScrollItems) {
+      if (scroll.isScrollingByTouch()) numberScroll++;
+    }
+    return numberScroll;
+  }
 
+  createEventListeners() {
+    if (this.mEventsCreated) return;
+    this.mEventsCreated = true;
     for (let i = 0; i < this.divID.length; i++) {
-
-      let scrollElem = document.getElementById(this.divID[i]);
-
-      scrollElem.addEventListener("scroll", (event) => {
-        if (i == 0) this.isScroll1Scrolling = true;
-        if (i == 1) this.isScroll2Scrolling = true;
-        if (!this.touchID[i]) {
-          this.scrollEnd(this.divID[i], scrollElem, i);
-        }
-      });
-
-      scrollElem.addEventListener("touchstart", () => {
-        this.touchID[i] = true;
-        this.currentID = i;
-      });
-
-      scrollElem.addEventListener("touchend", () => {
-        this.touchID[i] = false;
-        this.scrollEnd(this.divID[i], scrollElem, i);
-      });
-    }
-  }
-
-
-  isScroll1Scrolling: boolean = false;
-  isScroll2Scrolling: boolean = false;
-  onUpdate() {
-
-
-
-  }
-
-
-
-
-  scrollEnd(divID: string, scrollElm: HTMLElement, i: number) {
-
-    clearTimeout(this.timeoutID[i]);
-
-    if (i == this.currentID) {
-      let topNumber = Math.round(scrollElm.scrollTop / this.row_height) * this.row_height;
-
-      this.timeoutID[i] = setTimeout(() => {
-        this.scrollTop(divID, topNumber, i);
-
-      }, 100);
-    }
-  }
-  scrollTop(divID: string, top: number, i: number) {
-    let nowScrollTop = document.getElementById(divID).scrollTop;
-    AppModule.getInstance().getScrollController().doScroll(divID, top, {
-      alpha: 0.1,
-      epsilon:1,
-      callback: () => {
-        if (nowScrollTop % 40 == 0 && this.currentID == i) {
-          this.getElement(i);
-        }
-      }
-    });
-  }
-  getElement(i: number) {
-    let scrollElm = document.getElementById(this.divID[i]);
-    let childIndex = Math.round(scrollElm.scrollTop / this.row_height); 
-    
-    if (i == 0) {
-      let letter = this.letters[childIndex].letter;
-      
-      let element = document.getElementById("scroll2");
-      if (element) {
-        let elementIndex = Math.round(element.scrollTop / this.row_height);
-        if (letter == this.bodauTiengViet(this.data[elementIndex].mong_name.charAt(0)).toUpperCase()) {
+      let scrollItems = new ScrollItems(this.divID[i]);
+      scrollItems.createListener();
+      this.mScrollItems.push(scrollItems);
+      scrollItems.setScrollEndListener((scrollTop) => {
+        if (this.getNumberOfScrollingByTouch() != 1) {
+          this.mCenterIndexs[i] = scrollItems.getCurrentFocusElement(true);
           return;
+        }
+        if (i == 0) {
+          this.scrollLetter();
         } else {
-          element.scrollTop = this.findTopNumber(letter, i) * this.row_height;
+          this.scrollData();
         }
-      }
-
-    } else {
-      let letter = this.bodauTiengViet(this.data[childIndex].mong_name.charAt(0)).toUpperCase();
-      let element = document.getElementById("scroll1");
-      element.scrollTop = this.findTopNumber(letter, i) * this.row_height;
+      });
+      scrollItems.setCenterChangedListend((centerIndex) => {
+        this.mCenterIndexs[i] = centerIndex;
+      });
     }
   }
-  findTopNumber(letter: string, i: number): number {
-    if (i == 0) {
-      for (let i = 0; i < this.letters.length; i++) {
-        if (letter == this.letters[i].letter) {
-          return this.letters[i].index;
-        }
-      }
-    } else {
-      for (let i = 0; i < this.letters.length; i++) {
-        if (letter == this.letters[i].letter) {
-          return i;
-        }
+
+  scrollLetter() {
+    let scrollOptions: ScrollOption = {
+      alpha: 0.2,
+      epsilon: 1,
+      callback: () => { }
+    };
+    
+    let letter = this.letters[this.mCenterIndexs[0]];
+    this.mCenterIndexs[1] = letter.index;
+
+    AppModule.getInstance().getScrollController().doScroll(this.divID[0],this.mScrollItems[0].getScrollOfItemIndex(this.mCenterIndexs[0]),scrollOptions);
+    AppModule.getInstance().getScrollController().doScroll(this.divID[1],this.mScrollItems[1].getScrollOfItemIndex(this.mCenterIndexs[1]),scrollOptions);
+  }
+  // */Tra ve vi tri cua ky tu trong mang letters 
+  getLetterIndex(data: string) : number{
+    var letter = Utils.bodauTiengViet(data.charAt(0)).toUpperCase();
+    for(let i = 0; i< this.letters.length; i++){
+      
+      if(letter == this.letters[i].letter){
+        return i;
       }
     }
-
-    return null;
+    return 0;
   }
+
+  scrollData() {
+    let scrollOptions: ScrollOption = {
+      alpha: 0.2,
+      epsilon: 1,
+      callback: () => { }
+    };
+
+    let data = this.data[this.mCenterIndexs[1]].mong_name;
+    this.mCenterIndexs[0] = this.getLetterIndex(data);
+
+    AppModule.getInstance().getScrollController().doScroll(this.divID[1],this.mScrollItems[1].getScrollOfItemIndex(this.mCenterIndexs[1]),scrollOptions);
+    AppModule.getInstance().getScrollController().doScroll(this.divID[0],this.mScrollItems[0].getScrollOfItemIndex(this.mCenterIndexs[0]),scrollOptions);
+  }
+
   bodauTiengViet(str: string): string {
     str = str.toLowerCase();
     str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
@@ -210,10 +178,7 @@ export class GiaiMongPage {
   }
   isClickView: boolean = false;
   viewDetail() {
-    let element = document.getElementById("scroll2");
-    let index = element.scrollTop / this.row_height;
-    this.selectedIndex = index;
-    this.navCtrl.push("GiaiMongDetailPage", { data: this.data[this.selectedIndex] });
+    this.navCtrl.push("GiaiMongDetailPage", { data: this.data[this.mCenterIndexs[1]] });
     // this.rd.addClass(this.mongContent.nativeElement,"fadeInUp");
   }
 }

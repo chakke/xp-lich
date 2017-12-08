@@ -93,6 +93,14 @@ $background: linear-gradient(to right, #007991, #78ffd6);
     background: $background;
 }
 
+.background-header {
+    background: linear-gradient(to right, #17cce9, #34a1ca);
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: none;
+    color: white;
+}
+
 // ===========================end===================
 // ===============================Start Pure Layout CSS=======================================
 .a1-container {

@@ -1,3 +1,132 @@
 page-tuvi-trondoi {
-
+    $rowheight: 50px;
+    $gioitinh: 40%;
+    $date: 60%;
+    $padding-title: 16px;
+    $font-title: 4.6vw;
+    $margin-top: 30px;
+    $ipad-height: 80px;
+    @media(min-width: 768px) {
+        .header-scroll {
+            margin-top: $ipad-height !important;
+        }
+        .scroll-container {
+            height: $ipad-height * 3 !important;
+            .item {
+                height: $ipad-height !important;
+                line-height: $ipad-height !important;
+                span {
+                    height: $ipad-height !important;
+                }
+            }
+        }
+        .col-gioitinh {
+            height: $ipad-height * 3 !important;
+        }
+        .container {
+            margin-top: 30px !important;
+        }
+        .background-content {
+            padding-bottom: 30px !important;
+        }
+        .bg {
+            height: $ipad-height !important;
+            bottom: $ipad-height + 30px !important;
+        }
+        .btn {
+            margin-top: $ipad-height !important;
+        }
+    }
+    .container {
+        margin-top: 10px;
+    }
+    .bg {
+        height: $rowheight;
+        background: #FFDAB9;
+        width: 96%;
+        position: absolute;
+        left: 2%;
+        bottom: $rowheight + 10px;
+    }
+    .header-scroll {
+        margin-top: $margin-top;
+        padding: $padding-title 0px;
+        color: white;
+        font-size: $font-title;
+        font-weight: bold;
+        position: relative;
+    }
+    .background-content {
+        background: #FFFFE0;
+        width: 90%;
+        margin: auto;
+        padding-bottom: 10px;
+        position: relative;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    .title-gioitinh {
+        width: $gioitinh;
+    }
+    .title-date {
+        width: $date;
+    }
+    .col-gioitinh {
+        height: $rowheight * 3;
+        width: $gioitinh;
+        position: relative;
+        overflow: auto;
+    }
+    .item-scroll {
+        height: $rowheight;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        line-height: $rowheight;
+        font-size: $font-content;
+        span {
+            height: $rowheight;
+            width: 100%;
+        }
+    }
+    .col-date {
+        width: $date;
+        position: relative;
+        display: flex;
+    }
+    .scroll-container {
+        height: $rowheight * 3;
+        overflow: auto;
+        width: 100%;
+        .item {
+            display: inline-block;
+            text-align: center;
+            height: $rowheight;
+            width: 100%;
+            font-size: $font-content;
+            line-height: $rowheight;
+            span {
+                height: $rowheight;
+            }
+        }
+    }
+    .btn {
+        padding: $padding-title;
+        color: white;
+        border-radius: 5px;
+        border: 1px solid white;
+        width: 40vw;
+        text-align: center;
+        margin: auto;
+        margin-top: $margin-top;
+        transform: scale(1);
+        transition: 200ms;
+        font-size: $font-button;
+        text-transform: uppercase;
+        filter: brightness(100%);
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    .btn:active {
+        filter: brightness(120%);
+        transform: scale(1.04);
+    }
 }

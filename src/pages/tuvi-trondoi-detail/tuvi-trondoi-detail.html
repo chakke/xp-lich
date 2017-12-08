@@ -4,13 +4,83 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header class="background-header">
+    <div class="padding-statusbar"></div>
 
+    <div class="a3-container a3-items-center a1-relative ">
+        <div class="header-button" tappable (click)="closeView()">
+            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+        </div>
 
+        <div class="header-title a3-flex-1" *ngIf="!isLoading">
+            {{page_title}}
+        </div>
+        <div class="header-button">
+
+        </div>
+    </div>
 
 </ion-header>
 
 
 <ion-content>
-
+    <div class="background-content">
+        <div class="item">
+            {{data.NamSinh}}
+        </div>
+        <div class="item">
+            {{data.TucNgu}}
+        </div>
+        <div class="item">
+            {{data.TongQuan}}
+        </div>
+        <div class="title">
+            <span>Cuộc sống</span>
+        </div>
+        <div class="item">
+            {{data.CuocSong}}
+        </div>
+        <div class="title">
+            <span>Gia Đạo, Công Danh</span>
+        </div>
+        <div class="item">
+            {{data.GiaDaoCongDanh}}
+        </div>
+        <div class="title">
+            <span>Những tuổi hợp làm ăn</span>
+        </div>
+        <div class="item">
+            {{data.TuoiHop}}
+        </div>
+        <div class="title">
+            <span>Lựa chọn vợ, chồng</span>
+        </div>
+        <div class="item">
+            {{data.VoChong}}
+        </div>
+        <div class="title">
+            <span>Những tuổi đại kỵ</span>
+        </div>
+        <div class="item">
+            {{data.TuoiKy}}
+        </div>
+        <div class="title">
+            <span>Những năm khó khăn nhất</span>
+        </div>
+        <div class="item">
+            {{data.NamKhoKhan}}
+        </div>
+        <div class="title">
+            <span>Ngày giờ xuất hành hợp nhất</span>
+        </div>
+        <div class="item">
+            {{data.GioXuatHanh}}
+        </div>
+        <div class="title">
+            <span>Những diễn biến từng năm</span>
+        </div>
+        <div class="item">
+            {{data.TungNam}}
+        </div>
+    </div>
 </ion-content>

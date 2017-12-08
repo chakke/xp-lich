@@ -1,3 +1,22 @@
 page-tuvi-trondoi-detail {
-
+    @media (min-width: 768px) {
+        .background-content {
+            padding: 32px !important;
+        }
+    }
+    .background-content {
+        padding: 10px;
+    }
+    .item {
+        white-space: pre-line;
+        text-align: left;
+        font-size: $font-content;
+        text-align: justify;
+        line-height: 1.8rem;
+    }
+    .title {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: $font-titleContent;
+    }
 }

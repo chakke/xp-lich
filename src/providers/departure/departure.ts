@@ -12,6 +12,7 @@ import { DepartureUtils } from "./departure-utils";
 import { Utils } from "../app-utils";
 import { BackgroundController } from "./controller/background-controller";
 import { DanhNgon } from './interface/danhngon';
+import { TuViTronDoi } from './interface/tuvi';
 
 @Injectable()
 export class DepartureModule {
@@ -84,7 +85,7 @@ export class DepartureModule {
     });
   }
 
-  public loadDanhNgon(){
+  public loadDanhNgon() {
     var mVersion = this.mConfig.getAppVersion();
     if (mVersion == "1.0") {
       this.maxData = 1000;
@@ -109,7 +110,7 @@ export class DepartureModule {
   }
 
   tuviTronDoiData: any;
-  loadTuViTronDoiDataJSON(){
+  loadTuViTronDoiDataJSON() {
     return new Promise((resolve, reject) => {
       if (this.tuviTronDoiData) resolve(this.tuviTronDoiData);
       else {
@@ -120,29 +121,64 @@ export class DepartureModule {
       }
     });
   }
+
+ 
   // gioitinh = 0 nam; gioitinh = 1; nu
-  getDeitailTuViTronDoi(key: string,gioitinh: number){
-    return new Promise((resolve,reject)=>{
-      if(this.tuviTronDoiData){
-        for(let i = 0; i< this.tuviTronDoiData.length; i+=2){
-          if(key==this.tuviTronDoiData[i].Tuoi){
-            resolve(this.tuviTronDoiData[i + gioitinh]);
-          }
-        }
-      }else{
-        this.loadTuViTronDoiDataJSON().then((data: any)=>{
-          for(let i = 0; i< data.length; i+=2){
-            if(key==data.Tuoi){
-              resolve(data[i + gioitinh]);
+  getDeitailTuViTronDoi(key: string, gioitinh: number) {
+    console.log(key);
+
+    return new Promise((resolve, reject) => {
+      if (this.tuviTronDoiData) {
+          this.tuviTronDoiData.forEach((element, index) => {
+            if (key == element.Tuoi) {
+              var data = this.tuviTronDoiData[index + gioitinh];
+              let result : TuViTronDoi= {
+                NamSinh: element.NamSinh,
+                CuocSong: data.CuocSong,
+                GiaDaoCongDanh: data.GiaDaoCongDanh,
+                GioXuatHanh: data.GioXuatHanh,
+                NamKhoKhan: data.NamKhoKhan,
+                TinhDuyen: data.TinhDuyen,
+                TongQuan: data.TongQuan,
+                TucNgu: data.TucNgu,
+                TungNam: data.TungNam,
+                TuoiHop: data.TuoiHop,
+                TuoiKy: data.TuoiKy,
+                VoChong: data.VoChong,
+              }
+              resolve(result);
             }
-          }
-        }).catch((err)=>{})
+          });
+      } else {
+        this.loadTuViTronDoiDataJSON().then((data: any) => {
+
+          data.forEach((element, index) => {
+            if (key == element.Tuoi) {
+              var data = this.tuviTronDoiData[index + gioitinh];
+              let result : TuViTronDoi= {
+                NamSinh: element.NamSinh,
+                CuocSong: data.CuocSong,
+                GiaDaoCongDanh: data.GiaDaoCongDanh,
+                GioXuatHanh: data.GioXuatHanh,
+                NamKhoKhan: data.NamKhoKhan,
+                TinhDuyen: data.TinhDuyen,
+                TongQuan: data.TongQuan,
+                TucNgu: data.TucNgu,
+                TungNam: data.TungNam,
+                TuoiHop: data.TuoiHop,
+                TuoiKy: data.TuoiKy,
+                VoChong: data.VoChong,
+              }
+              resolve(result);
+            }
+          });
+        }).catch((err) => { })
       }
     })
   }
 
   tuvi12ConGiapData: any;
-  loadTuVi12ConGiapDataJSON(){
+  loadTuVi12ConGiapDataJSON() {
     return new Promise((resolve, reject) => {
       if (this.tuvi12ConGiapData) resolve(this.tuvi12ConGiapData);
       else {
@@ -154,16 +190,16 @@ export class DepartureModule {
     });
   }
 
-  getTuViByID(id: number){
-    return new Promise((resolve,reject)=>{
-      if(this.tuvi12ConGiapData){
+  getTuViByID(id: number) {
+    return new Promise((resolve, reject) => {
+      if (this.tuvi12ConGiapData) {
         resolve(this.tuvi12ConGiapData[id]);
-      }else{
+      } else {
         this.loadTuVi12ConGiapDataJSON().then(
-          data=>{
+          data => {
             resolve(data[id]);
           }
-        ).catch((error)=>{
+        ).catch((error) => {
 
         })
       }
@@ -183,11 +219,11 @@ export class DepartureModule {
     });
   }
 
-  getDanhNgon(dd: number, mm: number, yy: number, data?:any):DanhNgon{
+  getDanhNgon(dd: number, mm: number, yy: number, data?: any): DanhNgon {
     var mDays = (yy - 1900) * 365 + Math.floor((yy - 1900) / 4) + DepartureUtils.getDaysPassInYear(mm, yy) + dd;
     var indexV = mDays % this.maxData;
 
-    if(this.danhNgonData){
+    if (this.danhNgonData) {
       var result: DanhNgon = {
         caudanhngon: this.danhNgonData[indexV].caudanhngon,
         tacgia: this.danhNgonData[indexV].tacgia
