@@ -60,7 +60,7 @@ export class TuviTrondoiPage {
     this.mAppModule.getDeitailTuViTronDoi(key, gioitinh).then(
       data => {
         // push page 
-        console.log(data);
+        // console.log(data);
         this.navCtrl.push("TuviTrondoiDetailPage",{data: data});
         
       }
@@ -188,6 +188,7 @@ export class TuviTrondoiPage {
 
   goToDay(){
     let date = new Date();
+    this.mCenterIndexs[0] = 0;
     this.mCenterIndexs[1] = this.getDateIndex(date.getDate());
     this.mCenterIndexs[2] = this.getMonthIndex(date.getMonth() +  1);
     this.mCenterIndexs[3] = this.getYearIndex(date.getFullYear());

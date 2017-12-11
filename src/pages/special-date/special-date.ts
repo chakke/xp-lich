@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, Content, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { DepartureModule } from '../../providers/departure/departure';
-import { SpecicalDatePopover } from './special-date-popover';
 import { StatusBar } from '@ionic-native/status-bar';
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 
 
 @IonicPage()
@@ -18,6 +18,7 @@ export class SpecialDatePage {
   calendar: string = "solar";
   item_height = 30 + "px";
   constructor(
+    public modalCtrl: ModalController,
     public navCtrl: NavController, public navParams: NavParams,
     private mAppModule: DepartureModule,
     public popover: PopoverController,
@@ -114,12 +115,10 @@ export class SpecialDatePage {
   }
   viewDescription(day) {
     if (day.description) {
-      let popover = this.popover.create(SpecicalDatePopover, {
-        description: day.description
-      })
-      popover.present({
-        animate: false
+      let modal = this.modalCtrl.create("DpPopoverPage",{
+        data: day.description
       });
+      modal.present();
     }
   }
   closeView() {

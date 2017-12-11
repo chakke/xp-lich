@@ -7,10 +7,10 @@ page-special-date {
         // overflow: hidden;
     }
     .content-md {
-        background: $background;
+        // background: $background;
     }
     .content-ios {
-        background: $background;
+        // background: $background;
     }
     .segment-md .segment-button {
         border: none;
@@ -63,8 +63,9 @@ page-special-date {
     .item-div {
         width: 90%;
         margin: auto;
-        margin-bottom: 10px;
-        background: rgba(black, 0.2);
+        margin-bottom: 20px;
+        background: map-get($map: $colors, $key: card);
+        box-shadow: 0px 2px 3px rgba($color: black, $alpha: .2);
         .line {
             left: 20%;
             width: 1px;
@@ -75,16 +76,14 @@ page-special-date {
         .item-start {
             width: 20%;
             text-align: center;
-            span {
-                color: white;
-            }
+            span {}
             .dl {
                 font-size: $font-timeNumber;
                 font-weight: bold;
             }
             .al {
                 font-size: $font-timeNumber;
-                color: #dcdcdc;
+                color: #4d4747;
             }
         }
         .item-end {
@@ -92,14 +91,13 @@ page-special-date {
             text-align: center;
             padding: 6px;
             ion-icon {
-                color: white;
-                font-size: $font-icon;
+                color: black;
+                font-size: $font-iconTabbar;
             }
         }
         .item-content {
             width: 60%;
             span {
-                color: white;
                 padding-left: 16px;
                 font-size: $font-option;
             }

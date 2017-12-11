@@ -12,12 +12,12 @@ export class DepartureLoadData {
     }
 
     getDataTuVi12ConGiapFromJSON(){
-        return this.http.get("./assets/departure/data/TuVi12ConGiap.json")
+        return this.http.get("./assets/departure/data/tvcg.json")
         .map((res: any) => res.json());
     }
 
     getDataTuViTrongDoiFromJSON(){
-        return this.http.get("./assets/departure/data/TuViTronDoi.json")
+        return this.http.get("./assets/departure/data/tvtd.json")
         .map((res: any) => res.json());
     }
 

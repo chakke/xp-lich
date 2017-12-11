@@ -11,19 +11,15 @@ import { DepartureModule } from "../providers/departure/departure";
 import { HttpService } from "../providers/http-service";
 import { DeviceInfoProvider } from "../providers/device-info/device-info";
 import { HttpModule } from "@angular/http";
-import { SpecicalDatePopover } from '../pages/special-date/special-date-popover';
 
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { AdMobFree } from '@ionic-native/admob-free';
-import { XEMNDPopover } from '../pages/xem-nd-detail/popover';
 import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
     MyApp,
     DepartureTabsPage,
-    SpecicalDatePopover,
-    XEMNDPopover,
   ],
   imports: [
     BrowserModule,
@@ -38,8 +34,6 @@ import { Keyboard } from '@ionic-native/keyboard';
   entryComponents: [
     MyApp,
     DepartureTabsPage,
-    SpecicalDatePopover,
-    XEMNDPopover
 
   ],
   providers: [

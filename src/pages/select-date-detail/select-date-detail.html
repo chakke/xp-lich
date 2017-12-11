@@ -1,37 +1,39 @@
-<ion-header>
+<ion-header class="background-header">
     <div class="padding-statusbar"></div>
     <div class="a3-container a3-items-center a1-relative">
-      <div class="header-button" tappable (click)="closeView()">
-        <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
-      </div>
-  
-      <div class="header-title a3-flex-1">
-        Chọn Ngày Tốt
-      </div>
-      <div class="header-button"></div>
+        <div class="header-button" tappable (click)="closeView()">
+            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+        </div>
+
+        <div class="header-title a3-flex-1">
+            Chọn Ngày Tốt
+        </div>
+        <div class="header-button" style="opacity: 0">
+            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+        </div>
     </div>
-  </ion-header>
-  
+</ion-header>
+
 
 <ion-content>
-  <div *ngIf="!isLoading" class="selectDate-detail">
-    <div class="a1-relative selectDateDetail-container">
-      <div class="name-work">
-        <span>{{data.name}}</span>
-      </div>
-      <div class="content-work">
-        <div class="content-title">
-          <span>Nội dung: </span>
-        </div>
-        <p class="p-left-5">{{data.content}}</p>
-        <div class="content-title">
-          <span>Có trong các ngày sau:</span>
-        </div>
-        <div class="p-left-5">
-          <span>{{date}}</span>
-        </div>
-      </div>
+    <div *ngIf="!isLoading" class="selectDate-detail">
+        <div class="a1-relative selectDateDetail-container">
+            <div class="name-work">
+                <span>{{data.name}}</span>
+            </div>
+            <div class="content-work">
+                <div class="content-title">
+                    <span>Nội dung: </span>
+                </div>
+                <p class="p-left-5">{{data.content}}</p>
+                <div class="content-title">
+                    <span>Có trong các ngày sau:</span>
+                </div>
+                <div class="p-left-5">
+                    <span>{{date}}</span>
+                </div>
+            </div>
 
+        </div>
     </div>
-  </div>
 </ion-content>

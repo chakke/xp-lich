@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="background-header">
     <div class="padding-statusbar"></div>
 
     <div class="a3-container a3-items-center a1-relative">
@@ -25,7 +25,7 @@
                     <ion-input #input type="number" placeholder="Nhập số"></ion-input>
                 </div>
                 <div style="height: 32px"></div>
-                <div class="view-button" tappable (click)="viewDescription()" text-center>
+                <div class="view-button background-header" tappable (click)="viewDescription()" text-center>
                     <span>Xem</span>
                 </div>
             </div>
@@ -35,8 +35,7 @@
                 <img [src]="data.image" id="img">
             </div>
         </div>
-        <!-- <div *ngIf="!isLoading" class="image a3-container-center a1-height-70" (click)="zoom()">
-            <img [src]="data.image" id="img">
-        </div> -->
+
     </div>
+
 </ion-content>

@@ -42,7 +42,7 @@ page-giai-mong {
         left: 0;
         bottom: $item-scroll-height * 2 + 10px;
         width: 100%;
-        background: #FFDAB9;
+        background: map-get($map: $colors, $key: card);
     }
     .title {
         text-align: center;

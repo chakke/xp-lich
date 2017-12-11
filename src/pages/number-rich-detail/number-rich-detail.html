@@ -1,29 +1,29 @@
-<ion-header>
-  <div class="padding-statusbar"></div>
-  <div class="a3-container a3-items-center a1-relative">
-    <div class="header-button" tappable (click)="closeView()">
-      <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
-    </div>
+<ion-header class="background-header">
+    <div class="padding-statusbar"></div>
+    <div class="a3-container a3-items-center a1-relative">
+        <div class="header-button" tappable (click)="closeView()">
+            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+        </div>
 
-    <div class="header-title a3-flex-1" *ngIf="!isLoading">
-      <span>{{data.number}}</span>
+        <div class="header-title a3-flex-1" *ngIf="!isLoading">
+            <span>{{data.number}}</span>
+        </div>
+        <div class="header-button"></div>
     </div>
-    <div class="header-button"></div>
-  </div>
 </ion-header>
 
 
 
 
 <ion-content>
-  <div *ngIf="!isLoading" class="a1-relative" margin-top style="height: calc(100% - 32px)">
-    <div class="number-container">
-      <div class="number-title">
-        <span>{{data.number}}</span>
-      </div>
-      <div class="number-content">
-        <p>{{data.content}}</p>
-      </div>
+    <div *ngIf="!isLoading" class="a1-relative" margin-top style="height: calc(100% - 32px)">
+        <div class="number-container">
+            <div class="number-title">
+                <span>{{data.number}}</span>
+            </div>
+            <div class="number-content">
+                <p>{{data.content}}</p>
+            </div>
+        </div>
     </div>
-  </div>
 </ion-content>

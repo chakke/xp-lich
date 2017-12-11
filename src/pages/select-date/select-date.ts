@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DepartureModule } from '../../providers/departure/departure';
 import { AppModule } from '../../providers/app-module';
 import { StatusBar } from '@ionic-native/status-bar';
+import { ScrollItems, ScrollOption } from '../../providers/common/scroll-controller';
 
 /**
  * Generated class for the SelectDatePage page.
@@ -19,86 +20,119 @@ import { StatusBar } from '@ionic-native/status-bar';
 export class SelectDatePage {
   rowHeight = 40;
   data: any;
-  isLoading : boolean = true;
+  isLoading: boolean = true;
   dayInMonth = [];
   years = [];
   timeOutID = [];
-  numberMidder = [0,0,0];
-  divID = ["colum1","colum2","colum3"]
+  numberMidder = [0, 0, 0];
   constructor(
     private mAppModule: DepartureModule,
     private statusBar: StatusBar,
     public navCtrl: NavController, public navParams: NavParams) {
-      if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#274c7c");
-      for(let i = 1;i<=12;i++){
-        this.dayInMonth.push(i);
-      }
-      for(let i = 1900;i<2100;i++){
-        this.years.push(i);
-      }
+    if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#274c7c");
+    for (let i = 1; i <= 12; i++) {
+      this.dayInMonth.push(i);
+    }
+    for (let i = 1900; i < 2200; i++) {
+      this.years.push(i);
+    }
+    this.onLoadData();
+  } 
+
+  onLoadData(){
+    this.mAppModule.getSelectDateDataJSON().then(
+      data => {
+        this.data = data;
+        this.isLoading = false;
+        setTimeout(() => {
+        this.createEventListeners();
+    
+        }, 300);
+      }, error => { }
+    )
   }
 
   ionViewDidLoad() {
-    this.mAppModule.getSelectDateDataJSON().then(
-      data=>{
-        this.data = data;
-      },error=>{}
-    )
-    this.addEventListener();
-    this.goToDay();
-    this.isLoading = false;
+    // this.addEventListener();
+    // this.goToDay();
   }
-  goToDay(){
+  goToDay() {
     let date = new Date();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    document.getElementById(this.divID[1]).scrollTop = (month- this.dayInMonth[0]) * this.rowHeight;
-    document.getElementById(this.divID[2]).scrollTop = (year - this.years[0]) * this.rowHeight;
+    this.mCenterIndexs[1] = this.getMonthIndex(date.getMonth() + 1);
+    this.mCenterIndexs[2] = this.getYearIndex(date.getFullYear());
+    
+    this.mScrollItems[1].mElement.scrollTop = this.mScrollItems[0].getScrollOfItemIndex(this.mCenterIndexs[1]);
+    this.mScrollItems[2].mElement.scrollTop = this.mScrollItems[0].getScrollOfItemIndex(this.mCenterIndexs[2]);
   }
-  addEventListener(){ 
-    for(let i = 0; i< this.divID.length;i++){
-      let element = document.getElementById(this.divID[i]);
+  mEventsCreated: boolean = false;
+  mScrollItems: Array<ScrollItems> = [];
+  mCenterIndexs: Array<number> = [0, 0, 0];
+  divID = ["colum1", "colum2", "colum3"]
 
-      element.addEventListener("scroll", (event) => {
-        this.numberMidder[i] = this.getNumberMidder(i,element);
-        this.scrollEnd(this.divID[i],element, i);
-      });
-      element.addEventListener("touchend", () => {
-        this.scrollEnd(this.divID[i],element, i);
-      });
-      
+  // *Tra ve vi tri gia tri thang nam
+  getMonthIndex(month: number): number {
+    for (let i = 0; i < this.dayInMonth.length; i++) {
+      if (month == this.dayInMonth[i]) return i;
     }
+    return 0;
   }
-  scrollEnd(divID : string, element : HTMLElement, index: number){
-    if(this.timeOutID[index])clearTimeout(this.timeOutID[index]);
-    let top = Math.round(element.scrollTop/this.rowHeight) * this.rowHeight;
-    this.timeOutID[index] = setTimeout(()=> {
-      this.scrollTop(divID,top);
-    }, 100);
-  }
-  scrollTop(divID : string, top: number){
-    AppModule.getInstance().getScrollController().doScroll(divID,top,{
-      alpha: 0.2,
-      epsilon:1,
-      callback: ()=>{
-       
-      }
-    });
+  getYearIndex(year: number): number {
+    for (let i = 0; i < this.years.length; i++) {
+      if (year == this.years[i]) return i;
+    }
+    return 0;
   }
 
-  getNumberMidder(index: number, element : HTMLElement): number {
-    return Math.round(element.scrollTop / this.rowHeight);
+
+  getNumberOfScrollingByTouch() {
+    let numberScroll = 0;
+    for (let scroll of this.mScrollItems) {
+      if (scroll.isScrollingByTouch()) numberScroll++;
+    }
+    return numberScroll;
   }
-  closeView(){
+
+  createEventListeners() {
+    if (this.mEventsCreated) return;
+    this.mEventsCreated = true;
+    for (let i = 0; i < this.divID.length; i++) {
+      let scrollItems = new ScrollItems(this.divID[i]);
+      scrollItems.createListener();
+      this.mScrollItems.push(scrollItems);
+      scrollItems.setScrollEndListener((scrollTop) => {
+        if (this.getNumberOfScrollingByTouch() != 1) {
+          this.mCenterIndexs[i] = scrollItems.getCurrentFocusElement(true);
+          return;
+        }
+        this.scrollEnd(i);
+      });
+      scrollItems.setCenterChangedListend((centerIndex) => {
+        this.mCenterIndexs[i] = centerIndex;
+      });
+    }
+    this.goToDay();
+    
+  }
+
+  scrollEnd(i) {
+    let scrollOptions: ScrollOption = {
+      alpha: 0.2,
+      epsilon: 1,
+      callback: () => { }
+    };
+
+    AppModule.getInstance().getScrollController().doScroll(this.divID[i], this.mScrollItems[i].getScrollOfItemIndex(this.mCenterIndexs[i]), scrollOptions);
+  }
+
+  closeView() {
     this.navCtrl.pop();
   }
 
-  viewDescription(){
-    let data;
-    this.navCtrl.push("SelectDateDetailPage",{
-      data: this.data[this.numberMidder[0]],
-      month: this.dayInMonth[this.numberMidder[1]],
-      year: this.years[this.numberMidder[2]]
+  viewDescription() {
+    this.navCtrl.push("SelectDateDetailPage", {
+      data: this.data[this.mCenterIndexs[0]],
+      month: this.dayInMonth[this.mCenterIndexs[1]],
+      year: this.years[this.mCenterIndexs[2]]
     })
   }
 

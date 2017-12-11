@@ -1,8 +1,5 @@
 page-number-rich-detail {
     $background: linear-gradient(to right, #007991, #78ffd6);
-    ion-content {
-        background: $background;
-    }
     // .page-container {
     .number-container {
         margin: auto;
@@ -10,8 +7,6 @@ page-number-rich-detail {
         height: 100%;
         border-radius: 5px;
         overflow: scroll;
-        background: rgba(black, 0.2);
-        color: white;
         padding: 16px;
     }
     .number-title {
@@ -24,7 +19,6 @@ page-number-rich-detail {
     }
     .number-content {
         p {
-            color: white;
             text-align: justify;
             font-size: $font-content;
         }

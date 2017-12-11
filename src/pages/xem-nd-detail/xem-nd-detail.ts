@@ -2,9 +2,9 @@ import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, PopoverController } from 'ionic-angular';
 import { DepartureModule } from '../../providers/departure/departure';
 import { Utils } from '../../providers/app-utils';
-import { XEMNDPopover } from './popover';
 import { Keyboard } from '@ionic-native/keyboard';
 import { StatusBar } from '@ionic-native/status-bar';
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 
 /**
  * Generated class for the XemNdDetailPage page.
@@ -25,6 +25,7 @@ export class XemNdDetailPage {
   isLoading: boolean = true;
   isZoom : boolean = false;
   constructor(
+    private modalCtrl: ModalController,
     private statusBar: StatusBar,
     public keyboard : Keyboard,
     public popover: PopoverController,
@@ -46,17 +47,17 @@ export class XemNdDetailPage {
   closeView(){
     this.navCtrl.pop();
   }
+ 
   viewDescription(){
     if (this.input.value) {
       let text = this.input.value;
       let number = parseInt(text);
       if( number > 0 && number<=this.dataJSON.length){
-        let popover = this.popover.create(XEMNDPopover,{
-          description : this.dataJSON[number-1].content
-        })
-        popover.present({
-          animate: false
-        });
+          let description =  this.dataJSON[number-1].content;
+          let modal = this.modalCtrl.create("DpPopoverPage",{
+            data: description
+          })
+          modal.present();
       }else{
         alert("Số không tồn tại")
       }

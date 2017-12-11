@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="background-header">
     <div class="padding-statusbar"></div>
     <div class="a3-container a3-items-center a1-relative">
         <div class="header-button" tappable (click)="closeView()">
@@ -19,7 +19,7 @@
     <div *ngIf="!isLoading" class="pageZodiac-container" margin-top>
         <ion-row>
             <ion-col col-4 *ngFor="let item of data; let i = index" text-center tappable (click)="viewDetail(item.id)">
-                <div class="zodiac-container a1-relative">
+                <div class="zodiac-container background-header a1-relative">
                     <div class="zodiac-symbol a1-height-50">
                         <img [src]="mIcons[i]">
                     </div>

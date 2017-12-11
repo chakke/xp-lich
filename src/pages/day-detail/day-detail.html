@@ -1,7 +1,7 @@
 <ion-header *ngIf="!isLoading" class="day-detail-header">
-    <div class="background-header">
+    <div class="background-header background-header">
         <div class="padding-statusbar"></div>
-        <div class="a3-container a3-justify-between a3-items-center height-56 ">
+        <div class="a3-container a3-justify-between a3-items-center height-56 background-header ">
 
             <div class="header-button a-back-button touch-scale" tappable (click)="close()">
 
@@ -26,8 +26,8 @@
 
     <div style="height:20px"></div>
     <div class="lunar-container a3-container a3-justify-between a3-items-center">
-        <div class="item-container a1-relative" text-center style="border-top-left-radius:10px ">
-            <div class="item-title background" style="border-top-left-radius:10px ">
+        <div class="item-container a1-relative" text-center>
+            <div class="item-title background-header">
                 <span>Giờ</span>
             </div>
             <div class="box-container">
@@ -39,9 +39,8 @@
                 </div>
             </div>
         </div>
-        <div class="line a1-absolute" style="left: 25%"></div>
         <div class="item-container a1-relative" text-center>
-            <div class="item-title background">
+            <div class="item-title background-header">
                 <span>Ngày</span>
             </div>
             <div class="box-container">
@@ -53,9 +52,8 @@
                 </div>
             </div>
         </div>
-        <div class="line a1-absolute" style="left: 50%"></div>
         <div class="item-container a1-relative" text-center>
-            <div class="item-title background">
+            <div class="item-title background-header">
                 <span>Tháng</span>
             </div>
             <div class="box-container">
@@ -67,9 +65,8 @@
                 </div>
             </div>
         </div>
-        <div class="line a1-absolute" style="left: 75%"></div>
-        <div class="item-container a1-relative" text-center style="border-top-right-radius:10px ">
-            <div class="item-title background" style="border-top-right-radius:10px ">
+        <div class="item-container a1-relative" text-center>
+            <div class="item-title background-header">
                 <span>Năm</span>
             </div>
             <div class="box-container">
@@ -101,14 +98,13 @@
                     </div>
                 </div>
                 <div style="height: 1px"></div>
-                <div class="a3-container a3-justify-between a1-relative">
+                <div class="a3-container a3-justify-between a1-relative" margin-bottom>
                     <div class="item-haft">
                         <div class="item">
                             <span class="item-title">Hành:</span>
                             <span>{{mdayDetail.TNBINFO.nguhanh_id}}</span>
                         </div>
                     </div>
-                    <div class="line a1-absolute" style="left: 50%"></div>
                     <div class="item-haft">
                         <div class="item">
                             <span class="item-title">Trực:</span>
@@ -116,15 +112,13 @@
                         </div>
                     </div>
                 </div>
-                <div style="height: 1px"></div>
-                <div class="a3-container a3-justify-between a1-relative">
+                <div class="a3-container a3-justify-between a1-relative" margin-bottom>
                     <div class="item-haft">
                         <div class="item">
                             <span class="item-title">Sao: </span>
                             <span>{{mdayDetail.TNBINFO.thapnhibat_ten}}</span>
                         </div>
                     </div>
-                    <div class="line a1-absolute" style="left: 50%"></div>
                     <div class="item-haft">
                         <div class="item ">
                             <span class="item-title">Tiết: </span>
@@ -132,21 +126,18 @@
                         </div>
                     </div>
                 </div>
-                <div style="height: 1px"></div>
                 <div class="item-background">
                     <div class="item-title-color font-titleContent">
                         <span>Kiêng</span>
                     </div>
                     <div class="line-height font-content" style="padding-left: 10px">{{mdayDetail.TNBINFO.kieng_ky}}</div>
                 </div>
-                <div style="height: 1px"></div>
                 <div class="item-background">
                     <div class="item-title-color font-titleContent">
                         <span>Nên</span>
                     </div>
                     <div class="line-height  font-content" style="padding-left: 10px">{{mdayDetail.TNBINFO.nen_lam}}</div>
                 </div>
-                <div style="height: 1px"></div>
                 <div class="item-background">
                     <div class="item-title-color font-titleContent">
                         <span>Giờ tốt</span>
@@ -155,7 +146,6 @@
                         <span class="line-height" *ngFor="let hour of mdayDetail.hour_better">{{hour}}</span>
                     </div>
                 </div>
-                <div style="height: 1px"></div>
                 <div class="item-background">
                     <div class="item-title-color font-titleContent ">
                         <span>Giờ xấu</span>
@@ -164,7 +154,6 @@
                         <span class="line-height  font-content" *ngFor="let member of mdayDetail.hour_bad">{{member}}</span>
                     </div>
                 </div>
-                <div style="height: 1px"></div>
                 <div class="item-background">
                     <div class="item-title-color font-titleContent">
                         <span>Hướng xuất hành</span>
@@ -175,7 +164,6 @@
             </span>
                     </div>
                 </div>
-                <div style="height: 1px"></div>
                 <div class="item-background">
                     <div class="item-title-color font-titleContent">
                         <span>Tuổi xung khắc</span>
@@ -184,7 +172,6 @@
                         <span>{{mdayDetail.tuoi_xung_khac}}</span>
                     </div>
                 </div>
-                <div style="height: 1px"></div>
                 <div class="item-background">
                     <div class="item-title-color font-titleContent">
                         <span>Sao tốt</span>
@@ -195,7 +182,6 @@
                         </span>
                     </div>
                 </div>
-                <div style="height: 1px"></div>
                 <div class="item-background">
                     <div class="item-title-color font-titleContent">
                         <span>Sao xấu</span>
@@ -207,13 +193,11 @@
                         </span>
                     </div>
                 </div>
-                <div style="height:1px"></div>
                 <div class="item-background">
                     <div style="padding-left: 10px" text-center class=" font-content">
                         <p style="white-space:pre-wrap; line-height: 1.5em">{{mdayDetail.TNBINFO.thapnhibat_tho}}</p>
                     </div>
                 </div>
-                <div style="height:10px"></div>
             </div>
         </ion-slide>
     </ion-slides>

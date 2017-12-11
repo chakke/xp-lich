@@ -15,11 +15,9 @@ page-giai-mong-detail {
         }
         .mong-content-header {
             padding: 16px 0 16px 0;
-            span {
-                text-transform: uppercase;
-                font-weight: bold;
-                font-size: $font-titleContent;
-            }
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: $font-titleContent;
         }
         p {
             white-space: pre-wrap;

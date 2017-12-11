@@ -4,12 +4,12 @@ page-day-detail {
     .header-md::after {
         height: 0;
     }
-    .content-ios {
-        background: $background;
-    }
-    .content-md {
-        background: $background;
-    }
+    // .content-ios {
+    //     background: $background;
+    // }
+    // .content-md {
+    //     background: $background;
+    // }
     .special {
         border-radius: 10px;
         margin-bottom: 20px;
@@ -20,14 +20,14 @@ page-day-detail {
         border: 1px solid white;
         font-size: .8em;
     }
-    .background-header {
-        background: rgba(black, 0.2);
-        color: white;
-    }
-    .background {
-        background: rgba(black, 0.2);
-        color: white;
-    }
+    // .background-header {
+    //     background: rgba(black, 0.2);
+    //     color: white;
+    // }
+    // .background {
+    //     background: rgba(black, 0.2);
+    //     color: white;
+    // }
     .height-30 {
         height: 30px;
     }
@@ -65,7 +65,8 @@ page-day-detail {
         width: 100%;
         .item-container {
             // height: 75px;
-            width: 25%;
+            width: 24%;
+            box-shadow: 0px 2px 1px rgba($color: black, $alpha: .3);
         }
         .item-number {
             span {
@@ -89,8 +90,8 @@ page-day-detail {
     }
     .box-container {
         padding: 5px;
-        background: rgba(black, 0.2);
-        color: white;
+        background: map-get($map: $colors, $key: card);
+        // color: white;
     }
     .item {
         padding: 5px;
@@ -99,12 +100,12 @@ page-day-detail {
         }
     }
     .item-title {
-        color: white;
+        // color: white;
         padding: 5px;
         font-size: $font-titleContent!important;
     }
     .item-title-color {
-        color: #EEEE80;
+        // color: #EEEE80;
         font-weight: bold;
         padding: 5px;
         span {
@@ -129,16 +130,19 @@ page-day-detail {
         overflow: auto;
     }
     .item-haft {
-        width: 50%;
+        width: 48%;
         padding: 5px;
-        color: white;
-        background: rgba(black, 0.2);
+        // color: white;
+        background: map-get($map: $colors, $key: card);
+        box-shadow: 0px 2px 1px rgba($color: black, $alpha: .3);
     }
     .item-background {
         padding: 5px;
-        color: white;
-        background: rgba(black, 0.2);
+        // color: white;
+        background: map-get($map: $colors, $key: card);
         min-height: 60px;
+        margin-bottom: 10px;
+        box-shadow: 0px 2px 1px rgba($color: black, $alpha: .3);
     }
     .width-25 {
         width: 25%;

@@ -1,8 +1,5 @@
 page-xem-nd-detail {
     $background: linear-gradient(to right, #007991, #78ffd6);
-    ion-content {
-        background: $background;
-    }
     .pageXemND-container {
         height: 100%;
     }
@@ -12,18 +9,31 @@ page-xem-nd-detail {
         height: 100%;
         text-align: center;
     }
+    .show-result {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+    }
     .view-button {
-        border: 1px solid white;
+        // border: 1px solid white;
         border-radius: 6px;
         padding: 8px 16px;
         display: inline-block;
+        box-shadow: 0px 1px 3px rgba($color: black, $alpha: .2);
         span {
-            color: white;
+            // color: white;
             font-size: $font-button;
         }
+        transition: 200ms;
+        transform: scale(1);
+    }
+    .view-button:active {
+        transform: scale(1.04);
     }
     .text-input-md {
-        color: white;
+        // color: white;
         width: 100%;
         margin: 0;
         margin-top: 13px;
@@ -33,21 +43,21 @@ page-xem-nd-detail {
         font-size: $font-content!important;
     }
     ion-input {
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid #dcdcdc;
     }
-    .text-input-ios {
-        color: white;
-    }
-    .text-input::-moz-placeholder {
-        color: white;
-    }
-    .text-input:-ms-input-placeholder {
-        color: white;
-    }
-    .text-input::-webkit-input-placeholder {
-        text-indent: 0;
-        color: white;
-    }
+    // .text-input-ios {
+    //     color: white;
+    // }
+    // .text-input::-moz-placeholder {
+    //     color: white;
+    // }
+    // .text-input:-ms-input-placeholder {
+    //     color: white;
+    // }
+    // .text-input::-webkit-input-placeholder {
+    //     text-indent: 0;
+    //     color: white;
+    // }
     .image {
         overflow: scroll;
         height: 100%;
@@ -83,4 +93,4 @@ page-xem-nd-detail {
     //     from {transform:scale(0)} 
     //     to {transform:scale(1)}
     // }
-}   
+}

@@ -38,7 +38,11 @@ export class GiaiMongPage {
     
   }
   closeView() {
-    this.navCtrl.pop();
+    if(this.navCtrl.canGoBack()){
+      this.navCtrl.pop();
+      }else{
+      this.navCtrl.setRoot("DepartureMorePage");
+    }
   }
   loadData() {
     if (!this.data) {

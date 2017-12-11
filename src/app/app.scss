@@ -66,7 +66,7 @@ $font-dayContent: 4.4vw;
 $font-timeTitle: 4.3vw;
 $font-timeNumber: 4.4vw;
 $font-timeSexy: 4vw;
-$font-titleContent: 4.4vw;
+$font-titleContent: 4.6vw;
 $font-content: 4vw;
 $font-button: 4vw;
 .font-content {
@@ -99,6 +99,10 @@ $background: linear-gradient(to right, #007991, #78ffd6);
     background-position: bottom;
     background-repeat: none;
     color: white;
+}
+
+.color-header {
+    color: #34a1ca;
 }
 
 // ===========================end===================

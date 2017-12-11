@@ -1,41 +1,39 @@
+<ion-header class="background-header">
+    <div class="padding-statusbar"></div>
+    <div class="a3-container a3-items-center a1-relative">
+        <div class="header-button" tappable (click)="closeView()">
+            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+        </div>
 
-
-<ion-header>
-  <div class="padding-statusbar"></div>
-  <div class="a3-container a3-items-center a1-relative">
-    <div class="header-button" tappable (click)="closeView()">
-      <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+        <div class="header-title a3-flex-1" *ngIf="!isLoading">
+            {{data.name}}
+        </div>
+        <div class="header-button"></div>
     </div>
-
-    <div class="header-title a3-flex-1" *ngIf="!isLoading">
-      {{data.name}}
-    </div>
-    <div class="header-button"></div>
-  </div>
 </ion-header>
 
 
 
 
 <ion-content>
-  <div class="a1-relative zodacDetailPage-container ">
-    <div class="menu-container a1-relative" id="menu-zodiac">
-      <div class="menu-item" *ngFor="let item of menu;let i = index" tappable (click)="selectedMenu(i,true)">
-        <span [class.item-active]="i==selectedIndex">{{item}}</span>
-      </div>
-      <div class="animate-bar" id="animateBar"></div>
-    </div>
-    <div *ngIf="!isLoading" class="item-container a1-relative" margin-top>
-      <div class="background-container" (swipe)="swipe($event)" id="contentZodiac">
-        <div class="item">
-          <div class="item-title">
-            <span>{{menu[selectedIndex]}}</span>
-          </div>
-          <div class="item-content">
-            <p>{{getContent(selectedIndex)}}</p>
-          </div>
+    <div class="a1-relative zodacDetailPage-container ">
+        <div class="menu-container a1-relative" id="menu-zodiac">
+            <div class="menu-item" *ngFor="let item of menu;let i = index" tappable (click)="selectedMenu(i,true)">
+                <span [class.color-header]="i==selectedIndex">{{item}}</span>
+            </div>
+            <div class="animate-bar " id="animateBar"></div>
         </div>
-      </div>
+        <div *ngIf="!isLoading" class="item-container a1-relative" margin-top>
+            <div class="background-container" (swipe)="swipe($event)" id="contentZodiac">
+                <div class="item">
+                    <div class="item-title">
+                        <span>{{menu[selectedIndex]}}</span>
+                    </div>
+                    <div class="item-content">
+                        <p>{{getContent(selectedIndex)}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </ion-content>

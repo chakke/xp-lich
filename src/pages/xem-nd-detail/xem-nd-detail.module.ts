@@ -8,6 +8,7 @@ import { XemNdDetailPage } from './xem-nd-detail';
   ],
   imports: [
     IonicPageModule.forChild(XemNdDetailPage),
+    
   ],
 })
 export class XemNdDetailPageModule {}

@@ -1,10 +1,7 @@
 page-xem-nd {
     $background: linear-gradient(to right, #007991, #78ffd6);
-    ion-content {
-        background: $background;
-    }
     .item-container {
-        background: rgba(black, 0.2);
+        // background: rgba(black, 0.2);
         border-radius: 5px;
         min-height: 13em;
     }
@@ -19,7 +16,7 @@ page-xem-nd {
         text-align: center;
         padding: 10px 10px 5px 10px;
         span {
-            color: white;
+            // color: white;
             font-size: $font-titleContent;
         }
     }

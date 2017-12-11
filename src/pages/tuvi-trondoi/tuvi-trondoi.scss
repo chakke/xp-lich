@@ -42,7 +42,7 @@ page-tuvi-trondoi {
     }
     .bg {
         height: $rowheight;
-        background: #FFDAB9;
+        background: map-get($map: $colors, $key: card);
         width: 96%;
         position: absolute;
         left: 2%;
