@@ -1,5 +1,5 @@
 import { Component, ViewChild, Renderer2, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController,Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Slides } from 'ionic-angular';
 import { DepartureModule } from '../../providers/departure/departure';
 import { TNBINFO } from '../../providers/departure/interface/tnb_Info';
 import { HUONGXUATHANH } from '../../providers/departure/interface/huong_xuat_hanh';
@@ -22,10 +22,10 @@ import { DayDetail } from './day-detail-class';
 })
 export class DayDetailPage {
   @ViewChild("detail") detail: ElementRef;
-  @ViewChild(Slides) slides : Slides;
-  dayDetail1 : DayDetail;
-  dayDetail2 : DayDetail;
-  dayDetail : DayDetail;
+  @ViewChild(Slides) slides: Slides;
+  dayDetail1: DayDetail;
+  dayDetail2: DayDetail;
+  dayDetail: DayDetail;
   day_of_week: string;
   dd; mm; yy;
   nowtime: Date;
@@ -39,25 +39,22 @@ export class DayDetailPage {
     private rd: Renderer2,
     public navParams: NavParams,
     private statusBar: StatusBar,
-    public modalCtrl : ModalController
+    public modalCtrl: ModalController
   ) {
     this.dayDetail = new DayDetail();
     this.dayDetail1 = new DayDetail();
     this.dayDetail2 = new DayDetail();
+    this.loadNavParmas();
   }
 
 
   mHasEnter: boolean = false;
-  ngOnInit() {
-    this.loadNavParmas();
-   
-    this.isLoading = false;
-  }
+
   ionViewDidEnter() {
-    if(!this.mAppModule.mIsOnIOSDevice)this.statusBar.backgroundColorByHexString("#0c855e");
+    if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#0c855e");
     this.mAppModule.showAdvertisement();
   }
-  pickDate(){
+  pickDate() {
     let modal = this.modalCtrl.create("PickdatePage");
     modal.onDidDismiss((data: DepartureObject) => {
       if (data && data.date) {
@@ -66,7 +63,7 @@ export class DayDetailPage {
           this.dd = data.date.getDate();
           this.mm = data.date.getMonth() + 1;
           this.yy = data.date.getFullYear();
-          this.dayDetail.setData(this.dd,this.mm,this.yy);
+          this.dayDetail.setData(this.dd, this.mm, this.yy);
           this.loadData();
         }, 100);
       }
@@ -81,21 +78,23 @@ export class DayDetailPage {
     this.dayDetail.trucDay = this.mAppModule.getTrucDay(this.dayDetail.lunarMonth, this.dayDetail.sexagesimalCycleDate.split(" ")[1]);
     this.dayDetail.tietDay = this.mAppModule.getTietDay(this.dayDetail.dd, this.dayDetail.mm);
     let data = this.mAppModule.getHourBetterAndBad(this.dayDetail.sexagesimalCycleDate.split(" ")[1]);
-    this.dayDetail.hour_better = data[0];
-    this.dayDetail.hour_bad = data[1];
+    console.log(data);
+    
+    this.dayDetail.hour_better = data[0][0].split(",");
+    this.dayDetail.hour_bad = data[1][0].split(",");
     this.dayDetail.huong_xuat_hanh = this.mAppModule.getTaiThanHyThan(this.dayDetail.sexagesimalCycleDate);
     this.dayDetail.tuoi_xung_khac = this.mAppModule.getTuoiXungKhac(this.dayDetail.sexagesimalCycleDate);
     this.dayDetail.sao_tot = this.mAppModule.getSaoTot(this.dayDetail.sexagesimalCycleDate.split(" ")[1], this.dayDetail.lunarMonth);
     this.dayDetail.sao_xau = this.mAppModule.getSaoXau(this.dayDetail.sexagesimalCycleDate.split(" ")[0], this.dayDetail.sexagesimalCycleDate.split(" ")[1], this.dayDetail.lunarMonth);
     this.getSpecicalDate();
   }
-  loadData1(){
+  loadData1() {
     this.dayDetail1.TNBINFO = this.mAppModule.GetTNBINFO(this.dayDetail1.dd, this.dayDetail1.mm, this.dayDetail1.yy);
     this.dayDetail1.trucDay = this.mAppModule.getTrucDay(this.dayDetail1.lunarMonth, this.dayDetail1.sexagesimalCycleDate.split(" ")[1]);
     this.dayDetail1.tietDay = this.mAppModule.getTietDay(this.dayDetail1.dd, this.dayDetail1.mm);
     let data = this.mAppModule.getHourBetterAndBad(this.dayDetail1.sexagesimalCycleDate.split(" ")[1]);
-    this.dayDetail1.hour_better = data[0];
-    this.dayDetail1.hour_bad = data[1];
+    this.dayDetail1.hour_better = data[0][0].split(",");
+    this.dayDetail1.hour_bad = data[1][0].split(",");
     this.dayDetail1.huong_xuat_hanh = this.mAppModule.getTaiThanHyThan(this.dayDetail1.sexagesimalCycleDate);
     this.dayDetail1.tuoi_xung_khac = this.mAppModule.getTuoiXungKhac(this.dayDetail1.sexagesimalCycleDate);
     this.dayDetail1.sao_tot = this.mAppModule.getSaoTot(this.dayDetail1.sexagesimalCycleDate.split(" ")[1], this.dayDetail1.lunarMonth);
@@ -104,13 +103,13 @@ export class DayDetailPage {
     let lunarDay = this.getViewDate(this.dayDetail1.lunarDate, this.dayDetail1.lunarMonth);
     this.dayDetail1.special_name = this.mAppModule.getSpecialDate(lunarDay, solarDay);
   }
-  loadData2(){
+  loadData2() {
     this.dayDetail2.TNBINFO = this.mAppModule.GetTNBINFO(this.dayDetail2.dd, this.dayDetail2.mm, this.dayDetail2.yy);
     this.dayDetail2.trucDay = this.mAppModule.getTrucDay(this.dayDetail2.lunarMonth, this.dayDetail2.sexagesimalCycleDate.split(" ")[1]);
     this.dayDetail2.tietDay = this.mAppModule.getTietDay(this.dayDetail2.dd, this.dayDetail2.mm);
     let data = this.mAppModule.getHourBetterAndBad(this.dayDetail2.sexagesimalCycleDate.split(" ")[1]);
-    this.dayDetail2.hour_better = data[0];
-    this.dayDetail2.hour_bad = data[1];
+    this.dayDetail2.hour_better = data[0][0].split(",");
+    this.dayDetail2.hour_bad = data[1][0].split(",");
     this.dayDetail2.huong_xuat_hanh = this.mAppModule.getTaiThanHyThan(this.dayDetail2.sexagesimalCycleDate);
     this.dayDetail2.tuoi_xung_khac = this.mAppModule.getTuoiXungKhac(this.dayDetail2.sexagesimalCycleDate);
     this.dayDetail2.sao_tot = this.mAppModule.getSaoTot(this.dayDetail2.sexagesimalCycleDate.split(" ")[1], this.dayDetail2.lunarMonth);
@@ -123,19 +122,24 @@ export class DayDetailPage {
     this.navCtrl.pop();
   }
   loadNavParmas() {
-    this.dd = this.navParams.get('dd');
-    this.mm = this.navParams.get('mm');
-    this.yy = this.navParams.get('yy');
-    this.dayDetail.setData(this.dd,this.mm,this.yy);
-    this.loadData();
-    this.getDayDetail1();
-    this.getDayDetail2();
-    
-    this.array.push(this.dayDetail1);
-    this.array.push(this.dayDetail);
-    this.array.push(this.dayDetail2);
-   
-    if(this.navParams.get('special_info'))this.dayDetail.special_info = this.navParams.get('special_info');
+    if (this.navParams.get("dd") && this.navParams.get("mm") && this.navParams.get("yy")) {
+      console.log("loadata1");
+      
+      this.dd = this.navParams.get('dd');
+      this.mm = this.navParams.get('mm');
+      this.yy = this.navParams.get('yy');
+      this.dayDetail.setData(this.dd, this.mm, this.yy);
+      this.loadData();
+      this.getDayDetail1();
+      this.getDayDetail2();
+
+      this.array.push(this.dayDetail1);
+      this.array.push(this.dayDetail);
+      this.array.push(this.dayDetail2);
+
+      if (this.navParams.get('special_info')) this.dayDetail.special_info = this.navParams.get('special_info');
+      this.isLoading = false;
+    }
   }
   getSpecicalDate() {
     let solarDay = this.getViewDate(this.dd, this.mm);
@@ -150,43 +154,47 @@ export class DayDetailPage {
     this.dd = date.getDate();
     this.mm = date.getMonth() + 1;
     this.yy = date.getFullYear();
-    this.dayDetail.setData(this.dd,this.mm,this.yy);
+    this.dayDetail.setData(this.dd, this.mm, this.yy);
     this.loadData();
     this.getDayDetail1();
     this.getDayDetail2();
     let elements = document.getElementsByClassName("app-content");
-    if(elements && elements[1] && elements[1].scrollTop!=0){
+    if (elements && elements[1] && elements[1].scrollTop != 0) {
       elements[1].scrollTop = 0;
-    } 
+    }
+    // elements.scrollTop = 0;
   }
   prev() {
     let elements = document.getElementsByClassName("app-content");
-    if(elements && elements[1] && elements[1].scrollTop!=0){
+    if (elements && elements[1] && elements[1].scrollTop != 0) {
       elements[1].scrollTop = 0;
-    } 
-    if(this.slides.getActiveIndex()==0){
+    }
+
+
+    if (this.slides.getActiveIndex() == 0) {
       let date = new Date();
       this.backtoPreviousDate();
-      this.dayDetail.setData(this.dd,this.mm,this.yy);
+      this.dayDetail.setData(this.dd, this.mm, this.yy);
       this.loadData();
-      this.slides.slideTo(1,0);
+      this.slides.slideTo(1, 0);
       this.getDayDetail1();
       this.getDayDetail2();
     }
-    
+
 
   }
   next() {
     let elements = document.getElementsByClassName("app-content");
-    if(elements && elements[1] && elements[1].scrollTop!=0){
+    if (elements && elements[1] && elements[1].scrollTop != 0) {
       elements[1].scrollTop = 0;
     }
-    if(this.slides.getActiveIndex()==2){
+
+    if (this.slides.getActiveIndex() == 2) {
       let date = new Date();
       this.forwardNextDate();
-      this.dayDetail.setData(this.dd,this.mm,this.yy);
+      this.dayDetail.setData(this.dd, this.mm, this.yy);
       this.loadData();
-      this.slides.slideTo(1,0);
+      this.slides.slideTo(1, 0);
       this.getDayDetail1();
       this.getDayDetail2();
     }
@@ -214,7 +222,7 @@ export class DayDetailPage {
       this.dd = 1;
     }
   }
-  getDayDetail2(){
+  getDayDetail2() {
     let day_numbers_of_month = this.getDayNumbersInOneMonth();
     let dd = this.dayDetail.dd + 1;
     let mm = this.dayDetail.mm;
@@ -227,7 +235,7 @@ export class DayDetailPage {
       }
       dd = 1;
     }
-    this.dayDetail2.setData(dd,mm,yy);
+    this.dayDetail2.setData(dd, mm, yy);
     this.loadData2();
   }
   //lùi về ngày hôm trước
@@ -244,9 +252,9 @@ export class DayDetailPage {
     }
   }
 
-  getDayDetail1(){
+  getDayDetail1() {
     let day_numbers_of_month = this.getDayNumbersInOneMonth();
-    let dd = this.dayDetail.dd-1;
+    let dd = this.dayDetail.dd - 1;
     let mm = this.dayDetail.mm;
     let yy = this.dayDetail.yy;
     if (dd < 1) {
@@ -257,7 +265,7 @@ export class DayDetailPage {
       }
       dd = day_numbers_of_month[this.mm - 1];
     }
-    this.dayDetail1.setData(dd,mm,yy);
+    this.dayDetail1.setData(dd, mm, yy);
     this.loadData1();
   }
 

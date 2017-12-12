@@ -51,7 +51,6 @@ $content-height: calc(100vh - 56px);
 $inputHeight: 40px;
 $segment-height: 50px;
 $line-height: 20px;
-$row-dot-height: 2vw;
 $row-dot-height: 10px;
 $ios-footer-height: 14vw;
 $dot-size: 6px;
@@ -691,18 +690,31 @@ $background: linear-gradient(to right, #007991, #78ffd6);
 }
 
 .header-button {
-    padding: 10px 16px;
+    padding: 6px 12px;
     color: white;
+    background: rgba($color: white, $alpha: .3);
     ion-icon {
         font-size: $font-icon!important;
     }
     ion-icon::before {
         font-size: 1.8em;
     }
+    &.left {
+        border-top-right-radius: 45%;
+        border-bottom-right-radius: 45%;
+    }
+    &.right {
+        border-top-left-radius: 45%;
+        border-bottom-left-radius: 45%;
+    }
+}
+
+.header-padding {
+    padding: 6px 0px;
 }
 
 .header-title {
-    padding: 10px 0px;
+    padding: 8px 0px;
     text-align: center;
     color: white;
     font-size: $font-titleheader;

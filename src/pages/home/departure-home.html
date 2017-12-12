@@ -1,7 +1,7 @@
 <ion-header>
     <div class="padding-statusbar"></div>
     <div class="a3-container a3-items-center a1-relative">
-        <div class="header-button touch-scale" tappable (click)="pickSolarDate()">
+        <div class="header-button left touch-scale" tappable (click)="pickSolarDate()">
             <ion-icon name="departure-c-calendar"></ion-icon>
         </div>
 
@@ -12,7 +12,7 @@
             <ion-icon margin-left name="ios-arrow-forward" tappable (click)="onClickNextDay()"></ion-icon>
 
         </div>
-        <div class="header-button touch-scale" (click)="onClickToDay()" tappable>
+        <div class="header-button right touch-scale" (click)="onClickToDay()" tappable>
             <ion-icon name="departure-c-today"></ion-icon>
         </div>
     </div>
@@ -73,8 +73,8 @@
             <div class="caudanhngon" id="quote-fg">
                 {{danhngon.caudanhngon}}
             </div>
-            <div class="tacgia" text-right>
-                - {{danhngon.tacgia}} -
+            <div class="tacgia" text-right [style.color]="mBackground.mColor">
+                {{danhngon.tacgia}}
             </div>
         </div>
         <!-- <div text-left class="a-qoute-day" id="quote-fg" [style.color]="mBackground.mColor">
@@ -83,61 +83,47 @@
         <div text-left class="a-qoute a1-height-10">
             <q>{{quote_of_date}}</q>
         </div> -->
-
-        <div padding-bottom *ngIf="!isLoading" class="a-footer a3-container-center ">
-
-            <div class="a-footer-item a1-relative">
-                <div class="a1-text-center a-title">Giờ</div>
-                <div class="a-row-dot">
-                    <div class="line a-center"></div>
-                    <div class="dot-large a-center" style="background-color:#26cea5 "></div>
-                    <div class="dot-small a-center" style="background-color:#26cea5"></div>
+        <div class="a-time">
+            <div class="a-time-title a3-container-center">
+                <div class="a-item"><span>Giờ</span></div>
+                <div class="a-item"><span>Ngày</span></div>
+                <div class="a-item"><span>Tháng</span></div>
+                <div class="a-item"><span>Năm</span></div>
+            </div>
+            <div class="a-time-dot a3-container-center">
+                <div class="line a1-content-center"></div>
+                <div class="a-item ">
+                    <div class="dot dot-1 ">
+                        <div class="dot-small dot-small-1 a1-content-center"></div>
+                    </div>
                 </div>
-                <div text-center class="a1-container">
-                    <div class="a1-height-30 a3-container-center a-footer-detail">{{nowtime | date: "HH:mm"}}</div>
-                    <div class="a1-height-30 a3-container-center a-footer-note">{{sexagesimalCycleTime}}</div>
+                <div class="a-item ">
+                    <div class="dot dot-2 ">
+                        <div class="dot-small dot-small-2 a1-content-center"></div>
+                    </div>
+                </div>
+                <div class="a-item ">
+                    <div class="dot dot-3">
+                        <div class="dot-small dot-small-3 a1-content-center"></div>
+                    </div>
+                </div>
+                <div class="a-item ">
+                    <div class="dot dot-4 ">
+                        <div class="dot-small dot-small-4 a1-content-center"></div>
+                    </div>
                 </div>
             </div>
-
-            <div class="a-footer-item a1-relative">
-                <div class="a1-text-center a-title">Ngày</div>
-                <div class="a-row-dot">
-                    <div class="line a-center"></div>
-                    <div class="dot-large a-center" style="background-color: #fbd025"></div>
-                    <div class="dot-small a-center" style="background-color:  #fbd025"></div>
-                </div>
-                <div text-center class="a1-container ">
-                    <div class="a1-height-30 a3-container-center a-footer-detail">{{lunarDate}}</div>
-                    <div class="a1-height-30 a3-container-center a-footer-note">{{sexagesimalCycleDate}}</div>
-                </div>
+            <div class="a-time-number a3-container-center">
+                <div class="a-item time-number"><span>{{nowtime | date: "HH:mm"}}</span></div>
+                <div class="a-item time-number"><span>{{lunarDate}}</span></div>
+                <div class="a-item time-number"><span>{{lunarMonth}}</span></div>
+                <div class="a-item time-number"><span>{{lunarYear}}</span></div>
             </div>
-
-            <div class="a-footer-item a1-relative">
-                <div class="a1-text-center a-title">Tháng</div>
-                <div class="a-row-dot">
-                    <div class="line a-center"></div>
-                    <div class="dot-large a-center" style="background-color: #ef679c"></div>
-                    <div class="dot-small a-center" style="background-color: #ef679c"></div>
-
-                </div>
-                <div text-center class="a1-container ">
-                    <div class="a1-height-30 a3-container-center a-footer-detail">{{lunarMonth}}</div>
-                    <div class="a1-height-30 a3-container-center a-footer-note">{{sexagesimalCycleMonth}}</div>
-                </div>
-            </div>
-
-            <div class="a-footer-item a1-relative">
-                <div class="a1-text-center a-title">Năm</div>
-                <div class="a-row-dot">
-                    <div class="line a-center"></div>
-                    <div class="dot-large a-center" style="background-color: #fc882a"></div>
-                    <div class="dot-small a-center" style="background-color:  #fc882a"></div>
-                </div>
-
-                <div text-center class="a1-container ">
-                    <div class="a1-height-30 a3-container-center a-footer-detail">{{lunarYear}}</div>
-                    <div class="a1-height-30 a3-container-center a-footer-note">{{sexagesimalCycleYear}}</div>
-                </div>
+            <div class="a-time-description a3-container-center">
+                <div class="a-item time-description"><span>{{sexagesimalCycleTime}}</span></div>
+                <div class="a-item time-description"><span>{{sexagesimalCycleDate}}</span></div>
+                <div class="a-item time-description"><span>{{sexagesimalCycleMonth}}</span></div>
+                <div class="a-item time-description"><span>{{sexagesimalCycleYear}}</span></div>
             </div>
         </div>
     </div>

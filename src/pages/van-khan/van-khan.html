@@ -1,15 +1,15 @@
 <ion-header class="background-header">
     <div class="padding-statusbar"></div>
 
-    <div class="a3-container a3-items-center a1-relative" *ngIf="!isClickSearch">
-        <div class="header-button" tappable (click)="closeView()">
+    <div class="a3-container a3-items-center a1-relative header-padding" *ngIf="!isClickSearch">
+        <div class="header-button left touch-scale" tappable (click)="closeView()">
             <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
         </div>
 
         <div class="header-title a3-flex-1">
             Văn Khấn
         </div>
-        <div class="header-button" tappable (click)="search()">
+        <div class="header-button right touch-scale" tappable (click)="search()">
             <ion-icon name="ios-search-outline"></ion-icon>
         </div>
     </div>

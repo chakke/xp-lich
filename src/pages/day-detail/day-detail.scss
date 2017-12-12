@@ -44,74 +44,6 @@ page-day-detail {
             font-size: $font-timeNumber;
         }
     }
-    .day-detail-header {
-        left: 0;
-        width: 100%;
-        ion-icon {
-            color: white;
-            line-height: unset;
-            display: inline-block;
-        }
-    }
-    .line-height {
-        line-height: $line-height;
-        font-size: $font-content;
-    }
-    .lunar-container {
-        padding-right: 10px;
-        padding-left: 10px;
-        // height: 75px;
-        position: relative;
-        width: 100%;
-        .item-container {
-            // height: 75px;
-            width: 24%;
-            box-shadow: 0px 2px 1px rgba($color: black, $alpha: .3);
-        }
-        .item-number {
-            span {
-                font-size: $font-timeNumber;
-            }
-        }
-        .item-footer {
-            margin-top: 3px;
-            span {
-                white-space: nowrap;
-                font-size: $font-timeSexy;
-            }
-        }
-    }
-    .line {
-        width: 1px;
-        background: #18bb94;
-        opacity: 0.5;
-        height: 100%;
-        z-index: 10;
-    }
-    .box-container {
-        padding: 5px;
-        background: map-get($map: $colors, $key: card);
-        // color: white;
-    }
-    .item {
-        padding: 5px;
-        span {
-            font-size: $font-content;
-        }
-    }
-    .item-title {
-        // color: white;
-        padding: 5px;
-        font-size: $font-titleContent!important;
-    }
-    .item-title-color {
-        // color: #EEEE80;
-        font-weight: bold;
-        padding: 5px;
-        span {
-            padding: 5px;
-        }
-    }
     .swiper-slide {
         text-align: left;
         overflow: hidden;
@@ -125,16 +57,11 @@ page-day-detail {
         padding-left: 10px;
         padding-right: 10px;
         position: absolute;
+        width: 100%;
         height: 100%;
         top: 0;
+        left: 0;
         overflow: auto;
-    }
-    .item-haft {
-        width: 48%;
-        padding: 5px;
-        // color: white;
-        background: map-get($map: $colors, $key: card);
-        box-shadow: 0px 2px 1px rgba($color: black, $alpha: .3);
     }
     .item-background {
         padding: 5px;
@@ -146,5 +73,150 @@ page-day-detail {
     }
     .width-25 {
         width: 25%;
+    }
+    // ===========================New Css====================
+    $margin-top: 32px;
+    .margin-top {
+        margin-top: $margin-top;
+    }
+    .a-time {
+        margin-top: $margin-top;
+        width: 100%;
+        .a-item {
+            width: 20%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+        .a-time-title {
+            font-size: $font-timeTitle;
+            color: map-get($map: $DpColors, $key: medium);
+            text-align: center;
+        }
+        .a-time-dot {
+            margin: 5px 0px;
+            position: relative;
+        }
+        .a-time-number {
+            font-size: $font-timeNumber;
+            color: map-get($map: $DpColors, $key: bold);
+            text-align: center;
+        }
+        .a-time-description {
+            font-size: $font-timeSexy;
+            color: map-get($map: $DpColors, $key: gray);
+            text-align: center;
+        }
+        .dot {
+            height: $dot-size * 2;
+            width: $dot-size * 2;
+            border-radius: 50%;
+            margin: auto;
+            position: relative;
+        }
+        .line {
+            background: map-get($map: $DpColors, $key: gray);
+            height: 1px;
+            position: absolute;
+            width: 80%;
+            z-index: -1;
+        }
+        .dot-1 {
+            background-color: #99ffcc;
+        }
+        .dot-2 {
+            background-color: #ffff99;
+        }
+        .dot-3 {
+            background-color: #ffcccc;
+        }
+        .dot-4 {
+            background-color: #ffcc99;
+        }
+        .dot-small {
+            height: 50%;
+            width: 50%;
+            border-radius: 50%;
+            &.dot-small-1 {
+                background-color: #33cc99;
+            }
+            &.dot-small-2 {
+                background-color: #fbd025;
+            }
+            &.dot-small-3 {
+                background-color: #ef679c;
+            }
+            &.dot-small-4 {
+                background-color: #fc882a;
+            }
+        }
+    }
+    $border-radius: 30px;
+    $padding: 6px;
+    .item-haft {
+        width: 48%;
+        display: flex;
+        // background: map-get($map: $DpColors, $key: right);
+        border-radius: $border-radius;
+        border: 1px solid map-get($map: $DpColors, $key: border);
+        .shape1 {
+            width: 40%;
+            color: white;
+            background: linear-gradient(to right, #17cce9, #34a1ca);
+            -webkit-clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+            clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+            text-align: center;
+            border-radius: $border-radius 0 0 $border-radius;
+            padding: $padding;
+            font-size: $font-content;
+        }
+        .shape2 {
+            color: map-get($map: $DpColors, $key: bold);
+            width: 60%;
+            border-left: none;
+            background: white;
+            // -webkit-clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+            // clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+            border-radius: 0 $border-radius $border-radius 0;
+            padding: $padding 0;
+            font-size: $font-content;
+            span {
+                margin-left: 10px;
+            }
+        }
+    }
+    $box-dot-size: 6px;
+    .box {
+        width: 100%;
+        position: relative;
+        .box-title {
+            .box-dot {
+                height: $box-dot-size;
+                width: $box-dot-size;
+                border-radius: 50%;
+            }
+            .title-color {
+                color: map-get($map: $DpColors, $key: left);
+                font-style: italic;
+                font-size: $font-content;
+            }
+        }
+        .box-content {
+            border-left: 1px solid map-get($map: $DpColors, $key: gray);
+            padding: 10px 16px;
+            text-align: justify;
+            font-size: $font-content;
+            margin-left: $box-dot-size / 2 - 1px;
+            color: map-get($map: $DpColors, $key: medium);
+            .gray-color {
+                color: map-get($map: $DpColors, $key: gray);
+            }
+        }
+        .poem {
+            white-space: pre-line;
+            text-align: center !important;
+            margin-bottom: 10px;
+        }
     }
 }

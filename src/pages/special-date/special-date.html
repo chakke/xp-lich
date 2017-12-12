@@ -1,27 +1,19 @@
 <ion-header class="background-header">
     <div class="padding-statusbar"></div>
 
-    <div class="a3-container a3-items-center a1-relative">
-        <div class="header-button" tappable (click)="closeView()">
+    <div class="a3-container a3-items-center a1-relative header-padding">
+        <div class="header-button left" tappable (click)="closeView()">
             <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
         </div>
 
         <div class="header-title a3-flex-1">
             Ngày Lễ Việt Nam
         </div>
-        <div class="header-button"></div>
+        <!-- <div class="header-button"></div> -->
     </div>
 
 
     <div class="a1-relative a3-container segment-container">
-        <!-- <div class="dl-al" text-center>
-      <div>
-        <span class="dl"> DL</span>
-      </div>
-      <div>
-        <span class="al">AL</span>
-      </div>
-    </div> -->
         <ion-segment [(ngModel)]="calendar" class="a1-relative">
             <div *ngIf="!mAppModule.mIsOnIOSDevice" class="animation-bar" id="animateBar"></div>
             <ion-segment-button value="solar" (ionSelect)="changeSegment('solar')">
@@ -38,7 +30,7 @@
 
 
 <ion-content>
-    <div margin-top [ngSwitch]="calendar" class="app-content" (swipe)="swipe($event)">
+    <div margin-top [ngSwitch]="calendar" class="appContent" (swipe)="swipe($event)">
         <div *ngSwitchCase="'solar'" class="a1-relative">
             <div [style.height]="item_height" class="item-div a1-relative a3-container a3-justify-between a3-items-center" *ngFor="let day of cavalDL_data">
                 <div class="date item-start">

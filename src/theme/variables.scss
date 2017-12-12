@@ -23,6 +23,7 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 $colors: ( primary: #488aff, secondary: #32db64, danger: #f53d3d, light: #f4f4f4, dark: #222, tabs-active: #4bcdef, card: #FFDAB9, title: #e4114a);
+$DpColors: (medium: #727272, bold: #474848, gray: #b7b7b7, border: #dcdcdc, left: #17cce9, right: #34a1ca);
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

@@ -466,7 +466,7 @@ export class DepartureModule {
   //lấy thông tin tinh tú trong thập nhị bát sao
   public GetTNBINFO(dd: number, mm: number, yy: number, data?: any) {
     if (!data) {
-      data = this.dayDetailData;
+        data = this.dayDetailData;
     }
     return this.mDepartureLoadData.GetTNBINFO(dd, mm, yy, data);
   }

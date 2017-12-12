@@ -38,8 +38,8 @@ page-special-date {
     }
     .segment-ios .segment-button {
         border-color: white;
-        height: unset;
-        line-height: unset;
+        // height: unset;
+        // line-height: unset;
     }
     .segmen-title {
         color: white;
@@ -47,6 +47,7 @@ page-special-date {
     .segment-container {
         width: 90%;
         margin: auto;
+        padding: 10px 0px;
     }
     .dl-al {
         width: 20%;

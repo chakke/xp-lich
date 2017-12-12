@@ -21,8 +21,8 @@ export class DayDetail {
     TNBINFO: TNBINFO;
     trucDay: string;
     tietDay: string;
-    hour_better: any;
-    hour_bad: any;
+    hour_better: Array<String>;
+    hour_bad: Array<String>;
     huong_xuat_hanh = new Array<HUONGXUATHANH>();
     tuoi_xung_khac: string;
     sao_tot: any;

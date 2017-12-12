@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DepartureModule } from '../../providers/departure/departure';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AppModule } from '../../providers/app-module';
+import { ScrollItems } from '../../providers/common/scroll-controller';
 
 /**
  * Generated class for the ZodiacDetailPage page.
@@ -22,6 +23,10 @@ export class ZodiacDetailPage {
   selectedIndex = 0;
   timeOut: number = -1;
   isScroll: boolean = false;
+  isSelected : boolean = false;
+  mScrollElement : HTMLElement;
+  animateBarElement: HTMLElement;
+  mItemWidth: number = 0;
   menu = ["Nội dung", "Lý lịch", "Truyền thuyết", "Biểu tượng", "Mô tả", "Tổng quát"];
   constructor(
     private mAppModule: DepartureModule,
@@ -30,26 +35,52 @@ export class ZodiacDetailPage {
     this.loadParams();
     this.isLoading = false;
   }
+  isCreatedEvent: boolean = false;
 
   ionViewDidEnter() {
     if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#274c7c");
+    let ele = document.getElementById("animateBar");
+    if(ele){
+      this.animateBarElement = ele;
+    }
 
+    this.createEvent();
+   
+  }
+  createEvent(){
+    if(this.isCreatedEvent)return;
+    this.isCreatedEvent = true;
+    
     let element = document.getElementById("menu-zodiac");
+    if (element) {
+    this.mScrollElement = element;
+      if(element.childElementCount > 0){
+        this.mItemWidth = element.children.item(0).clientWidth;
+      }
+    }
     element.addEventListener("scroll", () => {
-      if (!this.isScroll) {
-        this.scrollEnd(element);
+      if (!this.isScroll && !this.isSelected) {
+        this.scrollEnd();
       }
     })
+    element.addEventListener("touchstart", ()=>{
+      this.isSelected = false;
+    })
+
   }
-  scrollEnd(ele: HTMLElement) {
-    if (this.timeOut) clearTimeout(this.timeOut);
+
+  scrollEnd(){
+    if(this.timeOut)clearTimeout(this.timeOut);
     this.timeOut = setTimeout(() => {
-      let distance = Math.round(ele.scrollLeft / (screen.width / 3));
-      if (distance > 0) {
-        this.selectedMenu(distance, false);
-      }
+      let scrollLeft = this.mScrollElement.scrollLeft;
+      let newIndex = Math.round(scrollLeft/this.mItemWidth);
+      this.mScrollElement.scrollLeft = newIndex * this.mItemWidth;
+      this.selectedMenu(newIndex,false);
+      this.isScroll = false;
     }, 100);
   }
+
+
   loadParams() {
     this.data = this.navParams.get("data");
   }
@@ -76,27 +107,26 @@ export class ZodiacDetailPage {
       return this.data.commom;
     }
   }
-  selectedMenu(index: number, isScroll: boolean) {
+  tranformAnimateBar(distanceTranform: number){
+    this.animateBarElement.style.transform = "translate(" + distanceTranform + "px" + ",0)";
+  }
+  selectedMenu(index: number, isSelected: boolean) {
     this.selectedIndex = index;
-    this.isScroll = isScroll;
+    this.isSelected = isSelected;
     AppModule.getInstance().getScrollController().doScrollTop("contentZodiac");
-    let menuElement = document.getElementById("menu-zodiac");
-    let element = document.getElementById("animateBar");
-    let distanceTranform = index * screen.width / 3;
-    let distanceScroll: number = 0;
-    distanceScroll = (index - 1) * screen.width / 3;
-    element.style.transform = "translate(" + distanceTranform + "px" + ",0)";
-    if (index > 0 && index < 5 && isScroll) {
-      AppModule.getInstance().getScrollController().doScrollLeft("menu-zodiac", distanceScroll, {
-        alpha: 0.2,
-        epsilon: 1,
-        callback: () => {
-          setTimeout(() => {
-            this.isScroll = false;
-          }, 100);
-        }
-      });
+    let distanceTranform = index * this.mItemWidth;
+    this.tranformAnimateBar(distanceTranform);
+    
+    if (index > 0 && index < 5 && isSelected) {
+      let distanceScroll: number = 0;
+      distanceScroll = (index - 1) * this.mItemWidth;
+      if (this.mScrollElement) {
+        this.mScrollElement.scrollLeft = distanceScroll;
+        this.isScroll = false;
+       
+      }
     };
+    // this.isSelected = false;
   }
   swipe($event) {
     let direction = $event.direction;

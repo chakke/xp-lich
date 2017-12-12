@@ -94,6 +94,14 @@ export class ScrollItems {
         return this.mFocusIndex;
     }
 
+    getCurrentScrollLeftFocusElement(recalculate: boolean = false) {
+        if (recalculate) {
+            this.mFocusIndex = this.getElementInFocus(this.mElement.scrollLeft);
+        }
+        return this.mFocusIndex;
+    }
+
+
     getElementInFocus(scrollTop: number) {
         let focusIndex = Math.floor((scrollTop + this.mItemHeight / 2) / this.mItemHeight);
 

@@ -9,6 +9,77 @@ page-departure-home {
             height: 10px !important;
         }
     }
+    // =============new css================
+    .a-time {
+        width: 100%;
+        .a-item {
+            width: 20%;
+            text-align: center;
+        }
+        .a-time-title {
+            font-size: $font-timeTitle;
+            color: map-get($map: $DpColors, $key: medium);
+            text-align: center;
+        }
+        .a-time-dot {
+            margin: 5px 0px;
+            position: relative;
+        }
+        .a-time-number {
+            font-size: $font-timeNumber;
+            color: map-get($map: $DpColors, $key: bold);
+            text-align: center;
+        }
+        .a-time-description {
+            font-size: $font-timeSexy;
+            color: map-get($map: $DpColors, $key: gray);
+            text-align: center;
+        }
+        .dot {
+            height: $dot-size * 2;
+            width: $dot-size * 2;
+            border-radius: 50%;
+            margin: auto;
+            position: relative;
+        }
+        .line {
+            background: map-get($map: $DpColors, $key: gray);
+            height: 1px;
+            position: absolute;
+            width: 80%;
+            z-index: -1;
+        }
+        .dot-1 {
+            background-color: #99ffcc;
+        }
+        .dot-2 {
+            background-color: #ffff99;
+        }
+        .dot-3 {
+            background-color: #ffcccc;
+        }
+        .dot-4 {
+            background-color: #ffcc99;
+        }
+        .dot-small {
+            height: 50%;
+            width: 50%;
+            border-radius: 50%;
+            &.dot-small-1 {
+                background-color: #33cc99;
+            }
+            &.dot-small-2 {
+                background-color: #fbd025;
+            }
+            &.dot-small-3 {
+                background-color: #ef679c;
+            }
+            &.dot-small-4 {
+                background-color: #fc882a;
+            }
+        }
+    }
+    // ================end=========
     .header-md::after {
         height: 0;
     }
@@ -26,7 +97,6 @@ page-departure-home {
     }
     .tacgia {
         margin-top: 4px;
-        font-style: italic;
         font-size: $font-content;
     }
     .font-shadow {
@@ -61,69 +131,6 @@ page-departure-home {
         text-align: center;
         color: white;
         white-space: nowrap;
-    }
-    .a-footer {
-        padding-top: 5px;
-        position: relative;
-        top: 30px;
-        color: #584E4E;
-        font-size: 0.7em;
-        text-align: center;
-        width: 100%;
-    }
-    .a-footer-item {
-        width: 20%;
-        text-align: center;
-    }
-    .a-footer-detail {
-        font-weight: bold;
-        font-size: $font-timeNumber;
-        color: #474848;
-    }
-    .a-footer-note {
-        margin-top: 5px;
-        font-size: $font-timeSexy;
-        color: #b7b7b7;
-        white-space: nowrap;
-    }
-    .a-border-bottom {
-        border-bottom: 1px solid #ccc;
-    }
-    .a-title {
-        padding-bottom: 5px;
-        font-size: $font-timeTitle;
-        color: #474848;
-    }
-    .a-row-dot {
-        text-align: center;
-        width: 100%;
-        position: relative;
-        margin: 2px 0 5px 0;
-        height: $row-dot-height;
-        .a-center {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .line {
-            height: 1px;
-            width: 100%;
-            background-color: #dcdcdc;
-            z-index: -1;
-        }
-        .dot-large {
-            display: inline-block;
-            width: $row-dot-height;
-            height: $row-dot-height;
-            border-radius: 50%;
-            opacity: 0.4;
-        }
-        .dot-small {
-            width: 0.6 * $row-dot-height;
-            height: 0.6 * $row-dot-height;
-            border-radius: 50%;
-        }
     }
     .nowrap {
         white-space: nowrap;

@@ -1,0 +1,26 @@
+page-test {
+    $height: 40px;
+    .container {
+        height: $height;
+        width: 50%;
+        position: relative;
+        .title {
+            height: 100%;
+            width: 40%;
+            border-radius: 50% 0 0 50%;
+        }
+        .col-text {
+            width: 70%;
+            height: 100%;
+            // border: 1px solid #dcdcdc;
+            // border-left: none;
+            // border-top: none;
+        }
+        .triagle {
+            width: 0;
+            height: 0;
+            border-right: $height / 2 solid transparent;
+            border-top: $height solid #34a1ca;
+        }
+    }
+}
