@@ -3,27 +3,8 @@ page-giai-mong-detail {
         height: 56px;
     }
     .mong-content {
-        height: calc(100% - 32px);
-        .mong-content-container {
-            width: calc(100% - 20px);
-            border-radius: 10px;
-            margin: auto;
-            height: 100%;
-            padding: 16px;
-            text-align: justify;
-            overflow: auto;
-        }
-        .mong-content-header {
-            padding: 16px 0 16px 0;
-            text-transform: uppercase;
-            font-weight: bold;
-            font-size: $font-titleContent;
-        }
-        p {
-            white-space: pre-wrap;
-            line-height: 1.8rem;
-            font-size: $font-content;
-            text-align: justify;
-        }
+        width: 100%;
+        padding: 0 16px;
+        margin-top: 16px;
     }
 }

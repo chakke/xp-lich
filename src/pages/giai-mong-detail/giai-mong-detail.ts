@@ -16,7 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class GiaiMongDetailPage {
   data = {
     mong_name: "",
-    mong_content: ""
+    mong_content: []
   };
   isLoading: boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -24,7 +24,7 @@ export class GiaiMongDetailPage {
     if(this.navParams.get("data")){
       let params  = this.navParams.get("data");
       this.data.mong_name = params.mong_name;
-      this.data.mong_content = params.mong_content;
+      this.data.mong_content = params.mong_content.split("\n");
     }
   }
 

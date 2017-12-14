@@ -2,11 +2,15 @@
     <div class="padding-statusbar"></div>
     <div class="a3-container a3-items-center a1-relative header-padding">
         <div class="header-button left" tappable (click)="closeView()">
-            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+            <ion-icon name="departure-arrow-left"></ion-icon>
         </div>
 
         <div class="header-title a3-flex-1">
             Chọn Ngày Tốt
+        </div>
+
+        <div class="header-button left hidden">
+            <ion-icon name="departure-arrow-left"></ion-icon>
         </div>
         <!-- <div class="header-button"></div> -->
     </div>
@@ -67,7 +71,7 @@
 
             </div>
 
-            <div class="view-button background-header" tappable (click)="viewDescription()">
+            <div class="view-button" tappable (click)="viewDescription()">
                 <span>Xem chi tiết</span>
             </div>
         </div>

@@ -26,7 +26,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     HttpModule,
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true,
-      pageTransition: "ios-transition"
+      pageTransition: "ios-transition",
+      menuType: "reveal"
     }),
     
   ],

@@ -54,22 +54,13 @@ page-day-detail {
         }
     }
     .app-content {
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 0 16px;
         position: absolute;
         width: 100%;
         height: 100%;
         top: 0;
         left: 0;
         overflow: auto;
-    }
-    .item-background {
-        padding: 5px;
-        // color: white;
-        background: map-get($map: $colors, $key: card);
-        min-height: 60px;
-        margin-bottom: 10px;
-        box-shadow: 0px 2px 1px rgba($color: black, $alpha: .3);
     }
     .width-25 {
         width: 25%;
@@ -81,9 +72,10 @@ page-day-detail {
     }
     .a-time {
         margin-top: $margin-top;
+        margin-bottom: $margin-top;
         width: 100%;
         .a-item {
-            width: 20%;
+            width: 25%;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -119,7 +111,7 @@ page-day-detail {
             background: map-get($map: $DpColors, $key: gray);
             height: 1px;
             position: absolute;
-            width: 80%;
+            width: 90%;
             z-index: -1;
         }
         .dot-1 {
@@ -157,9 +149,10 @@ page-day-detail {
     .item-haft {
         width: 48%;
         display: flex;
+        position: relative;
         // background: map-get($map: $DpColors, $key: right);
         border-radius: $border-radius;
-        border: 1px solid map-get($map: $DpColors, $key: border);
+        // border: 1px solid map-get($map: $DpColors, $key: border);
         .shape1 {
             width: 40%;
             color: white;
@@ -170,19 +163,25 @@ page-day-detail {
             border-radius: $border-radius 0 0 $border-radius;
             padding: $padding;
             font-size: $font-content;
+            z-index: 2;
         }
         .shape2 {
-            color: map-get($map: $DpColors, $key: bold);
-            width: 60%;
+            position: absolute;
+            left: 33%;
+            color: map-get($map: $DpColors, $key: medium);
+            width: 70%;
+            height: 100%;
+            z-index: 1;
             border-left: none;
             background: white;
-            // -webkit-clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
-            // clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+            -webkit-clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+            clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
             border-radius: 0 $border-radius $border-radius 0;
+            border: 1px solid map-get($map: $DpColors, $key: border);
             padding: $padding 0;
             font-size: $font-content;
             span {
-                margin-left: 10px;
+                margin-left: 16px;
             }
         }
     }
@@ -199,12 +198,12 @@ page-day-detail {
             .title-color {
                 color: map-get($map: $DpColors, $key: left);
                 font-style: italic;
-                font-size: $font-content;
+                font-size: $font-titleContent;
             }
         }
         .box-content {
             border-left: 1px solid map-get($map: $DpColors, $key: gray);
-            padding: 10px 16px;
+            padding: 10px 0 10px 16px;
             text-align: justify;
             font-size: $font-content;
             margin-left: $box-dot-size / 2 - 1px;
@@ -218,5 +217,8 @@ page-day-detail {
             text-align: center !important;
             margin-bottom: 10px;
         }
+    }
+    p {
+        margin: 0;
     }
 }

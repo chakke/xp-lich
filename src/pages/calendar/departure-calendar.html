@@ -1,8 +1,9 @@
 <ion-header class="a-header-background">
     <div class="padding-statusbar"></div>
     <div class="a3-container a3-items-center a1-relative">
-        <div class="header-button left touch-scale" tappable (click)="pickSolarDate()">
-            <ion-icon name="departure-c-calendar"></ion-icon>
+        <div class="header-button left touch-scale" tappable menuToggle (click)="openMenu()">
+            <div class="menu-btn-background"></div>
+            <ion-icon name="departure-menu"></ion-icon>
         </div>
 
         <div class="header-title a3-flex-1 a3-container a3-items-center a3-justify-center" text-center>
@@ -12,8 +13,8 @@
             <ion-icon margin-left name="ios-arrow-forward"></ion-icon>
 
         </div>
-        <div class="header-button right touch-scale" tappable (click)="onClickToDay()">
-            <ion-icon name="departure-c-today"></ion-icon>
+        <div class="header-button right touch-scale" tappable (click)="pickSolarDate()">
+            <ion-icon name="departure-c-calendar"></ion-icon>
         </div>
     </div>
     <ion-row class="calendar-th">
@@ -21,6 +22,7 @@
             <span nowrap>{{day}}</span>
         </ion-col>
     </ion-row>
+    <div class="overlay" id="overlay-calendar"></div>
 </ion-header>
 
 

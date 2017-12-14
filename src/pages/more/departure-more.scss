@@ -1,6 +1,14 @@
 page-departure-more {
     $heightheader: 56px;
     $background: linear-gradient(to right, #17cce9, #34a1ca);
+    .list-ios>.item-block:last-child,
+    .list-ios>.item-wrapper:last-child .item-block {
+        border-bottom: none;
+    }
+    .list-ios>.item-block:last-child .item-inner,
+    .list-ios>.item-wrapper:last-child .item-block .item-inner {
+        border-bottom: 0.55px solid #c8c7cc;
+    }
     .a-header-background {
         background: $background;
     }
@@ -53,5 +61,28 @@ page-departure-more {
             font-size: $font-option;
             padding: 0.5em;
         }
+    }
+    .overlay {
+        position: fixed;
+        background: rgba($color: black, $alpha: .4);
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+    .menu-btn-background {
+        position: absolute;
+        z-index: -1;
+        left: -1px;
+        top: -10%;
+        opacity: 0;
+        height: 120%;
+        width: 100%;
+        background-image: url(../assets/departure/icon/btn_menu.png);
+        background-position: left;
+        background-size: 100% 116%;
+        background-repeat: no-repeat;
     }
 }

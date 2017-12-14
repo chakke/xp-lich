@@ -74,7 +74,10 @@ export class DepartureCalendarPage {
     // document.getElementById("box").style.height = this.col_height;
     // this.getQuoteAndDayName(this.selectedDate);
   }
- 
+  openMenu(){
+    let ele = document.getElementById("overlay-calendar");
+    if(ele)ele.style.display = "block";
+  }
   ionViewDidEnter() {
     if(!this.mAppModule.mIsOnIOSDevice){this.statusBar.backgroundColorByHexString("#20c0e1")};
     this.mAppModule.showAdvertisement();

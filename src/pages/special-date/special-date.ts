@@ -25,6 +25,9 @@ export class SpecialDatePage {
     private statusBar: StatusBar
   ) {
     this.item_height = (screen.height / 10) + "px";
+    this.loadData();
+  }
+  loadData(){
     if (!this.cavalAL_data) {
       this.mAppModule.getCavalVNALDataJSON().then(
         data => {
@@ -41,26 +44,12 @@ export class SpecialDatePage {
     }
     this.isLoading = false;
   }
-  
   ionViewDidEnter() {
     this.mAppModule.showAdvertisement();
     if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#274c7c");
-    this.item_height = (screen.height / 10) + "px";
-    if (!this.cavalAL_data) {
-      this.mAppModule.getCavalVNALDataJSON().then(
-        data => {
-          this.cavalAL_data = data;
-        }
-      )
-    }
-    if (!this.cavalDL_data) {
-      this.mAppModule.getCavalVNDLDataJSON().then(
-        data => {
-          this.cavalDL_data = data;
-        }
-      )
-    }
-    this.isLoading = false;
+    setTimeout(() => {
+    this.getElement();
+    }, 400);
   }
   goToDetail(day) {
     if (this.calendar == "solar") {
@@ -113,14 +102,7 @@ export class SpecialDatePage {
 
     return solarDay[0] + "/" + solarDay[1];
   }
-  viewDescription(day) {
-    if (day.description) {
-      let modal = this.modalCtrl.create("DpPopoverPage",{
-        data: day.description
-      });
-      modal.present();
-    }
-  }
+ 
   closeView() {
     this.navCtrl.pop();
   }
@@ -154,4 +136,63 @@ export class SpecialDatePage {
       }
     }
   }
+  isShowBox: boolean = false;
+  showBox(i){
+    this.solarElement[i] = !this.solarElement[i];
+    if(this.solarElement[i]){
+      let arrowUp = document.getElementById("up"+i);
+      let arrowDown = document.getElementById("down"+i);
+      let content = document.getElementById("solar-content"+i);
+      if(arrowUp && arrowDown && content){
+        arrowDown.style.display = "none";
+        arrowUp.style.display = "block";
+        content.style.display = "block";
+      }
+    }else{
+      let arrowUp = document.getElementById("up"+i);
+      let arrowDown = document.getElementById("down"+i);
+      let content = document.getElementById("solar-content"+i);
+      if(arrowUp && arrowDown && content){
+        arrowUp.style.display = "none";
+        content.style.display = "none";
+        arrowDown.style.display = "block";
+      }
+    }
+  }
+  showBoxAL(i){
+    this.solarElement[i] = !this.solarElement[i];
+    if(this.solarElement[i]){
+      let arrowUp = document.getElementById("lunar-up"+i);
+      let arrowDown = document.getElementById("lunar-down"+i);
+      let content = document.getElementById("lunar-content"+i);
+      if(arrowUp && arrowDown && content){
+        arrowDown.style.display = "none";
+        arrowUp.style.display = "block";
+        content.style.display = "block";
+      }
+    }else{
+      let arrowUp = document.getElementById("lunar-up"+i);
+      let arrowDown = document.getElementById("lunar-down"+i);
+      let content = document.getElementById("lunar-content"+i);
+      if(arrowUp && arrowDown && content){
+        arrowUp.style.display = "none";
+        content.style.display = "none";
+        arrowDown.style.display = "block";
+      }
+    }
+  }
+  solarElement: boolean[] = [];
+  lunarElement: boolean[] = [];
+  getElement(){
+    if(this.cavalDL_data.length>0){
+      this.cavalDL_data.forEach(element => {
+        this.solarElement.push(false);
+      });
+    }
+    if(this.cavalAL_data.length>0){
+      this.cavalAL_data.forEach(element => {
+        this.lunarElement.push(false);
+      });
+    }
+  } 
 }

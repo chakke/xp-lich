@@ -26,6 +26,10 @@ export class DepartureMorePage {
       this.more_options = this.mAppModule.getAppConfig().get("DepartureMorePage")['subviews'];
     });
   }
+  openMenu(){
+    let ele = document.getElementById("overlay-more");
+    if(ele)ele.style.display = "block";
+  }
   ionViewDidEnter() {
     if (!this.mAppModule.mIsOnIOSDevice) { this.statusBar.backgroundColorByHexString("#20c0e1") };
     if (!this.cavalVNAL) {

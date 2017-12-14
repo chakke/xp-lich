@@ -3,11 +3,15 @@
 
     <div class="a3-container a3-items-center a1-relative header-padding">
         <div class="header-button left" tappable (click)="closeView()">
-            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+            <ion-icon name="departure-arrow-left"></ion-icon>
         </div>
 
         <div class="header-title a3-flex-1">
             Ngày Lễ Việt Nam
+        </div>
+
+        <div class="header-button left hidden">
+            <ion-icon name="departure-arrow-left"></ion-icon>
         </div>
         <!-- <div class="header-button"></div> -->
     </div>
@@ -15,7 +19,7 @@
 
     <div class="a1-relative a3-container segment-container">
         <ion-segment [(ngModel)]="calendar" class="a1-relative">
-            <div *ngIf="!mAppModule.mIsOnIOSDevice" class="animation-bar" id="animateBar"></div>
+            <!-- <div *ngIf="!mAppModule.mIsOnIOSDevice" class="animation-bar" id="animateBar"></div> -->
             <ion-segment-button value="solar" (ionSelect)="changeSegment('solar')">
                 <span class="segmen-title">Dương Lịch</span>
             </ion-segment-button>
@@ -31,41 +35,40 @@
 
 <ion-content>
     <div margin-top [ngSwitch]="calendar" class="appContent" (swipe)="swipe($event)">
-        <div *ngSwitchCase="'solar'" class="a1-relative">
-            <div [style.height]="item_height" class="item-div a1-relative a3-container a3-justify-between a3-items-center" *ngFor="let day of cavalDL_data">
-                <div class="date item-start">
-                    <div>
-                        <span class="dl">{{day.date}}</span>
+        <div *ngSwitchCase="'solar'" class="a1-relative" id="box-solar">
+            <div *ngFor="let day of cavalDL_data ; let i = index" class="box-card">
+                <div class="box-top a3-container a3-justify-between a3-items-center">
+                    <div class="box-date a3-container">
+                        <div class="solar">{{day.date}}</div>
+                        <div class="lunar">{{getLunarDate(day.date)}}</div>
                     </div>
-                    <div>
-                        <span class="al">{{getLunarDate(day.date)}}</span>
+                    <div class="box-title" (click)="goToDetail(day)" tappable>{{day.name}}</div>
+                    <div class="box-arrow" (click)="showBox(i)" tappable>
+                        <ion-icon class="down" id="down{{i}}" name="ios-arrow-down-outline"></ion-icon>
+                        <ion-icon class="up" id="up{{i}}" name="ios-arrow-up-outline"></ion-icon>
                     </div>
                 </div>
-                <div class="a1-absolute line"></div>
-                <div class="item-content" tappable (click)="goToDetail(day)">
-                    <span>{{day.name}}</span>
-                </div>
-                <div class="item-end" tappable (click)="viewDescription(day)">
-                    <ion-icon name="ios-information-circle-outline"></ion-icon>
+                <div class="box-description" id="solar-content{{i}}">
+                    {{day.description}}
                 </div>
             </div>
+
         </div>
         <div *ngSwitchCase="'lunar'" class="a1-relative">
-            <div [style.height]="item_height" class="item-div a1-relative a3-container a3-justify-between a3-items-center" *ngFor="let day of cavalAL_data">
-                <div class="date item-start">
-                    <div>
-                        <span class="dl">{{getSolarDate(day.date)}}</span>
+            <div *ngFor="let day of cavalAL_data ; let i = index" class="box-card">
+                <div class="box-top a3-container a3-justify-between a3-items-center">
+                    <div class="box-date a3-container">
+                        <div class="solar">{{getSolarDate(day.date)}}</div>
+                        <div class="lunar">{{day.date}}</div>
                     </div>
-                    <div>
-                        <span class="al">{{day.date}}</span>
+                    <div class="box-title" (click)="goToDetail(day)" tappable>{{day.name}}</div>
+                    <div class="box-arrow" (click)="showBoxAL(i)" tappable>
+                        <ion-icon class="down" id="lunar-down{{i}}" name="ios-arrow-down-outline"></ion-icon>
+                        <ion-icon class="up" id="lunar-up{{i}}" name="ios-arrow-up-outline"></ion-icon>
                     </div>
                 </div>
-                <div class="a1-absolute line"></div>
-                <div class="item-content" tappable (click)="goToDetail(day)">
-                    <span>{{day.name}}</span>
-                </div>
-                <div class="item-end" tappable (click)="viewDescription(day)">
-                    <ion-icon name="ios-information-circle-outline"></ion-icon>
+                <div class="box-description" id="lunar-content{{i}}">
+                    {{day.description}}
                 </div>
             </div>
         </div>

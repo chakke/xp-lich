@@ -4,7 +4,7 @@
         <div class="a3-container a3-justify-between a3-items-center header-padding">
 
             <div class="header-button left a-back-button touch-scale" tappable (click)="close()">
-                <ion-icon name="ios-arrow-round-back-outline"></ion-icon>
+                <ion-icon name="departure-arrow-left"></ion-icon>
             </div>
 
             <div class="a1-relative a3-flex-1" text-center tappable (click)="pickDate()">
@@ -21,56 +21,57 @@
             </div>
         </div>
     </div>
-    <div class="a-time">
-        <div class="a-time-title a3-container-center">
-            <div class="a-item"><span>Giờ</span></div>
-            <div class="a-item"><span>Ngày</span></div>
-            <div class="a-item"><span>Tháng</span></div>
-            <div class="a-item"><span>Năm</span></div>
-        </div>
-        <div class="a-time-dot a3-container-center">
-            <div class="line a1-content-center"></div>
-            <div class="a-item ">
-                <div class="dot dot-1 ">
-                    <div class="dot-small dot-small-1 a1-content-center"></div>
-                </div>
-            </div>
-            <div class="a-item ">
-                <div class="dot dot-2 ">
-                    <div class="dot-small dot-small-2 a1-content-center"></div>
-                </div>
-            </div>
-            <div class="a-item ">
-                <div class="dot dot-3">
-                    <div class="dot-small dot-small-3 a1-content-center"></div>
-                </div>
-            </div>
-            <div class="a-item ">
-                <div class="dot dot-4 ">
-                    <div class="dot-small dot-small-4 a1-content-center"></div>
-                </div>
-            </div>
-        </div>
-        <div class="a-time-number a3-container-center">
-            <div class="a-item time-number"><span>{{nowtime | date: "HH:mm"}}</span></div>
-            <div class="a-item time-number"><span>{{dayDetail.lunarDate}}</span></div>
-            <div class="a-item time-number"><span>{{dayDetail.lunarMonth}}</span></div>
-            <div class="a-item time-number"><span>{{dayDetail.lunarYear}}</span></div>
-        </div>
-        <div class="a-time-description a3-container-center">
-            <div class="a-item time-description"><span>{{dayDetail.sexagesimalCycleTime}}</span></div>
-            <div class="a-item time-description"><span>{{dayDetail.sexagesimalCycleDate}}</span></div>
-            <div class="a-item time-description"><span>{{dayDetail.sexagesimalCycleMonth}}</span></div>
-            <div class="a-item time-description"><span>{{dayDetail.sexagesimalCycleYear}}</span></div>
-        </div>
-    </div>
+
 </ion-header>
 
 <ion-content>
 
-    <ion-slides class="margin-top" initialSlide="1" speed="200" (ionSlideNextEnd)="next()" (ionSlidePrevEnd)="prev()">
+    <ion-slides initialSlide="1" speed="200" (ionSlideNextEnd)="next()" (ionSlidePrevEnd)="prev()">
         <ion-slide *ngFor="let mdayDetail of array">
             <div class="app-content animated" #detail id="appContent">
+                <div class="a-time">
+                    <div class="a-time-title a3-container-center">
+                        <div class="a-item"><span>Giờ</span></div>
+                        <div class="a-item"><span>Ngày</span></div>
+                        <div class="a-item"><span>Tháng</span></div>
+                        <div class="a-item"><span>Năm</span></div>
+                    </div>
+                    <div class="a-time-dot a3-container-center">
+                        <div class="line a1-content-center"></div>
+                        <div class="a-item ">
+                            <div class="dot dot-1 ">
+                                <div class="dot-small dot-small-1 a1-content-center"></div>
+                            </div>
+                        </div>
+                        <div class="a-item ">
+                            <div class="dot dot-2 ">
+                                <div class="dot-small dot-small-2 a1-content-center"></div>
+                            </div>
+                        </div>
+                        <div class="a-item ">
+                            <div class="dot dot-3">
+                                <div class="dot-small dot-small-3 a1-content-center"></div>
+                            </div>
+                        </div>
+                        <div class="a-item ">
+                            <div class="dot dot-4 ">
+                                <div class="dot-small dot-small-4 a1-content-center"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="a-time-number a3-container-center">
+                        <div class="a-item time-number"><span>{{nowtime | date: "HH:mm"}}</span></div>
+                        <div class="a-item time-number"><span>{{dayDetail.lunarDate}}</span></div>
+                        <div class="a-item time-number"><span>{{dayDetail.lunarMonth}}</span></div>
+                        <div class="a-item time-number"><span>{{dayDetail.lunarYear}}</span></div>
+                    </div>
+                    <div class="a-time-description a3-container-center">
+                        <div class="a-item time-description"><span>{{dayDetail.sexagesimalCycleTime}}</span></div>
+                        <div class="a-item time-description"><span>{{dayDetail.sexagesimalCycleDate}}</span></div>
+                        <div class="a-item time-description"><span>{{dayDetail.sexagesimalCycleMonth}}</span></div>
+                        <div class="a-item time-description"><span>{{dayDetail.sexagesimalCycleYear}}</span></div>
+                    </div>
+                </div>
                 <div class="a3-container a3-justify-between a1-relative" margin-bottom>
                     <div class="item-haft">
                         <div class="shape1">
@@ -108,6 +109,25 @@
                         </div>
                     </div>
                 </div>
+                <div class="box" *ngIf="mdayDetail.special_name.length>0 && !mdayDetail.special_info">
+                    <div class="box-title a3-container a3-items-center">
+                        <div class="box-dot background-header"></div>
+                        <div class="title-color" margin-left>Sự kiện</div>
+                    </div>
+                    <div class="box-content" *ngFor="let item of mdayDetail.special_name">
+                        {{item}}
+                    </div>
+                </div>
+                <div class="box" *ngIf="mdayDetail.special_info">
+                    <div class="box-title a3-container a3-items-center">
+                        <div class="box-dot background-header"></div>
+                        <div class="title-color" margin-left>Ngày lễ Việt Nam</div>
+                    </div>
+                    <div class="box-content">
+                        <p>{{mdayDetail.special_info}}</p>
+                    </div>
+                </div>
+
                 <div class="box">
                     <div class="box-title a3-container a3-items-center">
                         <div class="box-dot background-header"></div>
@@ -117,6 +137,7 @@
                         {{mdayDetail.TNBINFO.kieng_ky}}
                     </div>
                 </div>
+
                 <div class="box">
                     <div class="box-title a3-container a3-items-center">
                         <div class="box-dot background-header"></div>
@@ -219,17 +240,7 @@
                         <span>{{mdayDetail.TNBINFO.thapnhibat_tho}}</span>
                     </div>
                 </div>
-                <!-- <div *ngIf="mdayDetail.special_name.length>0 && !mdayDetail.special_info" class="a3-container-center item-background special">
-                    <div *ngFor="let item of mdayDetail.special_name" text-center class="font-content">
-                        <span>{{item}}</span>
-                    </div>
-                </div>
-                <div *ngIf="mdayDetail.special_info" class="a3-container-center item-background special">
-                    <div text-center class="line-height font-content">
-                        <p>{{mdayDetail.special_info}}</p>
-                    </div>
-                </div>
-                 -->
+
             </div>
         </ion-slide>
     </ion-slides>

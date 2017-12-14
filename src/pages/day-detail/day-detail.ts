@@ -78,8 +78,6 @@ export class DayDetailPage {
     this.dayDetail.trucDay = this.mAppModule.getTrucDay(this.dayDetail.lunarMonth, this.dayDetail.sexagesimalCycleDate.split(" ")[1]);
     this.dayDetail.tietDay = this.mAppModule.getTietDay(this.dayDetail.dd, this.dayDetail.mm);
     let data = this.mAppModule.getHourBetterAndBad(this.dayDetail.sexagesimalCycleDate.split(" ")[1]);
-    console.log(data);
-    
     this.dayDetail.hour_better = data[0][0].split(",");
     this.dayDetail.hour_bad = data[1][0].split(",");
     this.dayDetail.huong_xuat_hanh = this.mAppModule.getTaiThanHyThan(this.dayDetail.sexagesimalCycleDate);

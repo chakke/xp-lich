@@ -34,7 +34,7 @@ export class DepartureModule {
   private mVersion: any;
   private maxData: number = 1000;
 
-
+  public misOpenMenu : boolean = false;
   private mConfig: AppConfig;
   public mIsOnIOSDevice: boolean = true;
   constructor(

@@ -12,9 +12,9 @@ page-special-date {
     .content-ios {
         // background: $background;
     }
-    .segment-md .segment-button {
-        border: none;
-    }
+    // .segment-md .segment-button {
+    //     border: none;
+    // }
     .animation-bar {
         width: 50%;
         height: 2px;
@@ -32,76 +32,125 @@ page-special-date {
     .segment-md .segment-button.segment-activated {
         border: none;
         opacity: 1;
+        background: white;
+        color: map-get($map: $DpColors, $key: left) !important;
     }
     .segment-ios .segment-button.segment-activated {
-        background-color: rgba(white, 0.3);
+        border: none;
+        opacity: 1;
+        background: white;
+        color: map-get($map: $DpColors, $key: left);
+        // background-color: rgba(white, 0.3);
     }
     .segment-ios .segment-button {
-        border-color: white;
-        // height: unset;
-        // line-height: unset;
-    }
-    .segmen-title {
+        border-radius: 100px !important;
+        border: 1px solid white !important;
+        background: transparent;
         color: white;
+        width: 40%;
+        flex: none;
+        margin: 0px 5px !important;
+        // height: unset;
+        // padding: 6px 0px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
+    // ion-segment {
+    //     justify-content: space-between;
+    // }
+    .segment-md .segment-button {
+        border: 1px solid white !important;
+        border-radius: 100px !important;
+        background: transparent;
+        color: white;
+        width: 40%;
+        flex: none;
+        margin: 0px 5px !important;
+        height: unset;
+        // padding: 6px 0px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    // .segmen-title {
+    //     color: white;
+    // }
     .segment-container {
         width: 90%;
         margin: auto;
         padding: 10px 0px;
     }
-    .dl-al {
-        width: 20%;
-        .dl {
-            font-weight: bold;
-            font-size: $font-timeNumber;
-            color: white;
-        }
-        .al {
-            font-size: $font-timeNumber;
-            color: #dcdcdc;
-        }
+    // ===========new css===========
+    ion-content {
+        background: whitesmoke !important;
     }
-    .item-div {
+    $margin-height: 16px;
+    $padding-height: 6px;
+    .box-card {
+        background: white;
+        min-height: 10vh;
         width: 90%;
         margin: auto;
-        margin-bottom: 20px;
-        background: map-get($map: $colors, $key: card);
-        box-shadow: 0px 2px 3px rgba($color: black, $alpha: .2);
-        .line {
-            left: 20%;
-            width: 1px;
-            height: 60%;
-            top: 20%;
-            background-color: white;
+        margin-bottom: $margin-height;
+        border-radius: 5px;
+        padding: 5px $margin-height;
+        .box-top {
+            height: 100%;
+            padding: $padding-height 0;
         }
-        .item-start {
-            width: 20%;
-            text-align: center;
-            span {}
-            .dl {
+        .box-description {
+            text-align: justify;
+            padding: 12px 0;
+            display: none;
+            border-top: 1px solid map-get($map: $DpColors, $key: border);
+            font-size: $font-content;
+        }
+        .box-date {
+            text-align: left;
+            width: 36%;
+            background: #ccffff;
+            border-radius: 20px;
+            .solar {
+                background: map-get($map: $DpColors, $key: right);
+                color: white;
+                border-radius: 20px;
+                width: 50%;
+                padding: $padding-height $padding-height;
+                white-space: nowrap;
                 font-size: $font-timeNumber;
-                font-weight: bold;
+                text-align: center;
             }
-            .al {
+            .lunar {
+                color: map-get($map: $DpColors, $key: medium);
+                padding: $padding-height $padding-height;
+                white-space: nowrap;
+                width: 50%;
+                text-align: center;
                 font-size: $font-timeNumber;
-                color: #4d4747;
             }
         }
-        .item-end {
-            width: 20%;
-            text-align: center;
-            padding: 6px;
-            ion-icon {
-                color: black;
-                font-size: $font-iconTabbar;
-            }
-        }
-        .item-content {
+        .box-title {
             width: 60%;
-            span {
-                padding-left: 16px;
-                font-size: $font-option;
-            }
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding: 10px;
+            text-align: left;
+            color: map-get($map: $DpColors, $key: medium);
+            font-size: $font-titleContent;
+        }
+        .box-arrow {
+            text-align: right;
+            color: map-get($map: $DpColors, $key: medium);
+            padding: $padding-height;
+            font-size: $font-icon;
+        }
+        .up {
+            color: map-get($map: $DpColors, $key: left);
+            display: none;
         }
     }
 }

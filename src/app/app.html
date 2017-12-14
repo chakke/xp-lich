@@ -1,1 +1,19 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="mycontent" id="menuID" (ionClose)="closeMenu()">
+    <ion-header>
+        <div style="min-height: 80px"></div>
+    </ion-header>
+    <ion-content>
+        <div class="menu-list-container">
+            <div class="item-menu-container" *ngFor="let item of menuList;let i = index" menuClose tappable text-center [class.menu-active]="item.active" (click)="openPage(item)">
+                <div [class.border-bottom]="i<menuList.length -1">
+                    <div class="item-icon" [ngStyle]="{ 'background': item.color }">
+                        <ion-icon [name]="item.icon"></ion-icon>
+                    </div>
+                    <div class="name">{{item.name}}</div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

@@ -3,11 +3,15 @@
     <div class="a3-container a3-items-center a1-relative header-padding">
 
         <div class="header-button left" tappable (click)="closeView()">
-            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+            <ion-icon name="departure-arrow-left"></ion-icon>
         </div>
 
         <div class="header-title a3-flex-1">
             Giải Mộng
+        </div>
+
+        <div class="header-button right hidden">
+            <ion-icon name="departure-arrow-left"></ion-icon>
         </div>
         <!-- <div class="header-button"></div> -->
     </div>
@@ -30,7 +34,7 @@
             <div class="scroll-container width-col" id="scroll1">
                 <div class="item-scroll"></div>
                 <div class="item-scroll"></div>
-                <div *ngFor="let letter of letters" class="item-scroll">
+                <div *ngFor="let letter of letters;let i = index" class="item-scroll" [class.character-active]="i==mCenterIndexs[0]">
                     <span>{{letter.letter}}</span>
                 </div>
                 <div class="item-scroll"></div>
@@ -40,7 +44,7 @@
 
                 <div class="item-scroll"></div>
                 <div class="item-scroll"></div>
-                <div *ngFor="let item of data" class="item-scroll">
+                <div *ngFor="let item of data; let i = index" class="item-scroll" [class.mong-name-active]="i==mCenterIndexs[1]">
                     <span>{{item.mong_name}}</span>
                 </div>
                 <div class="item-scroll"></div>
@@ -51,8 +55,7 @@
 
 
     <div class="a3-container-center a1-relative " tappable (click)="viewDetail()">
-        <span text-center class="button-detail  background-header">Xem chi tiết</span>
+        <span text-center class="button-detail touch-scale">Xem chi tiết</span>
     </div>
 
-    <div style="height:100px" id="testdiv"></div>
 </ion-content>

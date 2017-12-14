@@ -1,32 +1,31 @@
 <ion-header class="a-header-background">
     <div class="padding-statusbar"></div>
-    <div class="a3-container a3-items-center a1-relative">
-        <!-- <div class="header-button">
+    <div class="a3-container a3-items-center a1-relative header-padding">
+        <div class="header-button left" tappable menuToggle (click)="openMenu()">
+            <div class="menu-btn-background"></div>
 
-        </div> -->
-
+            <ion-icon name="departure-menu"></ion-icon>
+        </div>
         <div class="header-title a3-flex-1">
             Mở rộng
         </div>
-        <!-- <div class="header-button"> -->
-        <!-- <ion-icon name="departure-c-setting"></ion-icon> -->
-        <!-- </div> -->
+        <div class="header-button left touch-scale" style="opacity: 0">
+            <ion-icon name="departure-menu"></ion-icon>
+        </div>
     </div>
+    <div class="overlay" id="overlay-more"></div>
+
 </ion-header>
 
 
 
 <ion-content>
     <div padding-left padding-right class="body-content a1-relative">
-        <ion-row>
-            <ion-col col-6 *ngFor="let option of more_options;let i = index" class="a3-container a3-items-center">
-                <div *ngIf="i%2==1" style="width:20px"></div>
-                <div class="icon-option">
-                    <!-- <img [src]="option.icon"> -->
-                    <ion-icon [name]="option.ionicon"></ion-icon>
-                </div>
-                <div text-left class="name-option" tappable (click)="viewPage(option.component)">{{option.name_option}}</div>
-            </ion-col>
-        </ion-row>
+        <ion-list>
+            <button ion-item *ngFor="let option of more_options" (click)="viewPage(option.component)">
+                <ion-icon item-start [name]="option.ionicon" [style.color]="option.color"></ion-icon>
+                {{option.name_option}}
+            </button>
+        </ion-list>
     </div>
 </ion-content>

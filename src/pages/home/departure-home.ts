@@ -78,7 +78,8 @@ export class DepartureHomePage {
     private statusBar: StatusBar,
 
   ) {
-
+    let ele = document.getElementById("overlay-home");
+    if(ele)ele.style.display = "none";
     this.solarDate = this.mToday.getDate();
     this.solarMonth = this.mToday.getMonth() + 1;
     this.solarYear = this.mToday.getFullYear();
@@ -87,12 +88,19 @@ export class DepartureHomePage {
       caudanhngon: "40 năm đầu của cuộc đời cho chúng ta đề tài và 40 năm sau cho chúng ta sự thuyết minh nó.",
       tacgia: "Schopenhauer"
     }
-  }
 
+  }
+  
   mHasEnter: boolean = false;
+ 
   ionViewWillLeave() {
     this.mBackgroundAnimationEnable = false;
   }
+  openMenu(){
+    let ele = document.getElementById("overlay-home");
+    if(ele)ele.style.display = "block";
+  }
+  
   danhNgondata: any;
   isLoaddanhNgon : boolean = true;
   ionViewDidEnter() {

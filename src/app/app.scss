@@ -17,6 +17,48 @@
     padding: 0px !important;
 }
 
+.overlay {
+    position: fixed;
+    background: rgba($color: black, $alpha: .4);
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.menu-btn-background {
+    position: absolute;
+    z-index: -1;
+    left: -1px;
+    top: -10%;
+    opacity: 0;
+    height: 120%;
+    width: 100%;
+    background-image: url(../assets/departure/icon/btn_menu.png);
+    background-position: left;
+    background-size: 100% 116%;
+    background-repeat: no-repeat;
+}
+
+.menu-content-open {
+    box-shadow: none !important;
+    .left {
+        background: none;
+        color: #66cccc;
+        z-index: 1000;
+        // background-image: url(../assets/departure/icon/btn_menu.png);
+        // background-position: left;
+        // background-size: 100% 100%;
+        // background-repeat: no-repeat;
+        // overflow: visible;
+    }
+    .menu-btn-background {
+        opacity: 1;
+    }
+}
+
 .popover-content {
     top: 20% !important;
     left: 20% !important;
@@ -58,7 +100,7 @@ $ipad-dot-size: 18px;
 //================Font-size-text======================
 $font-option: 5vw;
 $font-titleheader: 5.6vw;
-$font-icon: 4.6vw;
+$font-icon: 4vw;
 $font-iconTabbar: 7vw;
 $font-dayName: 5vw;
 $font-dayContent: 4.4vw;
@@ -689,23 +731,28 @@ $background: linear-gradient(to right, #007991, #78ffd6);
     opacity: .8;
 }
 
+$border-radius-button: 100px;
 .header-button {
-    padding: 6px 12px;
+    padding: 6px 14px;
     color: white;
     background: rgba($color: white, $alpha: .3);
     ion-icon {
         font-size: $font-icon!important;
+        z-index: 20;
     }
     ion-icon::before {
         font-size: 1.8em;
     }
     &.left {
-        border-top-right-radius: 45%;
-        border-bottom-right-radius: 45%;
+        border-top-right-radius: $border-radius-button;
+        border-bottom-right-radius: $border-radius-button;
     }
     &.right {
-        border-top-left-radius: 45%;
-        border-bottom-left-radius: 45%;
+        border-top-left-radius: $border-radius-button;
+        border-bottom-left-radius: $border-radius-button;
+    }
+    &.hidden {
+        opacity: 0;
     }
 }
 
@@ -721,4 +768,85 @@ $background: linear-gradient(to right, #007991, #78ffd6);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    z-index: 8;
+}
+
+.bar-buttons-ios {
+    order: 0;
+}
+
+.bar-buttons-md {
+    order: 0;
+}
+
+.menu-inner {
+    width: 50%;
+}
+
+.item-menu-container {
+    padding: 10px 16px 1px 10px;
+}
+
+.border-bottom {
+    border-bottom: 1px solid map-get($map: $DpColors, $key: border);
+}
+
+$menuIcon: 10vw;
+.item-icon {
+    height: $menuIcon;
+    width: $menuIcon;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    font-size: $font-icon;
+}
+
+.menu-active {
+    // color: #66cccc !important;
+    background: #ccffff !important;
+    font-weight: bold;
+}
+
+.name {
+    margin: 16px 0px;
+    color: map-get($map: $DpColors, $key: medium);
+    font-size: $font-content;
+}
+
+$box-dot-size: 6px;
+.box {
+    width: 100%;
+    position: relative;
+    margin-bottom: 5px;
+    .box-title {
+        .box-dot {
+            height: $box-dot-size;
+            width: $box-dot-size;
+            border-radius: 50%;
+        }
+        .title-color {
+            color: map-get($map: $DpColors, $key: left);
+            font-style: italic;
+            font-size: $font-content;
+        }
+    }
+    .box-content {
+        border-left: 1px solid map-get($map: $DpColors, $key: gray);
+        padding: 10px 0 10px 16px;
+        text-align: justify;
+        font-size: $font-content;
+        margin-left: $box-dot-size / 2 - 1px;
+        color: map-get($map: $DpColors, $key: medium);
+        .gray-color {
+            color: map-get($map: $DpColors, $key: gray);
+        }
+    }
+    .poem {
+        white-space: pre-line;
+        text-align: center !important;
+        margin-bottom: 10px;
+    }
 }

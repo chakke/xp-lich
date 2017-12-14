@@ -261,7 +261,10 @@ export class DepartureChangeDatePage {
     this.mAppModule.updateDepartureInfo([this.mDepartureObject]);
   }
 
-
+  openMenu(){
+    let ele = document.getElementById("overlay-change");
+    if(ele)ele.style.display = "block";
+  }
 
 
 }

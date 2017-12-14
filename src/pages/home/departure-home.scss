@@ -12,8 +12,10 @@ page-departure-home {
     // =============new css================
     .a-time {
         width: 100%;
+        position: relative;
+        top: 16px;
         .a-item {
-            width: 20%;
+            width: 22%;
             text-align: center;
         }
         .a-time-title {
@@ -34,6 +36,9 @@ page-departure-home {
             font-size: $font-timeSexy;
             color: map-get($map: $DpColors, $key: gray);
             text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .dot {
             height: $dot-size * 2;
@@ -46,7 +51,7 @@ page-departure-home {
             background: map-get($map: $DpColors, $key: gray);
             height: 1px;
             position: absolute;
-            width: 80%;
+            width: 86%;
             z-index: -1;
         }
         .dot-1 {
@@ -88,7 +93,7 @@ page-departure-home {
     }
     .danhngon {
         overflow: auto;
-        padding: 16px;
+        padding: 0 16px;
     }
     .caudanhngon {
         text-align: justify;

@@ -59,6 +59,7 @@ page-select-date {
                 white-space: nowrap;
                 font-size: $font-titleContent;
                 font-weight: bold;
+                border-radius: 5px 5px 0 0;
             }
             .a-50 {
                 width: 50%;
@@ -74,16 +75,18 @@ page-select-date {
             }
             .bg {
                 height: $item-height;
-                width: 100%;
-                background: map-get($map: $colors, $key: card);
+                width: 96%;
+                background: map-get($map: $DpColors, $key: bg);
                 position: absolute;
-                left: 0;
+                left: 2%;
+                border-radius: 20px;
                 bottom: $item-height * 2 + $item-height / 2;
                 // z-index: -1;
             }
             .background-scroll {
-                background: #FFFFE0;
+                // background: #FFFFE0;
                 box-shadow: 0px 4px 3px rgba($color: black, $alpha: .3);
+                border-radius: 5px;
             }
             .scroll-container {
                 height: $item-height * 5;
@@ -94,7 +97,7 @@ page-select-date {
                     height: $item-height;
                     width: 100%;
                     text-align: center;
-                    // color: white;
+                    color: map-get($map: $DpColors, $key: gray);
                     span {
                         height: $item-height;
                         line-height: $item-height;
@@ -117,6 +120,7 @@ page-select-date {
         filter: grayscale(0%);
         transition: 200ms;
         box-shadow: 0px 2px 3px rgba($color: black, $alpha: .3);
+        background-color: #666699;
         span {
             color: white;
             font-size: $font-button;

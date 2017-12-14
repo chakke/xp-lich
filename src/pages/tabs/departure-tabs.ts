@@ -15,21 +15,35 @@ export class DepartureTabsPage {
   tab3Root: any;
   tab4Root: any;
   tab1Params: any;
-
+  mySelectedIndex: number = 0;
   constructor(private navParams: NavParams) {
-    this.tab1Params = this.navParams.get('dataDeparture');
+    // this.tab1Params = this.navParams.get('dataDeparture');
     this.tab1Root = 'DepartureHomePage';
     this.tab2Root = 'DepartureCalendarPage';
     this.tab3Root = 'DepartureChangeDatePage';
     this.tab4Root = 'DepartureMorePage';
+    this.mySelectedIndex = navParams.data.tabIndex || 0;
+    // if (this.mTabBarElement) return;
+    // let tabbars = document.getElementsByClassName("tabbar");
+    // if (tabbars.length > 0) {
+    //   this.createTabBorder(tabbars.item(0));
+    //   this.setSelectedTab(0);
+    // }
   }
   mTabBarElement: HTMLElement;
   ionViewDidEnter() {
+    
     if (this.mTabBarElement) return;
+    // console.log("create tabbar");
+    
     let tabbars = document.getElementsByClassName("tabbar");
+    
     if (tabbars.length > 0) {
+      // console.log("create divbar");
+      
       this.createTabBorder(tabbars.item(0));
-      this.setSelectedTab(0);
+      this.setSelectedTab(this.mySelectedIndex);
+      
     }
   }
 
@@ -39,8 +53,9 @@ export class DepartureTabsPage {
     screen_width: 320
   };
   setSelectedTab(index: number) {
-
     if (!this.mTabBarElement) return;
+    // console.log("tranform div Bar");
+    
     let cx = (index + 0.5) * (this.mData.screen_width / this.mData.tabs);
     let transformX = cx - this.mTabBarElement.clientWidth;
     
@@ -53,9 +68,10 @@ export class DepartureTabsPage {
     tabbar.appendChild(this.mTabBarElement);
     this.mData.screen_width = screen.width;
   }
-  mCurrentIndex: number = 0;
   onTabChanged(tab) {
-    this.mCurrentIndex = this.mTabs.getIndex(this.mTabs.getSelected());
-    this.setSelectedTab(this.mCurrentIndex);
+    console.log("tabchange");
+    
+    this.mySelectedIndex = this.mTabs.getIndex(this.mTabs.getSelected());
+    this.setSelectedTab(this.mySelectedIndex);
   }
 }

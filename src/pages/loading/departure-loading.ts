@@ -5,7 +5,7 @@ import { AppModule } from "../../providers/app-module";
 import { AppController } from "../../providers/app-controller";
 import { AdMobFree } from "@ionic-native/admob-free";
 import { GoogleAnalytics } from "@ionic-native/google-analytics";
-import { DepartureTabsPage } from "../tabs/departure-tabs";
+// import { DepartureTabsPage } from "../tabs/departure-tabs";
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 @IonicPage()
@@ -64,7 +64,7 @@ export class DepartureLoadingPage {
   }
 
   onLoaded() {
-    this.navCtrl.setRoot(DepartureTabsPage, {}, {
+    this.navCtrl.setRoot("DepartureHomePage", {}, {
       animate: true,
       direction: "forward",
       duration: 400
