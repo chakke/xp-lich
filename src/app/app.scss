@@ -816,6 +816,20 @@ $menuIcon: 10vw;
     font-size: $font-content;
 }
 
+@media(min-width: 768px) {
+    .box {
+        margin-bottom: 16px !important;
+        .box-title .box-dot {
+            height: 12px !important;
+            width: 12px !important;
+        }
+        .box-content {
+            border-width: 2px !important;
+            margin-left: 5px !important;
+        }
+    }
+}
+
 $box-dot-size: 6px;
 .box {
     width: 100%;
@@ -830,7 +844,7 @@ $box-dot-size: 6px;
         .title-color {
             color: map-get($map: $DpColors, $key: left);
             font-style: italic;
-            font-size: $font-content;
+            font-size: $font-titleContent;
         }
     }
     .box-content {
@@ -842,6 +856,9 @@ $box-dot-size: 6px;
         color: map-get($map: $DpColors, $key: medium);
         .gray-color {
             color: map-get($map: $DpColors, $key: gray);
+        }
+        &.pre-line {
+            white-space: pre-line;
         }
     }
     .poem {

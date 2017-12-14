@@ -21,6 +21,7 @@ page-zodiac-detail {
                 // color: white;
                 .item-title {
                     padding: 16px 0px 16px 0px;
+                    color: map-get($map: $DpColors, $key: bold);
                     span {
                         text-transform: uppercase;
                         font-weight: bold;
@@ -29,6 +30,7 @@ page-zodiac-detail {
                 }
                 .item-content {
                     // padding: 0 10px 0 10px;
+                    color: map-get($map: $DpColors, $key: medium);
                     p {
                         white-space: pre-wrap;
                         text-align: justify;
@@ -49,7 +51,7 @@ page-zodiac-detail {
         white-space: nowrap;
         display: inline-block;
         background: whitesmoke;
-        color: #737373;
+        color: map-get($map: $DpColors, $key: gray);
         width: 33.33333%;
         padding: 12px;
         text-align: center;

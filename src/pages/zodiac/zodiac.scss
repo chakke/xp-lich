@@ -11,6 +11,8 @@ page-zodiac {
         margin: auto;
         // background: map-get($map: $colors, $key: card);
         border-radius: 5px;
+        color: white;
+        background: #2e8ac1;
         .zodiac-symbol {
             padding: 2px;
             img {

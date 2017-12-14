@@ -132,7 +132,7 @@ export class TuviTrondoiPage {
     if(this.navCtrl.canGoBack()){
       this.navCtrl.pop();
     }else{
-      this.navCtrl.setRoot(DepartureTabsPage);
+      this.navCtrl.setRoot("DepartureMorePage");
     }
   }
 

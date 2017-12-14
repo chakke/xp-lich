@@ -13,21 +13,9 @@ page-select-date-detail {
             border-radius: 5px;
             padding: 12px;
             overflow: auto;
-            .name-work {
-                padding: 16px 0 5px 0;
-                border-bottom: 1px solid white;
-                text-align: center;
-                color: map-get($map: $colors, $key: title);
-                span {
-                    white-space: nowrap;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    font-size: $font-titleContent;
-                }
-            }
             .content-work {
                 .content-title {
-                    padding: 32px 0 5px 0;
+                    padding: 5px 0;
                     span {
                         font-weight: bold;
                         font-size: $font-titleContent;

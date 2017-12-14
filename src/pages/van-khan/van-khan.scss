@@ -3,6 +3,9 @@ page-van-khan {
     // .header-md::after {
     //     height: 0;
     // }
+    ion-content {
+        background: whitesmoke !important;
+    }
     .a-search {
         animation-duration: 200ms;
     }
@@ -10,18 +13,21 @@ page-van-khan {
         color: white;
     }
     .list-container {
-        padding-top: 16px;
+        margin-top: 2vh;
         overflow: auto;
         .div-item {
             width: 90%;
-            min-height: 80px;
+            min-height: 8vh;
             margin: auto;
             padding-left: 16px;
-            margin-bottom: 10px;
-            box-shadow: 0px 2px 3px rgba($color: black, $alpha: .3);
-            background: map-get($map: $colors, $key: card);
+            margin-bottom: 2vh;
+            color: map-get($map: $DpColors, $key: medium);
+            background: white;
             .item-content {
                 width: 90%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 span {
                     font-size: $font-option;
                 }
@@ -33,6 +39,10 @@ page-van-khan {
                     font-size: $font-icon;
                 }
             }
+        }
+        .div-item:active {
+            background: map-get($map: $DpColors, $key: gray);
+            color: map-get($map: $DpColors, $key: bold);
         }
     }
 }

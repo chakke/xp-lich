@@ -34,7 +34,7 @@
 
 
 <ion-content>
-    <div margin-top [ngSwitch]="calendar" class="appContent" (swipe)="swipe($event)">
+    <div [ngSwitch]="calendar" class="appContent" (swipe)="swipe($event)">
         <div *ngSwitchCase="'solar'" class="a1-relative" id="box-solar">
             <div *ngFor="let day of cavalDL_data ; let i = index" class="box-card">
                 <div class="box-top a3-container a3-justify-between a3-items-center">

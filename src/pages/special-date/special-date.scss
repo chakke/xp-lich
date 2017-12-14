@@ -12,6 +12,20 @@ page-special-date {
     .content-ios {
         // background: $background;
     }
+    @media (min-width: 768px) {
+        .appContent {
+            margin-top: 32px !important;
+        }
+        .segment-md .segment-button {
+            height: 5.2rem !important;
+        }
+        .segment-ios .segment-button {
+            height: 5.2rem !important;
+        }
+    }
+    .appContent {
+        margin-top: 16px;
+    }
     // .segment-md .segment-button {
     //     border: none;
     // }

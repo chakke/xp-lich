@@ -7,28 +7,28 @@
                     <ion-icon name="close"></ion-icon>
                 </div>
             </div>
-            <div class="change-date-col-container" [class.ipad-container]="isIpadDevices">
-                <div class="bg-active" [class.ipad-row-height]="isIpadDevices"></div>
-                <div class="col-date " [class.ipad-container]="isIpadDevices" id="div1">
-                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
-                    <div class="item " [class.ipad-row-height]="isIpadDevices" *ngFor="let date of day_in_month">
-                        <span [class.ipad-row-height]="isIpadDevices" [class.ipad-line-height]="isIpadDevices">{{date}}</span>
+            <div class="change-date-col-container">
+                <div class="bg-active"></div>
+                <div class="col-date " id="div1">
+                    <div class="item"></div>
+                    <div class="item " *ngFor="let date of mDayDatas">
+                        <span [class.color-gray]="date>mMaxSolarDay">{{date}}</span>
                     </div>
-                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
+                    <div class="item"></div>
                 </div>
-                <div class="col-date " [class.ipad-container]="isIpadDevices" id="div2">
-                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
-                    <div class="item" [class.ipad-row-height]="isIpadDevices" *ngFor="let month of datas[1]">
-                        <span [class.ipad-row-height]="isIpadDevices" [class.ipad-line-height]="isIpadDevices">{{month}}</span>
+                <div class="col-date " id="div2">
+                    <div class="item"></div>
+                    <div class="item" *ngFor="let month of mMonthDatas">
+                        <span>{{month}}</span>
                     </div>
-                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
+                    <div class="item"></div>
                 </div>
-                <div class="col-date" [class.ipad-container]="isIpadDevices" id="div3">
-                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
-                    <div class="item" [class.ipad-row-height]="isIpadDevices" *ngFor="let year of datas[2]">
-                        <span [class.ipad-row-height]="isIpadDevices" [class.ipad-line-height]="isIpadDevices">{{year}}</span>
+                <div class="col-date" id="div3">
+                    <div class="item"></div>
+                    <div class="item" *ngFor="let year of mYearDatas">
+                        <span>{{year}}</span>
                     </div>
-                    <div class="item" [class.ipad-row-height]="isIpadDevices"></div>
+                    <div class="item"></div>
                 </div>
             </div>
         </div>

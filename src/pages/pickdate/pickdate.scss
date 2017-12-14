@@ -4,11 +4,24 @@ page-pickdate {
     ion-content {
         background-color: rgba(black, 0.6) !important;
     }
-    // .content {
-    //     background-color: #fff;
-    //     width: 80%;
-    //     margin: auto;
-    // }
+    @media(min-width: 768px) {
+        .change-date-col-container {
+            height: $ipadRowHeight * 3 !important;
+            .bg-active {
+                height: $ipadRowHeight !important;
+            }
+            .col-date {
+                height: $ipadRowHeight * 3 !important;
+                .item {
+                    height: $ipadRowHeight !important;
+                    span {
+                        height: $ipadRowHeight !important;
+                        line-height: $ipadRowHeight !important;
+                    }
+                }
+            }
+        }
+    }
     .container {}
     .scroll-content {
         align-content: center;
@@ -40,7 +53,7 @@ page-pickdate {
         height: 100%;
         border-top-right-radius: 10px;
         ion-icon {
-            font-size: $font-icon;
+            font-size: $font-iconTabbar;
         }
     }
     .close-button:active {
@@ -54,6 +67,10 @@ page-pickdate {
     }
     .ipad-line-height {
         line-height: $ipadRowHeight !important;
+    }
+    .color-gray {
+        color: gray;
+        visibility: hidden;
     }
     .change-date-col-container {
         height: $rowHeight *3;

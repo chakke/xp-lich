@@ -46,6 +46,8 @@ page-tuvi-trondoi {
         width: 96%;
         position: absolute;
         left: 2%;
+        border-radius: 20px;
+        opacity: .4;
         bottom: $rowheight + 10px;
     }
     .header-scroll {
@@ -55,9 +57,11 @@ page-tuvi-trondoi {
         font-size: $font-title;
         font-weight: bold;
         position: relative;
+        border-radius: 5px 5px 0 0;
     }
     .background-content {
-        background: #FFFFE0;
+        // background: #FFFFE0;
+        border-radius: 5px;
         width: 90%;
         margin: auto;
         padding-bottom: 10px;
@@ -104,16 +108,32 @@ page-tuvi-trondoi {
             width: 100%;
             font-size: $font-content;
             line-height: $rowheight;
+            color: map-get($map: $DpColors, $key: gray);
             span {
                 height: $rowheight;
             }
+        }
+        .text-active {
+            color: map-get($map: $DpColors, $key: bold);
+            font-weight: bold;
+        }
+        .day-active {
+            color: #fbd025;
+            font-weight: bold;
+        }
+        .month-active {
+            color: #ef679c;
+            font-weight: bold;
+        }
+        .year-active {
+            color: #fc882a;
+            font-weight: bold;
         }
     }
     .btn {
         padding: $padding-title;
         color: white;
         border-radius: 5px;
-        border: 1px solid white;
         width: 40vw;
         text-align: center;
         margin: auto;

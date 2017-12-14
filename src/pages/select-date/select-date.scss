@@ -45,6 +45,7 @@ page-select-date {
             .content-title {
                 margin-top: $margin-top;
                 padding: 5px;
+                color: #e13838;
                 span {
                     text-align: center;
                     font-weight: bold;
@@ -81,11 +82,12 @@ page-select-date {
                 left: 2%;
                 border-radius: 20px;
                 bottom: $item-height * 2 + $item-height / 2;
+                opacity: 0.6;
                 // z-index: -1;
             }
             .background-scroll {
                 // background: #FFFFE0;
-                box-shadow: 0px 4px 3px rgba($color: black, $alpha: .3);
+                box-shadow: 0px 2px 3px rgba($color: black, $alpha: .3);
                 border-radius: 5px;
             }
             .scroll-container {
@@ -106,6 +108,18 @@ page-select-date {
                         font-size: $font-content;
                         padding-left: 8px;
                     }
+                }
+                .text-active {
+                    color: #ef679c;
+                    font-weight: bold;
+                }
+                .month-active {
+                    color: #ef0f4b;
+                    font-weight: bold;
+                }
+                .year-active {
+                    color: #fc882a;
+                    font-weight: bold;
                 }
             }
         }

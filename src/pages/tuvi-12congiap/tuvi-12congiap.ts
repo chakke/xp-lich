@@ -53,7 +53,7 @@ export class Tuvi_12congiapPage {
     if(this.navCtrl.canGoBack()){
       this.navCtrl.pop();
     }else{
-      this.navCtrl.setRoot(DepartureTabsPage);
+      this.navCtrl.setRoot("DepartureMorePage");
     }
   }
 

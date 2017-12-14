@@ -42,7 +42,7 @@
                     <div class="scroll-container a-50" id="colum1">
                         <div class="item-scroll"></div>
                         <div class="item-scroll"></div>
-                        <div class="item-scroll" *ngFor="let item of data">
+                        <div class="item-scroll" *ngFor="let item of data;let i= index" [class.text-active]="i==mCenterIndexs[0]">
                             <span>{{item.name}}</span>
                         </div>
                         <div class="item-scroll"></div>
@@ -51,7 +51,7 @@
                     <div class="scroll-container a-25" id="colum2">
                         <div class="item-scroll"></div>
                         <div class="item-scroll"></div>
-                        <div class="item-scroll" *ngFor="let item of dayInMonth">
+                        <div class="item-scroll" *ngFor="let item of dayInMonth;let i = index" [class.month-active]="i==mCenterIndexs[1]">
                             <span>{{item}}</span>
                         </div>
                         <div class="item-scroll"></div>
@@ -60,7 +60,7 @@
                     <div class="scroll-container a-25" id="colum3">
                         <div class="item-scroll"></div>
                         <div class="item-scroll"></div>
-                        <div class="item-scroll" *ngFor="let item of years">
+                        <div class="item-scroll" *ngFor="let item of years;let i = index" [class.year-active]="i==mCenterIndexs[2]">
                             <span>{{item}}</span>
                         </div>
                         <div class="item-scroll"></div>

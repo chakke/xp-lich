@@ -15,8 +15,9 @@
         <div class="header-title a3-flex-1" *ngIf="!isLoading">
             {{page_title}}
         </div>
-        <!-- <div class="header-button"> -->
-
+        <div class="header-button left hidden">
+            <ion-icon name="departure-arrow-left"></ion-icon>
+        </div>
     </div>
 
 </ion-header>
@@ -24,62 +25,107 @@
 
 <ion-content>
     <div class="background-content">
-        <div class="item">
-            {{data.NamSinh}}
+        <div class="box">
+            <div class="box-title a3-container a3-items-center">
+                <div class="box-dot background-header"></div>
+                <div class="title-color" margin-left>Năm sinh</div>
+            </div>
+            <div class="box-content">
+                {{data.NamSinh}}
+            </div>
         </div>
-        <div class="item">
-            {{data.TucNgu}}
+        <div class="box">
+            <div class="box-title a3-container a3-items-center">
+                <div class="box-dot background-header"></div>
+                <div class="title-color" margin-left>Cung Mạng</div>
+            </div>
+            <div class="box-content pre-line">
+                {{data.TucNgu}}
+            </div>
         </div>
-        <div class="item">
-            {{data.TongQuan}}
+        <div class="box">
+            <div class="box-title a3-container a3-items-center">
+                <div class="box-dot background-header"></div>
+                <div class="title-color" margin-left>Thơ</div>
+            </div>
+            <div class="box-content pre-line">
+                {{data.TongQuan}}
+            </div>
         </div>
-        <div class="title">
-            <span>Cuộc sống</span>
+        <div class="box">
+            <div class="box-title a3-container a3-items-center">
+                <div class="box-dot background-header"></div>
+                <div class="title-color" margin-left>Cuộc sống</div>
+            </div>
+            <div class="box-content">
+                {{data.CuocSong}}
+            </div>
         </div>
-        <div class="item">
-            {{data.CuocSong}}
+        <div class="box">
+            <div class="box-title a3-container a3-items-center">
+                <div class="box-dot background-header"></div>
+                <div class="title-color" margin-left>Gia Đạo , Công Danh</div>
+            </div>
+            <div class="box-content">
+                {{data.GiaDaoCongDanh}}
+            </div>
         </div>
-        <div class="title">
-            <span>Gia Đạo, Công Danh</span>
+        <div class="box">
+            <div class="box-title a3-container a3-items-center">
+                <div class="box-dot background-header"></div>
+                <div class="title-color" margin-left>Những tuổi hợp làm ăn</div>
+            </div>
+            <div class="box-content">
+                {{data.TuoiHop}}
+            </div>
         </div>
-        <div class="item">
-            {{data.GiaDaoCongDanh}}
+        <div class="box">
+            <div class="box-title a3-container a3-items-center">
+                <div class="box-dot background-header"></div>
+                <div class="title-color" margin-left>Lựa chọn vợ, chồng</div>
+            </div>
+            <div class="box-content">
+                {{data.VoChong}}
+            </div>
         </div>
-        <div class="title">
-            <span>Những tuổi hợp làm ăn</span>
+        <div class="box">
+            <div class="box-title a3-container a3-items-center">
+                <div class="box-dot background-header"></div>
+                <div class="title-color" margin-left>Những tuổi đại kỵ</div>
+            </div>
+            <div class="box-content">
+                {{data.TuoiKy}}
+            </div>
         </div>
-        <div class="item">
-            {{data.TuoiHop}}
+        <div class="box">
+            <div class="box-title a3-container a3-items-center">
+                <div class="box-dot background-header"></div>
+                <div class="title-color" margin-left>Những năm khó khăn nhất</div>
+            </div>
+            <div class="box-content">
+                {{data.NamKhoKhan}}
+            </div>
         </div>
-        <div class="title">
-            <span>Lựa chọn vợ, chồng</span>
+
+        <div class="box">
+            <div class="box-title a3-container a3-items-center">
+                <div class="box-dot background-header"></div>
+                <div class="title-color" margin-left>Ngày giờ xuất hành hợp nhất</div>
+            </div>
+            <div class="box-content">
+                {{data.GioXuatHanh}}
+            </div>
         </div>
-        <div class="item">
-            {{data.VoChong}}
+
+        <div class="box">
+            <div class="box-title a3-container a3-items-center">
+                <div class="box-dot background-header"></div>
+                <div class="title-color" margin-left>Những diễn biến từng năm</div>
+            </div>
+            <div class="box-content">
+                {{data.TungNam}}
+            </div>
         </div>
-        <div class="title">
-            <span>Những tuổi đại kỵ</span>
-        </div>
-        <div class="item">
-            {{data.TuoiKy}}
-        </div>
-        <div class="title">
-            <span>Những năm khó khăn nhất</span>
-        </div>
-        <div class="item">
-            {{data.NamKhoKhan}}
-        </div>
-        <div class="title">
-            <span>Ngày giờ xuất hành hợp nhất</span>
-        </div>
-        <div class="item">
-            {{data.GioXuatHanh}}
-        </div>
-        <div class="title">
-            <span>Những diễn biến từng năm</span>
-        </div>
-        <div class="item">
-            {{data.TungNam}}
-        </div>
+
     </div>
 </ion-content>

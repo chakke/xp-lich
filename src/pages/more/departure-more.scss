@@ -9,58 +9,14 @@ page-departure-more {
     .list-ios>.item-wrapper:last-child .item-block .item-inner {
         border-bottom: 0.55px solid #c8c7cc;
     }
-    .a-header-background {
-        background: $background;
-    }
-    .a-header-title {
-        font-size: 1.2em;
-        font-weight: bold;
-        color: #fff;
-        margin-bottom: 5px;
-    }
-    .a-header-button {
-        img {
-            height: 3em;
+    .icon-option {
+        ion-icon {
+            font-size: $font-iconTabbar !important;
         }
     }
-    .a-center-center {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-    .a-right-center {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 16px;
-    }
-    .a-left-center {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 16px;
-    }
-    .height-56 {
-        height: $heightheader;
-    }
-    .body-content {
-        .line {
-            background-color: #ccc;
-            height: 1px;
-            width: 90%;
-        }
-        .icon-option {
-            color: #4bcdef;
-            ion-icon {
-                font-size: $font-iconTabbar !important;
-            }
-        }
-        .name-option {
-            width: 70%;
-            font-size: $font-option;
-            padding: 0.5em;
-        }
+    .name-option {
+        font-size: $font-option;
+        padding: 0.5em;
     }
     .overlay {
         position: fixed;
@@ -84,5 +40,8 @@ page-departure-more {
         background-position: left;
         background-size: 100% 116%;
         background-repeat: no-repeat;
+    }
+    ion-label {
+        overflow: visible;
     }
 }

@@ -15,7 +15,10 @@
         <div class="header-title a3-flex-1" *ngIf="!isLoading">
             {{page_title}}
         </div>
-        <!-- <div class="header-button"> -->
+
+        <div class="header-button left hidden">
+            <ion-icon name="departure-arrow-left"></ion-icon>
+        </div>
 
     </div>
 
@@ -33,29 +36,29 @@
             <div class="col-gioitinh">
                 <div class="scroll-container" id="scroll-gioitinh">
                     <div class="item"></div>
-                    <div class="item"><span>Nam</span></div>
-                    <div class="item"><span>Nữ</span></div>
+                    <div class="item" [class.text-active]="mCenterIndexs[0]==0 "><span>Nam</span></div>
+                    <div class="item" [class.text-active]="mCenterIndexs[0]==1"><span>Nữ</span></div>
                     <div class="item"></div>
                 </div>
             </div>
             <div class="col-date ">
                 <div class="scroll-container" id="scroll-date">
                     <div class="item"></div>
-                    <div class="item" *ngFor="let number of mDayDatas">
+                    <div class="item" *ngFor="let number of mDayDatas;let i = index" [class.day-active]="i==mCenterIndexs[1] ">
                         <span>{{number}}</span>
                     </div>
                     <div class="item"></div>
                 </div>
                 <div class="scroll-container" id="scroll-month">
                     <div class="item"></div>
-                    <div class="item" *ngFor="let number of mMonthDatas">
+                    <div class="item" *ngFor="let number of mMonthDatas ; let i = index" [class.month-active]="i==mCenterIndexs[2] ">
                         <span>{{number}}</span>
                     </div>
                     <div class="item"></div>
                 </div>
                 <div class="scroll-container" id="scroll-year">
                     <div class="item"></div>
-                    <div class="item" *ngFor="let number of mYearDatas">
+                    <div class="item" *ngFor="let number of mYearDatas; let i = index " [class.year-active]="i==mCenterIndexs[3] ">
                         <span>{{number}}</span>
                     </div>
                     <div class="item"></div>

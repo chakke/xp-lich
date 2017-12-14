@@ -67,6 +67,19 @@ page-day-detail {
     }
     // ===========================New Css====================
     $margin-top: 32px;
+    @media (min-width: 767px) {
+        .dot {
+            width: 18px !important;
+            height: 18px !important;
+        }
+        .dot-small {
+            width: 10px !important;
+            height: 10px !important;
+        }
+        .item-haft .shape2 {
+            padding-left: 40px !important;
+        }
+    }
     .margin-top {
         margin-top: $margin-top;
     }

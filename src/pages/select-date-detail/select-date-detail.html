@@ -5,8 +5,8 @@
             <ion-icon name="departure-arrow-left"></ion-icon>
         </div>
 
-        <div class="header-title a3-flex-1">
-            Chọn Ngày Tốt
+        <div class="header-title a3-flex-1" *ngIf="!isLoading">
+            <span>{{data.name}}</span>
         </div>
         <div class="header-button right" style="opacity: 0">
             <ion-icon name="departure-arrow-left"></ion-icon>
@@ -18,22 +18,24 @@
 <ion-content>
     <div *ngIf="!isLoading" class="selectDate-detail">
         <div class="a1-relative selectDateDetail-container">
-            <div class="name-work">
-                <span>{{data.name}}</span>
-            </div>
-            <div class="content-work">
-                <div class="content-title">
-                    <span>Nội dung: </span>
+            <div class="box">
+                <div class="box-title a3-container a3-items-center">
+                    <div class="box-dot background-header"></div>
+                    <div class="title-color" margin-left><span>Nội dung</span></div>
                 </div>
-                <p class="p-left-5">{{data.content}}</p>
-                <div class="content-title">
-                    <span>Có trong các ngày sau:</span>
-                </div>
-                <div class="p-left-5">
-                    <span>{{date}}</span>
+                <div class="box-content">
+                    {{data.content}}
                 </div>
             </div>
-
+            <div class="box">
+                <div class="box-title a3-container a3-items-center">
+                    <div class="box-dot background-header"></div>
+                    <div class="title-color" margin-left><span>Có trong các ngày sau</span></div>
+                </div>
+                <div class="box-content pre-line">
+                    {{date}}
+                </div>
+            </div>
         </div>
     </div>
 </ion-content>

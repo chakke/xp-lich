@@ -1,7 +1,7 @@
-<ion-header>
+<ion-header class="background-header">
     <div class="padding-statusbar"></div>
 
-    <div class="a3-container a3-items-center a1-relative header-padding">
+    <div class="a3-container a3-items-center a1-relative header-padding ">
         <div class="header-button left touch-scale" tappable (click)="closeView()">
             <ion-icon name="departure-arrow-left"></ion-icon>
         </div>
@@ -9,18 +9,19 @@
         <div class="header-title a3-flex-1" *ngIf="!isLoading">
             {{page_title}}
         </div>
-        <!-- <div class="header-button">
+        <div class="header-button left hidden">
+            <ion-icon name="departure-arrow-left"></ion-icon>
+        </div>
 
-        </div> -->
     </div>
 
 </ion-header>
 
 
-<ion-content class="background-more">
-    <ion-grid *ngIf="!isLoading">
+<ion-content>
+    <ion-grid *ngIf="!isLoading" margin-top>
         <ion-row align-items-center>
-            <ion-col col-4 col-sm-3 *ngFor="let item of mIcons;let i = index" text-center (click)="viewDetail(i)" tappable>
+            <ion-col col-4 col-sm-4 *ngFor="let item of mIcons;let i = index" text-center (click)="viewDetail(i)" tappable>
                 <div class="background-item">
                     <div class="img-top">
                         <img [src]="item" alt="icon">

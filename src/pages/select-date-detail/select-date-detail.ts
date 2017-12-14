@@ -59,7 +59,11 @@ export class SelectDateDetailPage {
     }
   }
   closeView(){
-    this.navCtrl.pop();
+    if(!this.navCtrl.canGoBack()){
+      this.navCtrl.setRoot("SelectDatePage");
+    }else{
+      this.navCtrl.pop();
+    }
   }
 
 }
