@@ -9,9 +9,28 @@ page-departure-changedate {
             overflow-y: hidden;
         }
     }
+    $ipadHeigth: 80px;
+    @media(min-width: 768px) {
+        .change-date-body .content {
+            height: $ipadHeigth * 3 !important;
+        }
+        .change-date-col {
+            height: $ipadHeigth * 3 !important;
+            .item {
+                height: $ipadHeigth !important;
+                span {
+                    height: $ipadHeigth !important;
+                    line-height: $ipadHeigth !important;
+                }
+            }
+        }
+        .bg-active {
+            height: $ipadHeigth;
+        }
+    }
     $heiderHeight: 60px;
     $titleHeight: 30px;
-    $rowHeight: 6vh;
+    $rowHeight: 40px;
     $background: linear-gradient(to right, #17cce9, #34a1ca);
     .height-56 {
         height: 56px;
@@ -102,6 +121,7 @@ page-departure-changedate {
             .change-date-col {
                 width: 33%;
                 float: left;
+                height: $rowHeight * 3;
                 overflow: hidden;
                 overflow-y: auto;
                 -webkit-overflow-scrolling: touch;
@@ -109,8 +129,11 @@ page-departure-changedate {
                     width: 100%;
                     color: #717171;
                     text-align: center;
+                    height: $rowHeight;
                     span {
                         display: block;
+                        height: $rowHeight;
+                        line-height: $rowHeight;
                         width: 100%;
                         text-align: center;
                         white-space: nowrap;

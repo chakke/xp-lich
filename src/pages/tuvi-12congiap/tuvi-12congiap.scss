@@ -1,21 +1,42 @@
 page-tuvi-12congiap {
     @media (min-width: 768px) {
-        .img-top {
-            img {
-                width: 80%;
-            }
+        .grid {
+            padding: 32px !important;
         }
+        .col {
+            padding: 16px !important;
+        }
+        .img-top {
+            height: 100px !important;
+            width: 100px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .background-item {
+            padding: 16px !important;
+        }
+    }
+    ion-content {
+        background: whitesmoke !important;
     }
     .img-top {
         padding: 6px;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        margin: auto;
     }
     .background-item {
-        background: #2e8ac1;
+        background: white;
         border-radius: 5px;
+        padding: 6px;
     }
     .img-description {
-        color: white;
-        padding: 6px;
         font-size: $font-option;
+        margin-top: 16px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 }

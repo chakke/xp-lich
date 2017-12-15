@@ -30,6 +30,7 @@ export class Tuvi_12congiapPage {
   mIcons: any;
   data: any;
   isLoading: boolean = true;
+  mColors: Array<String> = [];
   onLoadData() {
     if (this.data) return;
     this.mAppModule.loadConfig().then(
@@ -38,6 +39,7 @@ export class Tuvi_12congiapPage {
         if (tuviData) {
           this.page_title = tuviData.page_title;
           this.mIcons = tuviData.icons;
+          this.mColors = tuviData.colors;
         }
       }
     );

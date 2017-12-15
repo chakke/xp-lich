@@ -23,7 +23,7 @@
         <ion-row align-items-center>
             <ion-col col-4 col-sm-4 *ngFor="let item of mIcons;let i = index" text-center (click)="viewDetail(i)" tappable>
                 <div class="background-item">
-                    <div class="img-top">
+                    <div class="img-top" [ngStyle]="{ 'background': mColors[i] }">
                         <img [src]="item" alt="icon">
                     </div>
                     <div class="img-description">

@@ -69,12 +69,12 @@ page-day-detail {
     $margin-top: 32px;
     @media (min-width: 767px) {
         .dot {
-            width: 18px !important;
-            height: 18px !important;
+            width: 32px !important;
+            height: 32px !important;
         }
         .dot-small {
-            width: 10px !important;
-            height: 10px !important;
+            width: 16px !important;
+            height: 16px !important;
         }
         .item-haft .shape2 {
             padding-left: 40px !important;

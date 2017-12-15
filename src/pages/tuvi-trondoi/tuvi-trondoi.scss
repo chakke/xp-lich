@@ -5,7 +5,7 @@ page-tuvi-trondoi {
     $padding-title: 16px;
     $font-title: 4.6vw;
     $margin-top: 30px;
-    $ipad-height: 80px;
+    $ipad-height: 120px;
     @media(min-width: 768px) {
         .header-scroll {
             margin-top: $ipad-height !important;
@@ -28,6 +28,7 @@ page-tuvi-trondoi {
         }
         .background-content {
             padding-bottom: 30px !important;
+            box-shadow: 0 6px 3px rgba(0, 0, 0, 0.2) !important;
         }
         .bg {
             height: $ipad-height !important;
@@ -35,6 +36,7 @@ page-tuvi-trondoi {
         }
         .btn {
             margin-top: $ipad-height !important;
+            box-shadow: 0 6px 3px rgba(0, 0, 0, 0.2) !important;
         }
     }
     .container {

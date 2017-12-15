@@ -19,8 +19,6 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 
 export class DepartureChangeDatePage {
 
-  rowHeight: string = "45px";
-  rowContainer: string = "135px";
   mDayDatas: Array<number> = [];
   mMonthDatas: Array<number> = [];
   mYearDatas: Array<number> = [];
@@ -51,8 +49,6 @@ export class DepartureChangeDatePage {
     this.mTodayString = Utils.getViewDate(this.mToday);
     this.mDepartureObject = new DepartureObject(this.mToday);
     this.mAppModule.updateDepartureInfo([this.mDepartureObject]);
-    this.rowHeight = Math.floor(screen.height * 0.06) + "px";
-    this.rowContainer = Math.floor(screen.height * 0.06)*3 + "px";
   }
 
 
