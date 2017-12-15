@@ -1,37 +1,37 @@
 page-zodiac {
-    $background: linear-gradient(to right, #007991, #78ffd6);
-    // .header-md::after {
-    //     height: 0;
-    // }
-    .col {
-        margin-bottom: 10px;
+    ion-content {
+        background: whitesmoke !important;
     }
-    .zodiac-container {
-        width: 94%;
-        margin: auto;
-        // background: map-get($map: $colors, $key: card);
+    .header-title {
+        font-size: $font-titleheader - 1vw !important;
+    }
+    .grid {
+        padding: 2vw;
+    }
+    .col {
+        padding: 2vw !important;
+    }
+    .box-col {
+        background: white;
         border-radius: 5px;
-        color: white;
-        background: #2e8ac1;
-        .zodiac-symbol {
-            padding: 2px;
-            img {
-                padding-top: 4px;
-                height: 3em;
-            }
-        }
-        .zodiac-name {
-            span {
-                font-weight: bolder;
-                white-space: nowrap;
-                font-size: $font-titleContent;
-            }
-        }
-        .zodiac-date {
-            span {
-                font-size: $font-content;
-                white-space: nowrap;
-            }
-        }
+        padding: 6px 0;
+    }
+    .zodiac-icon {
+        height: 50px;
+        width: 50px;
+        margin: auto;
+        border-radius: 50%;
+        padding: 6px;
+    }
+    .zodiac-name {
+        margin-top: 16px;
+        color: map-get($map: $DpColors, $key: bold);
+        font-size: $font-content;
+        white-space: nowrap;
+    }
+    .zodiac-date {
+        margin-top: 4px;
+        color: map-get($map: $DpColors, $key: left);
+        font-size: $font-content - 0.5vw;
     }
 }

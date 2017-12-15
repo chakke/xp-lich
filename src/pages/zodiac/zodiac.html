@@ -5,8 +5,11 @@
             <ion-icon name="departure-arrow-left"></ion-icon>
         </div>
 
-        <div class="header-title a3-flex-1" style="text-align:left !important">
+        <div class="header-title a3-flex-1" text-center>
             {{mPageTitle}}
+        </div>
+        <div class="header-button left hidden">
+            <ion-icon name="departure-arrow-left"></ion-icon>
         </div>
     </div>
 </ion-header>
@@ -16,20 +19,18 @@
 
 
 <ion-content>
-    <ion-grid *ngIf="!isLoading" class="pageZodiac-container" margin-top>
-        <ion-row>
+    <ion-grid *ngIf="!isLoading">
+        <ion-row align-items-center>
             <ion-col col-4 *ngFor="let item of data; let i = index" text-center tappable (click)="viewDetail(item.id)">
-                <div class="zodiac-container  a1-relative">
-                    <div class="zodiac-symbol a1-height-50">
-                        <img [src]="mIcons[i]">
+                <div class=" box-col ">
+                    <div class="zodiac-icon " [ngStyle]="{ 'background': mColors[i]} ">
+                        <img [src]="mIcons[i] " alt="icon ">
                     </div>
-                    <div class="a1-height-50" style="padding: 4px">
-                        <div class="zodiac-name">
-                            <span>{{getItemName(item.name)}}</span>
-                        </div>
-                        <div class="zodiac-date">
-                            <span>{{item.date}}</span>
-                        </div>
+                    <div class="zodiac-name ">
+                        <span>{{getItemName(item.name)}}</span>
+                    </div>
+                    <div class="zodiac-date ">
+                        <span>{{item.date}}</span>
                     </div>
                 </div>
             </ion-col>

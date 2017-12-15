@@ -20,6 +20,7 @@ export class ZodiacPage {
   data: any;
   isLoading: boolean = true;
   mIcons: Array<string> = [];
+  mColors: Array<string> = [];
   constructor(
     private mAppModule: DepartureModule,
     private statusBar: StatusBar,
@@ -39,6 +40,7 @@ export class ZodiacPage {
         if (zodiacPageData) {
           this.mIcons = zodiacPageData.zodiac_icons;
           this.mPageTitle = zodiacPageData.page_title;
+          this.mColors = zodiacPageData.colors;
         }
       }
     );
