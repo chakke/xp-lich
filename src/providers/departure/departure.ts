@@ -562,6 +562,10 @@ export class DepartureModule {
       this._count = 0;
     }
   }
+
+  showBanner(){
+    this.mAdsManager.showBanner(true);
+  }
 }
 
 

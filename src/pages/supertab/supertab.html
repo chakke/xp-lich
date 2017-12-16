@@ -1,0 +1,41 @@
+<ion-header class="background-header" *ngIf="type==0">
+    <div class="padding-statusbar"></div>
+    <div class="a3-container a3-items-center a1-relative header-padding">
+        <div class="header-button left touch-scale" tappable (click)="closeView()">
+            <ion-icon name="departure-arrow-left"></ion-icon>
+        </div>
+
+        <div class="header-title a3-flex-1">
+            {{data.name}}
+        </div>
+        <div class="header-button left hidden">
+            <ion-icon name="departure-arrow-left"></ion-icon>
+        </div>
+    </div>
+</ion-header>
+
+<ion-header class="background-header" *ngIf="type==1">
+
+    <div class="padding-statusbar"></div>
+
+    <div class="a3-container a3-items-center a1-relative header-padding">
+        <div class="header-button left touch-scale" tappable (click)="closeView()">
+            <ion-icon name="departure-arrow-left"></ion-icon>
+        </div>
+
+        <div class="header-title a3-flex-1">
+            {{data[selectedIndex].nameTC12CG}}
+        </div>
+        <div class="header-button left hidden">
+            <ion-icon name="departure-arrow-left"></ion-icon>
+        </div>
+    </div>
+
+</ion-header>
+
+<ion-content>
+    <!-- scrollTabs -->
+    <super-tabs id="mainTabs" [selectedTabIndex]="selectedIndex" scrollTabs toolbarColor="dark" toolbarBackground="light" indicatorColor="primary" (tabSelect)="onTabSelect($event)">
+        <super-tab [swipeBackEnabled]="true" *ngFor="let tab of list; let i = index" [root]="tab.page" [title]="tab.title" [rootParams]="{data: data, id: i}"></super-tab>
+    </super-tabs>
+</ion-content>

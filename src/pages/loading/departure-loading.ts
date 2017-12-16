@@ -8,6 +8,7 @@ import { GoogleAnalytics } from "@ionic-native/google-analytics";
 // import { DepartureTabsPage } from "../tabs/departure-tabs";
 
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { SupertabPage } from '../supertab/supertab';
 @IonicPage()
 @Component({
   selector: 'page-departure-loading',

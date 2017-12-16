@@ -32,10 +32,10 @@ export class XemNdPage {
         
         if (xemNDPageData) {
          this.data = xemNDPageData;
+          this.isLoading = false;
         }
       }
     );
-    this.isLoading = false;
   }
   closeView(){
     this.navCtrl.pop();

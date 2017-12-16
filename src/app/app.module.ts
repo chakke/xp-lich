@@ -16,10 +16,21 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { Keyboard } from '@ionic-native/keyboard';
 
+import { SuperTabsModule } from 'ionic2-super-tabs';
+import { DepartureCalendarPage } from '../pages/calendar/departure-calendar';
+import { SupertabPage } from '../pages/supertab/supertab';
+import { ZodiacDetailPage } from '../pages/zodiac-detail/zodiac-detail';
+import { Tuvi_12congiapDetailPage } from '../pages/tuvi-12congiap-detail/tuvi-12congiap-detail';
+
 @NgModule({
   declarations: [
     MyApp,
     DepartureTabsPage,
+    DepartureCalendarPage,
+    SupertabPage,
+    ZodiacDetailPage,
+    Tuvi_12congiapDetailPage 
+    // GiaiMongPage,
   ],
   imports: [
     BrowserModule,
@@ -27,15 +38,22 @@ import { Keyboard } from '@ionic-native/keyboard';
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true,
       pageTransition: "ios-transition",
-      menuType: "reveal"
+      menuType: "reveal",
+      scrollAssist: false, 
+      autoFocusAssist: false 
     }),
-    
+    SuperTabsModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     DepartureTabsPage,
-
+    DepartureCalendarPage,
+    SupertabPage,
+    ZodiacDetailPage ,
+    Tuvi_12congiapDetailPage
+    
+    // GiaiMongPage,
   ],
   providers: [
     StatusBar,

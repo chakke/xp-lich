@@ -9,9 +9,53 @@ page-tuvi-12congiap-detail {
         .title {
             margin: 32px 0px !important;
         }
+        .more-title {
+            margin-left: 32px !important;
+        }
+        .more-page {
+            padding: 32px !important;
+            .animals {
+                height: 80px !important;
+                width: 80px !important;
+            }
+        }
     }
     .container {
         padding: 16px;
         color: whitesmoke;
+        font-size: $font-titleContent;
+    }
+    .more-title {
+        color: map-get($map: $DpColors, $key: right);
+        font-size: $font-content;
+        // font-weight: bold;
+    }
+    .more-page {
+        white-space: nowrap;
+        overflow: auto;
+        padding: 16px;
+        .animals {
+            display: inline-block;
+            text-align: center;
+            margin-left: 10px;
+        }
+        .img-top {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            filter: brightness(60%);
+            padding: 10px;
+        }
+        .description {
+            margin-top: 6px;
+            color: map-get($map: $DpColors, $key: gray);
+        }
+        .active {
+            filter: brightness(100%);
+            color: map-get($map: $DpColors, $key: bold);
+        }
+        .animals:active {
+            filter: brightness(100%);
+        }
     }
 }

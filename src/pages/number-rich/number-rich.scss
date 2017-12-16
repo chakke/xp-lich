@@ -2,7 +2,7 @@ page-number-rich {
     $background: linear-gradient(to right, #007991, #78ffd6);
     .pageNumber-container {
         margin: auto;
-        width: 50%;
+        width: 60%;
         text-align: center;
     }
     .view-button {
@@ -20,19 +20,27 @@ page-number-rich {
     .view-button:active {
         transform: scale(1.04);
     }
-    .text-input-md {
-        width: 100%;
-        margin: 0;
-        margin-top: 13px;
-        margin-bottom: 5px;
-        // padding-bottom: 3px;
+    .item-inner {
+        border: none !important;
+        border-bottom: 1px solid #dedede !important;
+        box-shadow: none !important;
     }
+    .input-md .text-input-clear-icon {
+        background-size: 16px;
+    }
+    // .text-input-md {
+    //     width: 100%;
+    //     margin: 0;
+    //     margin-top: 13px;
+    //     margin-bottom: 5px;
+    //     // padding-bottom: 3px;
+    // }
     .text-input {
         font-size: $font-content !important;
     }
-    ion-input {
-        border-bottom: 1px solid black;
-    }
+    // ion-input {
+    //     border-bottom: 1px solid black;
+    // }
     // .text-input-ios {
     // }
     // .text-input::-moz-placeholder {

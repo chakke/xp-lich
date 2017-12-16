@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DepartureModule } from '../../providers/departure/departure';
 import { DepartureTabsPage } from '../tabs/departure-tabs';
+import { SupertabPage } from '../supertab/supertab';
 
 /**
  * Generated class for the Tuvi_12congiapPage page.
@@ -60,8 +61,7 @@ export class Tuvi_12congiapPage {
   }
 
   viewDetail(index){
-    this.navCtrl.push("Tuvi_12congiapDetailPage",{ id: index, data: this.data[index]});
-    
+    this.navCtrl.push(SupertabPage,{ id: index, data: this.data , type: 1});
   }
 
 }

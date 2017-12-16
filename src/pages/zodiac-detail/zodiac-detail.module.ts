@@ -4,7 +4,7 @@ import { ZodiacDetailPage } from './zodiac-detail';
 
 @NgModule({
   declarations: [
-    ZodiacDetailPage,
+    // ZodiacDetailPage,
   ],
   imports: [
     IonicPageModule.forChild(ZodiacDetailPage),

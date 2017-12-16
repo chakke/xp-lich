@@ -44,7 +44,7 @@ export class VanKhanPage {
   }
   ionViewDidEnter() {
     if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#274c7c");
-
+    this.keyboard.disableScroll(true);
   }
   search() {
     this.isClickSearch = true;

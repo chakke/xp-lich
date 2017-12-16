@@ -21,10 +21,10 @@
 <ion-content>
     <div class="mong-content">
         <div class="box" *ngFor="let item of data.mong_content">
-            <div class="box-title a3-container a3-items-center">
+            <div class="box-title a3-container a3-items-center" *ngIf="item">
                 <div class="box-dot background-header"></div>
             </div>
-            <div class="box-content">
+            <div class="box-content" *ngIf="item">
                 {{item}}
             </div>
         </div>

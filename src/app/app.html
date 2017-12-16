@@ -1,4 +1,4 @@
-<ion-menu [content]="mycontent" id="menuID" (ionClose)="closeMenu()">
+<ion-menu [content]="mycontent" id="menuID" (ionClose)="closeMenu()" (ionDrag)="changeMenu($event)" (ionOpen)="openMenu()">
     <ion-header>
         <div style="min-height: 16vh"></div>
     </ion-header>

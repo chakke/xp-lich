@@ -19,12 +19,13 @@
 <ion-content>
     <div class="a1-container">
         <div margin-top class="pageNumber-container a1-relative" text-center>
-            <div class="input">
-                <ion-input #input type="search" placeholder="Nhập tên"></ion-input>
-            </div>
+            <ion-item>
+                <ion-input #input placeholder="Nhập tên" clearInput></ion-input>
+            </ion-item>
             <div class="view-button background-header" tappable (click)="viewDescription()" text-center>
                 <span>Xem</span>
             </div>
         </div>
     </div>
+    <div class="ads-banner-bar"></div>
 </ion-content>

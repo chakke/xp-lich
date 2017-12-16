@@ -45,6 +45,27 @@ export class AdsManager {
         }
     }
 
+    public showBanner(value : boolean){
+        if (!this.mAdmobFree) return;
+        if (!this.mAdsEnable) return;
+
+        if(value){
+            this.mAdmobFree.banner.config({
+                overlap: true,
+                isTesting: true,
+            })
+           this.mAdmobFree.banner.prepare().then(
+               (data) =>{
+                   this.mAdmobFree.banner.show();
+               },
+               error =>{
+
+               }
+           )
+           return;
+        }
+    }
+
     public showInterstital(force: boolean = true) {
         if (!this.mAdmobFree) return;
         if (!this.mAdsEnable) return;

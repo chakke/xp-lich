@@ -1,74 +1,26 @@
 page-zodiac-detail {
     $background: linear-gradient(to right, #007991, #78ffd6);
-    // .header-md::after {
-    //     height: 0;
-    // }
-    .zodacDetailPage-container {
-        height: calc(100% - 32px);
-        .item-container {
-            height: 92%;
-        }
-        .background-container {
-            // background: rgba(black, 0.2);
-            margin: auto;
-            width: calc(100% - 20px);
-            height: 100%;
-            border-radius: 5px;
-            padding: 16px;
-            overflow: scroll;
-            // animation: 300ms;
-            .item {
-                // color: white;
-                .item-title {
-                    padding: 16px 0px 16px 0px;
-                    color: map-get($map: $DpColors, $key: bold);
-                    span {
-                        text-transform: uppercase;
-                        font-weight: bold;
-                        font-size: $font-titleContent;
-                    }
-                }
-                .item-content {
-                    // padding: 0 10px 0 10px;
-                    color: map-get($map: $DpColors, $key: medium);
-                    p {
-                        white-space: pre-wrap;
-                        text-align: justify;
-                        font-size: $font-content;
-                        line-height: 1.5em;
-                    }
-                }
+    .item {
+        // color: white;
+        padding: 16px;
+        margin-top: 16px;
+        .item-title {
+            color: map-get($map: $DpColors, $key: bold);
+            span {
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: $font-titleContent;
             }
         }
-    }
-    .menu-container {
-        white-space: nowrap;
-        overflow: auto;
-        scroll-behavior: smooth;
-        background-color: whitesmoke;
-    }
-    .menu-item {
-        white-space: nowrap;
-        display: inline-block;
-        background: whitesmoke;
-        color: map-get($map: $DpColors, $key: gray);
-        width: 33.33333%;
-        padding: 12px;
-        text-align: center;
-        span {
-            font-size: $font-titleContent;
+        .item-content {
+            // padding: 0 10px 0 10px;
+            color: map-get($map: $DpColors, $key: medium);
+            p {
+                white-space: pre-wrap;
+                text-align: justify;
+                font-size: $font-content;
+                line-height: 1.5em;
+            }
         }
-    }
-    .item-active {
-        // color: map-get($map: $colors, $key: primary);
-    }
-    .animate-bar {
-        position: absolute;
-        bottom: 0px;
-        height: 2px;
-        transition: 200ms;
-        background: #34a1ca;
-        left: 12px;
-        width: 26%;
     }
 }

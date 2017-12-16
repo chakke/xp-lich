@@ -6,7 +6,7 @@ import { AppController } from '../../providers/app-controller';
 import { Calendar } from '../../providers/departure/class/calendar';
 import { StatusBar } from '@ionic-native/status-bar';
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-departure-calendar',
   templateUrl: 'departure-calendar.html',
@@ -62,6 +62,25 @@ export class DepartureCalendarPage {
     this.col_height = Math.floor(((screen.width - 32) / 7)) + "px";
     this.grid_height = Math.floor(((screen.width - 32)/ 7)*6) + 16 + "px";
     // this.calendar = this.calendar.
+  
+    this.mAppModule.updateDepartureInfo(this.calendar.days);
+    this.mAppModule.updateDepartureInfo([this.currentDate, this.selectedDate]);
+    // document.getElementById("box").style.height = this.col_height;
+    // this.getQuoteAndDayName(this.selectedDate);
+  }
+  openMenu() {
+    let overlay = document.getElementById("overlay-calendar");
+    let bg = document.getElementById("bg-calendar");
+
+    if (overlay && bg && bg.childElementCount> 0) {
+      overlay.style.display = "block";
+      bg.style.color = "#66cccc";
+      bg.children[0].setAttribute("style", "opacity: 1");
+    }
+  }
+  ionViewDidEnter() {
+    if(!this.mAppModule.mIsOnIOSDevice){this.statusBar.backgroundColorByHexString("#20c0e1")};
+    this.mAppModule.showAdvertisement();
     if (!this.departureData) {
       this.mAppModule.getData().then(
         data => {
@@ -69,18 +88,6 @@ export class DepartureCalendarPage {
         }, error => { }
       );
     }
-    this.mAppModule.updateDepartureInfo(this.calendar.days);
-    this.mAppModule.updateDepartureInfo([this.currentDate, this.selectedDate]);
-    // document.getElementById("box").style.height = this.col_height;
-    // this.getQuoteAndDayName(this.selectedDate);
-  }
-  openMenu(){
-    let ele = document.getElementById("overlay-calendar");
-    if(ele)ele.style.display = "block";
-  }
-  ionViewDidEnter() {
-    if(!this.mAppModule.mIsOnIOSDevice){this.statusBar.backgroundColorByHexString("#20c0e1")};
-    this.mAppModule.showAdvertisement();
     this.isLoading = false;
   }
   

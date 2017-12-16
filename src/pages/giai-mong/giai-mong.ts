@@ -35,7 +35,6 @@ export class GiaiMongPage {
     private mAppModule: DepartureModule,
     public navCtrl: NavController, public navParams: NavParams) {
     this.loadData();
-    
   }
   closeView() {
     if(this.navCtrl.canGoBack()){

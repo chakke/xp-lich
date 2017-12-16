@@ -4,7 +4,7 @@ import { Tuvi_12congiapDetailPage } from './tuvi-12congiap-detail';
 
 @NgModule({
   declarations: [
-    Tuvi_12congiapDetailPage,
+    // Tuvi_12congiapDetailPage,
   ],
   imports: [
     IonicPageModule.forChild(Tuvi_12congiapDetailPage),

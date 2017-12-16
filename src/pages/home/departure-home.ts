@@ -92,19 +92,31 @@ export class DepartureHomePage {
   }
   
   mHasEnter: boolean = false;
- 
+  ionViewDidLoad(){
+    console.log("HomePage");
+    
+  }
   ionViewWillLeave() {
     this.mBackgroundAnimationEnable = false;
   }
-  openMenu(){
-    let ele = document.getElementById("overlay-home");
-    if(ele)ele.style.display = "block";
-  }
   
+  openMenu() {
+     let overlay = document.getElementById("overlay-home");
+     let bg = document.getElementById("bg-home");
+ 
+     if (overlay && bg && bg.childElementCount> 0) {
+       overlay.style.display = "block";
+       bg.style.color = "#66cccc";
+       bg.children[0].setAttribute("style", "opacity: 1");
+     }
+   }
+
+
   danhNgondata: any;
   isLoaddanhNgon : boolean = true;
   ionViewDidEnter() {
     this.mBackgroundAnimationEnable = true;
+    this.mAppModule.showBanner();
     this.changeBackGroundStatusBar();
     if(!this.danhNgondata){
       this.mAppModule.getDanhNgonDataJSON().then(

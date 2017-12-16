@@ -257,10 +257,16 @@ export class DepartureChangeDatePage {
     this.mAppModule.updateDepartureInfo([this.mDepartureObject]);
   }
 
-  openMenu(){
-    let ele = document.getElementById("overlay-change");
-    if(ele)ele.style.display = "block";
-  }
+ 
+  openMenu() {
+    let overlay = document.getElementById("overlay-change");
+    let bg = document.getElementById("bg-change");
 
+    if (overlay && bg && bg.childElementCount> 0) {
+      overlay.style.display = "block";
+      bg.style.color = "#66cccc";
+      bg.children[0].setAttribute("style", "opacity: 1");
+    }
+  }
 
 }

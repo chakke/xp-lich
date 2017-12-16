@@ -5,13 +5,13 @@ page-dp-popover {
     .background {
         height: 100%;
         width: 100%;
-        background: rgba($color: black, $alpha: .2);
+        background: rgba($color: black, $alpha: .6);
     }
     .dp-header {
         text-align: right;
         color: white;
-        padding-right: 10px;
-        padding-top: 10px;
+        padding-right: 16px;
+        padding-top: 16px;
         ion-icon {
             font-size: 6vw;
         }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DepartureModule } from '../../providers/departure/departure';
 import { StatusBar } from '@ionic-native/status-bar';
+import { SupertabPage } from '../supertab/supertab';
 
 /**
  * Generated class for the ZodiacPage page.
@@ -54,8 +55,9 @@ export class ZodiacPage {
 
   viewDetail(id: string) {
     let index = parseInt(id);
-    this.navCtrl.push("ZodiacDetailPage", {
-      data: this.data[index - 1]
+    this.navCtrl.push(SupertabPage, {
+      data: this.data[index - 1],
+      type: 0
     })
   }
 

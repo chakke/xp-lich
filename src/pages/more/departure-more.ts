@@ -26,10 +26,18 @@ export class DepartureMorePage {
       this.more_options = this.mAppModule.getAppConfig().get("DepartureMorePage")['subviews'];
     });
   }
-  openMenu(){
-    let ele = document.getElementById("overlay-more");
-    if(ele)ele.style.display = "block";
+
+  openMenu() {
+    let overlay = document.getElementById("overlay-more");
+    let bg = document.getElementById("bg-more");
+
+    if (overlay && bg && bg.childElementCount> 0) {
+      overlay.style.display = "block";
+      bg.style.color = "#66cccc";
+      bg.children[0].setAttribute("style", "opacity: 1");
+    }
   }
+ 
   ionViewDidEnter() {
     if (!this.mAppModule.mIsOnIOSDevice) { this.statusBar.backgroundColorByHexString("#20c0e1") };
     if (!this.cavalVNAL) {

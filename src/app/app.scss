@@ -33,13 +33,17 @@
     z-index: -1;
     left: -1px;
     top: -10%;
-    opacity: 0;
     height: 120%;
     width: 100%;
+    opacity: 0;
     background-image: url(../assets/departure/icon/btn_menu.png);
     background-position: left;
     background-size: 100% 116%;
     background-repeat: no-repeat;
+}
+
+.menu-content {
+    box-shadow: none !important;
 }
 
 .menu-content-open {
@@ -47,7 +51,6 @@
     .left {
         background: none;
         color: #66cccc;
-        z-index: 1000;
         // background-image: url(../assets/departure/icon/btn_menu.png);
         // background-position: left;
         // background-size: 100% 100%;
@@ -734,6 +737,7 @@ $background: linear-gradient(to right, #007991, #78ffd6);
 $border-radius-button: 100px;
 .header-button {
     padding: 6px 14px;
+    z-index: 1000;
     color: white;
     background: rgba($color: white, $alpha: .3);
     ion-icon {
@@ -872,4 +876,8 @@ $box-dot-size: 6px;
         text-align: center !important;
         margin-bottom: 10px;
     }
+}
+
+.ads-banner-bar {
+    height: 60px;
 }
