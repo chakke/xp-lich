@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Tabs, App, Nav, Menu } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Keyboard } from '@ionic-native/keyboard';
-import { DepartureTabsPage } from "../pages/tabs/departure-tabs";
+// import { DepartureTabsPage } from "../pages/tabs/departure-tabs";
 import { DepartureModule } from '../providers/departure/departure';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { MenuController } from 'ionic-angular/components/app/menu-controller';

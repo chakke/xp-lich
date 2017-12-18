@@ -6,7 +6,7 @@ import { AppController } from '../../providers/app-controller';
 import { Calendar } from '../../providers/departure/class/calendar';
 import { StatusBar } from '@ionic-native/status-bar';
 
-// @IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-departure-calendar',
   templateUrl: 'departure-calendar.html',

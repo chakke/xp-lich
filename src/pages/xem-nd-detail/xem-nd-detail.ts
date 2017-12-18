@@ -57,7 +57,7 @@ export class XemNdDetailPage {
           let modal = this.modalCtrl.create("DpPopoverPage",{
             data: description
           })
-          modal.present();
+          modal.present({animate: false});
       }else{
         alert("Số không tồn tại")
       }

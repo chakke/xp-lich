@@ -153,6 +153,9 @@ page-departure-changedate {
                     font-weight: bold;
                 }
             }
+            .change-date-col::-webkit-scrollbar {
+                display: none;
+            }
         }
         .icon {
             margin-top: 2vh;

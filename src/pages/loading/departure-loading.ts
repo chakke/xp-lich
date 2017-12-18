@@ -70,5 +70,6 @@ export class DepartureLoadingPage {
       direction: "forward",
       duration: 400
     });
+    // this.navCtrl.setRoot(TestPage);
   }
 }

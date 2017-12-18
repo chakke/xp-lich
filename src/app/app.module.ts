@@ -6,7 +6,7 @@ import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { DepartureTabsPage } from "../pages/tabs/departure-tabs";
+// import { DepartureTabsPage } from "../pages/tabs/departure-tabs";
 import { DepartureModule } from "../providers/departure/departure";
 import { HttpService } from "../providers/http-service";
 import { DeviceInfoProvider } from "../providers/device-info/device-info";
@@ -22,14 +22,14 @@ import { SupertabPage } from '../pages/supertab/supertab';
 import { ZodiacDetailPage } from '../pages/zodiac-detail/zodiac-detail';
 import { Tuvi_12congiapDetailPage } from '../pages/tuvi-12congiap-detail/tuvi-12congiap-detail';
 
+
 @NgModule({
   declarations: [
     MyApp,
-    DepartureTabsPage,
-    DepartureCalendarPage,
     SupertabPage,
     ZodiacDetailPage,
-    Tuvi_12congiapDetailPage 
+    Tuvi_12congiapDetailPage ,
+    // GiaiMongDetailPage,
     // GiaiMongPage,
   ],
   imports: [
@@ -47,12 +47,10 @@ import { Tuvi_12congiapDetailPage } from '../pages/tuvi-12congiap-detail/tuvi-12
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    DepartureTabsPage,
-    DepartureCalendarPage,
     SupertabPage,
     ZodiacDetailPage ,
-    Tuvi_12congiapDetailPage
-    
+    Tuvi_12congiapDetailPage,
+    // GiaiMongDetailPage,
     // GiaiMongPage,
   ],
   providers: [

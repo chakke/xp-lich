@@ -28,7 +28,7 @@ export class DpPopoverPage {
   }
 
   close(){
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss(null,null,{animate: false});
   }
 
 }

@@ -4,7 +4,6 @@ import { DepartureModule } from '../../providers/departure/departure';
 import { DepartureUtils } from '../../providers/departure/departure-utils';
 import { ScrollItems, ScrollOption } from '../../providers/common/scroll-controller';
 import { AppModule } from '../../providers/app-module';
-import { DepartureTabsPage } from '../tabs/departure-tabs';
 
 /**
  * Generated class for the TuviTrondoiPage page.

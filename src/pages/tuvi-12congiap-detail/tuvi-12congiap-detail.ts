@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { TuVi12ConGiap } from '../../providers/departure/interface/tuvi';
 import { DepartureModule } from '../../providers/departure/departure';
-import { DepartureTabsPage } from '../tabs/departure-tabs';
 
 /**
  * Generated class for the Tuvi_12congiapDetailPage page.

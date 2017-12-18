@@ -2,7 +2,7 @@ page-pickdate {
     $rowHeight: 45px;
     $ipadRowHeight: 80px;
     ion-content {
-        background-color: rgba(black, 0.6) !important;
+        background-color: rgba(black, 0.8) !important;
     }
     @media(min-width: 768px) {
         .change-date-col-container {
@@ -110,6 +110,9 @@ page-pickdate {
                 }
             }
         }
+        .col-date::-webkit-scrollbar {
+            display: none;
+        }
     }
     .change-date-content {
         position: relative;
@@ -124,14 +127,14 @@ page-pickdate {
         position: relative;
         font-size: $font-button;
         margin: auto;
-        width: 80%;
-        padding: 16px;
+        width: 70%;
+        padding: 12px;
         background-color: #56b8dd;
         text-transform: uppercase;
         color: #fff;
         z-index: 10;
     }
     .button-bottom:active {
-        background-color: rgba(black, 0.6);
+        background-color: rgba(black, 0.4);
     }
 }

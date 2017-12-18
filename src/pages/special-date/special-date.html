@@ -1,7 +1,6 @@
 <ion-header class="background-header">
-    <div class="padding-statusbar"></div>
 
-    <div class="a3-container a3-items-center a1-relative header-padding">
+    <div class="a3-container a3-items-center a1-relative header-padding ">
         <div class="header-button left" tappable (click)="closeView()">
             <ion-icon name="departure-arrow-left"></ion-icon>
         </div>
@@ -17,7 +16,7 @@
     </div>
 
 
-    <div class="a1-relative a3-container segment-container">
+    <div class="a1-relative a3-container segment-container ">
         <ion-segment [(ngModel)]="calendar" class="a1-relative">
             <!-- <div *ngIf="!mAppModule.mIsOnIOSDevice" class="animation-bar" id="animateBar"></div> -->
             <ion-segment-button value="solar" (ionSelect)="changeSegment('solar')">

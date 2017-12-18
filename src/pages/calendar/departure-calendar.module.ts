@@ -4,7 +4,7 @@ import { DepartureCalendarPage } from './departure-calendar';
 
 @NgModule({
   declarations: [
-    // DepartureCalendarPage,
+    DepartureCalendarPage,
   ],
   imports: [
     IonicPageModule.forChild(DepartureCalendarPage),

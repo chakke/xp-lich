@@ -6,9 +6,16 @@ page-dp-popover {
         height: 100%;
         width: 100%;
         background: rgba($color: black, $alpha: .6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
     .dp-header {
         text-align: right;
+        position: absolute;
+        top: 0;
+        right: 0;
         color: white;
         padding-right: 16px;
         padding-top: 16px;
@@ -22,7 +29,8 @@ page-dp-popover {
         padding: 20px;
         text-align: justify;
         font-size: $font-content;
-        min-width: 80%;
+        max-width: 80%;
         min-height: 20%;
+        animation-duration: 200ms;
     }
 }

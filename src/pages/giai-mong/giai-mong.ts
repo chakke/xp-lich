@@ -5,6 +5,7 @@ import { AppModule } from '../../providers/app-module';
 import { StatusBar } from '@ionic-native/status-bar';
 import { ScrollOption, ScrollItems } from '../../providers/common/scroll-controller';
 import { Utils } from '../../providers/app-utils';
+import { GiaiMongDetailPage } from '../giai-mong-detail/giai-mong-detail';
 
 export interface Letter {
   letter: string;
@@ -37,13 +38,11 @@ export class GiaiMongPage {
     this.loadData();
   }
   closeView() {
-    if(this.navCtrl.canGoBack()){
       this.navCtrl.pop();
-      }else{
-      this.navCtrl.setRoot("DepartureMorePage");
-    }
   }
   loadData() {
+    console.log("load data");
+    
     if (!this.data) {
       this.mAppModule.getGiaiMongDataJSON().then(
         data => {
@@ -61,7 +60,7 @@ export class GiaiMongPage {
     }
   }
   ionViewDidEnter() {
-    if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#274c7c");
+    // if (!this.mAppModule.mIsOnIOSDevice) this.statusBar.backgroundColorByHexString("#274c7c");
     this.createEventListeners();
   }
 

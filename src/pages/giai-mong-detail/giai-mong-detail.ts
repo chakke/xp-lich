@@ -33,11 +33,7 @@ export class GiaiMongDetailPage {
 
   }
   closeView() {
-    if(this.navCtrl.canGoBack()){
       this.navCtrl.pop();
-    }else{
-      this.navCtrl.setRoot("GiaiMongPage");
-    }
   }
 
 }

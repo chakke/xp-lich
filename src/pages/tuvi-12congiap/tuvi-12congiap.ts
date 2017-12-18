@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DepartureModule } from '../../providers/departure/departure';
-import { DepartureTabsPage } from '../tabs/departure-tabs';
+// import { DepartureTabsPage } from '../tabs/departure-tabs';
 import { SupertabPage } from '../supertab/supertab';
 
 /**

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DepartureModule } from '../../providers/departure/departure';
 import { TuViTronDoi } from '../../providers/departure/interface/tuvi';
-import { DepartureTabsPage } from '../tabs/departure-tabs';
 
 /**
  * Generated class for the TuviTrondoiDetailPage page.
